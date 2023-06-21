@@ -19,15 +19,15 @@
 .header img {
   width: 60px;
   height: 60px;
-  background-color: green;
+  background-color: rgb(124, 231, 124);
 }
 
 .nav {
   grid-area: n;
-  background-color: rgb(195, 236, 9);
+  background-color: rgb(96, 235, 92);
 }
 
 .content {
   grid-area: c;
-  background-color: rgb(212, 11, 11);
+  background-color: rgb(52, 124, 42);
 }
