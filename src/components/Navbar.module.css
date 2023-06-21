@@ -4,5 +4,9 @@
 }
 
 .item {
-  color: red;
+  color: rgb(241, 78, 13);
+}
+
+.item.active {
+  color: rgb(0, 89, 255);
 }
