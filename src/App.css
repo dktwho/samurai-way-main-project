@@ -1,5 +1,4 @@
 .App {
-  /* text-align: center; */
   font-family: "Goudy Bookletter 1911", sans-serif;
 }
 
@@ -13,21 +12,6 @@
   margin: 0 auto;
 }
 
-.header {
-  grid-area: h;
-}
-.header img {
-  width: 60px;
-  height: 60px;
-  background-color: rgb(124, 231, 124);
-}
 
-.nav {
-  grid-area: n;
-  background-color: rgb(96, 235, 92);
-}
 
-.content {
-  grid-area: c;
-  background-color: rgb(52, 124, 42);
-}
+
