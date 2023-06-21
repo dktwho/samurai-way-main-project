@@ -1,5 +1,10 @@
+* {
+  background-color: rgb(207, 193, 174);
+}
+
 .App {
   text-align: center;
+  font-family: "Goudy Bookletter 1911", sans-serif;
 }
 
 .App-logo {
