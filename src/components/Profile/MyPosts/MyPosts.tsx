@@ -11,10 +11,8 @@ export const MyPosts = () => {
         <button>Add post</button>
       </div>
       <div className="posts">New post</div>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      <Post message={'Hello'} />
+      <Post message={'Hi'} />
     </div>
   );
 };
