@@ -2,6 +2,7 @@ import React from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
+
 export const MyPosts = () => {
     return (
         <div>

@@ -7,8 +7,8 @@ export const Profile = () => {
         <div className={styled.content}>
             <div>
                 <img
-                    src="https://www.atlantictours.com/images/stories/com_form2content/p1/f103/nova-scotia-halifax-waterfront-harbour-hopper-purdys-wharf-875x375.jpg"
-                    alt=""
+                    src="https://cdn-icons-png.flaticon.com/256/206/206853.png"
+                    alt="profile-logo"
                 />
             </div>
             <div>Ava + description</div>
