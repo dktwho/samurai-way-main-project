@@ -9,10 +9,21 @@ type DialogItemType = {
 
 }
 const DialogItem = ({name, id}: DialogItemType) => {
+    let path = `/dialogs/${id}`
     return (
         <div className={`${styled.dialog} ${styled.active}`}>
-            <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
+            <NavLink to={path}>{name}</NavLink>
         </div>
+    )
+}
+
+
+export type MessageType = {
+    message: string
+}
+const Message = ({message}: MessageType) => {
+    return (
+        <div className={styled.message}>{message}</div>
     )
 }
 
@@ -28,9 +39,9 @@ export const Dialogs = () => {
             </div>
 
             <div className={styled.messages}>
-                <div className={styled.message}>Hi</div>
-                <div className={styled.message}>Hello</div>
-                <div className={styled.message}>How are you</div>
+                <Message message={'Hi'}/>
+                <Message message={'Hello'}/>
+                <Message message={'How are you?'}/>
             </div>
         </div>
     );
