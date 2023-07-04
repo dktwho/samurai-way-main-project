@@ -8,7 +8,7 @@ type DialogItemType = {
     id: number;
 
 }
-const DialogItem = ({name, id}: DialogItemType) => {
+const DialogItem: React.FC<DialogItemType> = ({name, id}) => {
     let path = `/dialogs/${id}`
     return (
         <div className={`${styled.dialog} ${styled.active}`}>
@@ -21,7 +21,7 @@ const DialogItem = ({name, id}: DialogItemType) => {
 export type MessageType = {
     message: string
 }
-const Message = ({message}: MessageType) => {
+const Message: React.FC<MessageType> = ({message}) => {
     return (
         <div className={styled.message}>{message}</div>
     )
