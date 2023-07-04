@@ -5,20 +5,31 @@ import styled from "./Navbar.module.css";
 export const Navbar = () => {
     return (
         <nav className={styled.nav}>
-            <div className={`${styled.item} ${styled.active}`}>
-                <NavLink to='/profile'>Profile</NavLink>
+            <div>
+                <NavLink to='/profile' className={navData =>
+                    navData ? styled.active : styled.item
+                }
+                >Profile</NavLink>
             </div>
-            <div className={styled.item}>
-                <NavLink to='/dialogs'>Messages</NavLink>
+            <div>
+                <NavLink to='/dialogs' className={navData =>
+                    navData ? styled.active : styled.item
+                }>Messages</NavLink>
             </div>
-            <div className={styled.item}>
-                <NavLink to=''>News</NavLink>
+            <div>
+                <NavLink to='' className={navData =>
+                    navData ? styled.active : styled.item
+                }>News</NavLink>
             </div>
-            <div className={styled.item}>
-                <NavLink to=''>Music</NavLink>
+            <div>
+                <NavLink to='' className={navData =>
+                    navData ? styled.active : styled.item
+                }>Music</NavLink>
             </div>
-            <div className={styled.item}>
-                <NavLink to=''>Settings</NavLink>
+            <div>
+                <NavLink to='' className={navData =>
+                    navData ? styled.active : styled.item
+                }>Settings</NavLink>
             </div>
         </nav>
     );
