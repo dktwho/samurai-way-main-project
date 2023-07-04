@@ -7,7 +7,7 @@ export const Profile = () => {
         <div className={styled.content}>
             <div>
                 <img
-                    src="https://cdn-icons-png.flaticon.com/256/206/206853.png"
+                    src="https://www.freewebheaders.com/wp-content/gallery/nature-size-800x200/beautiful-river-trees-snow-mountain-clouds-nature-landscape-web-header_size-800x200.jpg"
                     alt="profile-logo"
                 />
             </div>
