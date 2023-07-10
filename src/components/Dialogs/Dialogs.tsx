@@ -1,33 +1,7 @@
 import React from 'react';
 import styled from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-
-
-type DialogItemType = {
-    name: string;
-    id: number;
-}
-
-
-const DialogItem: React.FC<DialogItemType> = ({name, id}) => {
-    let path = `/dialogs/${id}`
-    return (
-        <div className={`${styled.dialog} ${styled.active}`}>
-            <NavLink to={path}>{name}</NavLink>
-        </div>
-    )
-}
-
-
-export type MessageType = {
-    message: string
-    id: number
-}
-const Message: React.FC<MessageType> = ({message}) => {
-    return (
-        <div className={styled.message}>{message}</div>
-    )
-}
+import {DialogItem} from "./DialogItem/DialogsItem";
+import {Message} from "./Message/Message";
 
 export const Dialogs = () => {
 
