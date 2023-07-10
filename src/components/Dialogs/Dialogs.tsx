@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from './Dialogs.module.css'
-import {DialogItem} from "./DialogItem/DialogsItem";
-import {Message} from "./Message/Message";
+import {DialogItem, DialogItemType} from "./DialogItem/DialogsItem";
+import {Message, MessageType} from "./Message/Message";
 
 export const Dialogs = () => {
 
-    let dialogsData = [
+    let dialogsData: DialogItemType[] = [
         {id: 1, name: 'Bob'},
         {id: 2, name: 'Bill'},
         {id: 3, name: 'Sam'},
@@ -19,7 +19,7 @@ export const Dialogs = () => {
         )
     })
 
-    let messagesData = [
+    let messagesData: MessageType[] = [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hello'},
         {id: 3, message: 'How are you?'},
