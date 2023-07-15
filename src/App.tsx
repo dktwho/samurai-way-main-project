@@ -6,6 +6,8 @@ import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 
+
+
 const App = () => {
     return (
         <BrowserRouter>
@@ -13,8 +15,11 @@ const App = () => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route  path='/dialogs' component={Dialogs}/>
-                    <Route  path='/profile' component={Profile}/>
+                    {/*<Route  path='/dialogs' component={Dialogs}/>*/}
+                    {/*<Route  path='/profile' component={Profile}/>*/}
+
+                    <Route  path='/dialogs' render={() => <Dialogs/>}/>
+                    <Route  path='/profile' render={() => <Profile/>}/>
                 </div>
             </div>
         </BrowserRouter>
