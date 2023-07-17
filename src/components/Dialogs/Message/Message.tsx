@@ -5,8 +5,8 @@ export type MessageType = {
     message: string
     id: number
 }
-export const Message: React.FC<MessageType> = ({message}) => {
+export const Message: React.FC<MessageType> = (props ) => {
     return (
-        <div className={styled.message}>{message}</div>
+        <div className={styled.message}>{props.message}</div>
     )
 }
