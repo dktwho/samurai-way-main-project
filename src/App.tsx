@@ -13,17 +13,18 @@ import {MessageType} from "./components/Dialogs/Message/Message";
 type AppStateType = {
     appState: {
         profilePage: ProfilePageType
-        messagesPage: MessagePageType
+        dialogsPage: MessagePageType
     }
 }
 
 type ProfilePageType = {
     posts: MyPostsType[]
-    dialogs: DialogItemType[]
+
 }
 
 type MessagePageType = {
     messages: MessageType[]
+    dialogs: DialogItemType[]
 }
 
 const App = (props: AppStateType) => {
@@ -35,8 +36,8 @@ const App = (props: AppStateType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <Dialogs messagesData={props.appState.messagesPage.messages}
-                                                  dialogsData={props.appState.profilePage.dialogs}/>}/>
+                           render={() => <Dialogs messagesData={props.appState.dialogsPage.messages}
+                                                  dialogsData={props.appState.dialogsPage.dialogs}/>}/>
                     <Route path='/profile' render={() => <Profile postsData={props.appState.profilePage.posts}/>}/>
                 </div>
             </div>
