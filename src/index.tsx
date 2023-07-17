@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import {state} from "./redux/state";
 
-const {
-    messages,
-    posts,
-    dialogs} = state
+// const {
+//     messages,
+//     posts,
+//     dialogs} = state
 
 ReactDOM.render(
-    <App  posts={posts} dialogsData={dialogs} messagesData={messages}/>,
+    <App  appState={state}/>,
     document.getElementById('root')
 );
