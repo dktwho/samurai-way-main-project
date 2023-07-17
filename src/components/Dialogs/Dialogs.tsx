@@ -24,7 +24,7 @@ export const Dialogs = () => {
         {id: 2, message: 'Hello'},
         {id: 3, message: 'How are you?'},
         {id: 4, message: 'Fine'},
-        {id: 4, message: 'Good'},
+        {id: 5, message: 'Good'},
     ]
 
     let resultMessagesData = messagesData.map(elem => {
