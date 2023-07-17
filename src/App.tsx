@@ -12,13 +12,22 @@ import {MessageType} from "./components/Dialogs/Message/Message";
 
 type AppStateType = {
     appState: {
-        posts: MyPostsType[]
-        messages: MessageType[]
-        dialogs: DialogItemType[]
+        profilePage: ProfilePageType
+        messagesPage: MessagePageType
     }
 }
 
+type ProfilePageType = {
+    posts: MyPostsType[]
+    dialogs: DialogItemType[]
+}
+
+type MessagePageType = {
+    messages: MessageType[]
+}
+
 const App = (props: AppStateType) => {
+    console.log(props)
 
     return (
         <BrowserRouter>
@@ -27,9 +36,9 @@ const App = (props: AppStateType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <Dialogs messagesData={props.appState.messages}
-                                                  dialogsData={props.appState.dialogs}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.appState.posts}/>}/>
+                           render={() => <Dialogs messagesData={props.appState.messagesPage.messages}
+                                                  dialogsData={props.appState.profilePage.dialogs}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.appState.profilePage.posts}/>}/>
                 </div>
             </div>
         </BrowserRouter>
