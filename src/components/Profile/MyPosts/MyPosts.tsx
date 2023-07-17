@@ -9,7 +9,7 @@ export type MyPostsType = {
     likesCount: string
 }
 
-type PostsTypeProps = {
+export type PostsTypeProps = {
     posts: MyPostsType[]
 }
 
