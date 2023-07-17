@@ -3,23 +3,28 @@ import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
 
-type MyPostsType = {
+export type MyPostsType = {
     id: number
     message: string
     likesCount: string
 }
 
-export const MyPosts = () => {
+type PostsTypeProps = {
+    posts: MyPostsType[]
+}
 
-    const postsData: MyPostsType[] = [
-        {id: 1, message: 'Post 1', likesCount: '13'},
-        {id: 2, message: 'Post 2', likesCount: '22'},
-        {id: 3, message: 'Post 3', likesCount: '63'},
-        {id: 4, message: 'Post 4', likesCount: '45'},
-        {id: 4, message: 'Post 5', likesCount: '95'},
-    ]
+export const MyPosts = (props:PostsTypeProps ) => {
+    console.log(props)
 
-    let resultPostsData = postsData.map(elem => {
+    // const postsData: MyPostsType[] = [
+    //     {id: 1, message: 'Post 1', likesCount: '13'},
+    //     {id: 2, message: 'Post 2', likesCount: '22'},
+    //     {id: 3, message: 'Post 3', likesCount: '63'},
+    //     {id: 4, message: 'Post 4', likesCount: '45'},
+    //     {id: 4, message: 'Post 5', likesCount: '95'},
+    // ]
+
+    let resultPostsData = props.posts.map(elem => {
         return (
             <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
         )
