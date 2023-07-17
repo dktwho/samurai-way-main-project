@@ -8,7 +8,7 @@ export const Profile = (props: PostsTypeProps ) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}/>
+            <MyPosts postsData={props.postsData}/>
         </div>
     );
 };

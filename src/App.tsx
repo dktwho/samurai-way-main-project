@@ -27,7 +27,6 @@ type MessagePageType = {
 }
 
 const App = (props: AppStateType) => {
-    console.log(props)
 
     return (
         <BrowserRouter>
@@ -38,7 +37,7 @@ const App = (props: AppStateType) => {
                     <Route path='/dialogs'
                            render={() => <Dialogs messagesData={props.appState.messagesPage.messages}
                                                   dialogsData={props.appState.profilePage.dialogs}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.appState.profilePage.posts}/>}/>
+                    <Route path='/profile' render={() => <Profile postsData={props.appState.profilePage.posts}/>}/>
                 </div>
             </div>
         </BrowserRouter>

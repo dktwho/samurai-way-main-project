@@ -10,12 +10,12 @@ export type MyPostsType = {
 }
 
 export type PostsTypeProps = {
-    posts: MyPostsType[]
+    postsData: MyPostsType[]
 }
 
 export const MyPosts = (props:PostsTypeProps ) => {
 
-    let resultPostsData = props.posts.map(elem => {
+    let resultPostsData = props.postsData.map(elem => {
         return (
             <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
         )
