@@ -11,6 +11,7 @@ export type MyPostsType = {
 
 export type PostsTypeProps = {
     postsData: MyPostsType[]
+    addPost: (text: string ) => void
 }
 
 export const MyPosts = (props:PostsTypeProps ) => {
@@ -22,11 +23,17 @@ export const MyPosts = (props:PostsTypeProps ) => {
     })
 
     let newPostEl = useRef<HTMLTextAreaElement>(null)
-
     const addPost = () => {
-        if (newPostEl.current !== null) {
-            console.log(newPostEl.current.value)
+        if(newPostEl.current) {
+            // newPostEl.current.focus()
+            // props.addPost(newPostEl.current.focus())
         }
+
+        // let text = newPostEl.current?.value
+        // if (text !== null) {
+        //     props.addPost(text)
+        // }
+
     }
     return (
         <div className={styled.postBlock}>
