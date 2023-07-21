@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
@@ -20,15 +20,23 @@ export const MyPosts = (props:PostsTypeProps ) => {
             <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
         )
     })
+
+    let newPostEl = useRef<HTMLTextAreaElement>(null)
+
+    const addPost = () => {
+        if (newPostEl.current !== null) {
+            console.log(newPostEl.current.value)
+        }
+    }
     return (
         <div className={styled.postBlock}>
             <h3> My Posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostEl} ></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div className={styled.posts}>New post</div>
