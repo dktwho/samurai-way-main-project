@@ -26,9 +26,9 @@ export const MyPosts = (props: PostsTypeProps) => {
     const addPost = () => {
         if(newPostEl.current) {
             props.addPost(newPostEl.current.value)
-            console.log(newPostEl.current.value)
         }
     }
+
     return (
         <div className={styled.postBlock}>
             <h3> My Posts</h3>
