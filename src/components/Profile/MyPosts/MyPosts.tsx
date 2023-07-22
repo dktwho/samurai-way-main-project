@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {createRef, useRef} from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
@@ -11,10 +11,10 @@ export type MyPostsType = {
 
 export type PostsTypeProps = {
     postsData: MyPostsType[]
-    addPost: (text: string ) => void
+    addPost: (post: string) => void
 }
 
-export const MyPosts = (props:PostsTypeProps ) => {
+export const MyPosts = (props: PostsTypeProps) => {
 
     let resultPostsData = props.postsData.map(elem => {
         return (
@@ -22,25 +22,19 @@ export const MyPosts = (props:PostsTypeProps ) => {
         )
     })
 
-    let newPostEl = useRef<HTMLTextAreaElement>(null)
+    let newPostEl = createRef<HTMLTextAreaElement>()
     const addPost = () => {
         if(newPostEl.current) {
-            // newPostEl.current.focus()
-            // props.addPost(newPostEl.current.focus())
+            props.addPost(newPostEl.current.value)
+            console.log(newPostEl.current.value)
         }
-
-        // let text = newPostEl.current?.value
-        // if (text !== null) {
-        //     props.addPost(text)
-        // }
-
     }
     return (
         <div className={styled.postBlock}>
             <h3> My Posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostEl} ></textarea>
+                    <textarea ref={newPostEl}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
