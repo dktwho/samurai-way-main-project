@@ -5,27 +5,11 @@ import {Profile} from "./components/Profile/Profile";
 import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {DialogItemType, MessageType, MyPostsType} from "./redux/state";
+import {AppStateType} from "./redux/state";
 
 
 
-export type AppStateType = {
-    appState: {
-        profilePage: ProfilePageType
-        dialogsPage: MessagePageType
-    },
-    addPost: (postMessage: string) => void
-}
 
-export type ProfilePageType = {
-    posts: MyPostsType[]
-
-}
-
-export type MessagePageType = {
-    messages: MessageType[]
-    dialogs: DialogItemType[]
-}
 
 const App = (props: AppStateType) => {
 

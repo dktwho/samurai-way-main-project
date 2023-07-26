@@ -1,19 +1,13 @@
 import {rerenderEntireTree} from "../render";
 
-
-export type DialogsAndMessagesType = {
-    dialogsData: DialogItemType[]
-    messagesData: MessageType[]
+export type MessageType = {
+    message: string
+    id: number
 }
 
 export type DialogItemType = {
     name: string;
     id: number;
-}
-
-export type MessageType = {
-    message: string
-    id: number
 }
 
 export type MyPostsType = {
@@ -22,9 +16,36 @@ export type MyPostsType = {
     likesCount: string
 }
 
+export type AppStateType = {
+    appState: {
+        profilePage: ProfilePageType
+        dialogsPage: MessagePageType
+    },
+    addPost: (postMessage: string) => void
+}
+
+export type ProfilePageType = {
+    posts: MyPostsType[]
+}
+
+export type MessagePageType = {
+    messages: MessageType[]
+    dialogs: DialogItemType[]
+}
+
+export type DialogsAndMessagesType = {
+    dialogsData: DialogItemType[]
+    messagesData: MessageType[]
+}
+
 export type PostsTypeProps = {
     postsData: MyPostsType[]
     addPost: (post: string) => void
+}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: MessagePageType
 }
 
 export type  MessagePropTypes = {
@@ -32,7 +53,7 @@ export type  MessagePropTypes = {
     likesCount: string;
 }
 
-export let state = {
+export let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, message: 'Post 1', likesCount: '13'},
