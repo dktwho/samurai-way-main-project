@@ -1,18 +1,10 @@
 import React, {createRef, useRef} from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
+import {PostsTypeProps} from "../../../redux/state";
 
 
-export type MyPostsType = {
-    id: number
-    message: string
-    likesCount: string
-}
 
-export type PostsTypeProps = {
-    postsData: MyPostsType[]
-    addPost: (post: string) => void
-}
 
 export const MyPosts = (props: PostsTypeProps) => {
 

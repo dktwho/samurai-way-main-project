@@ -5,12 +5,11 @@ import {Profile} from "./components/Profile/Profile";
 import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {MyPostsType} from "./components/Profile/MyPosts/MyPosts";
-import {DialogItemType} from "./components/Dialogs/DialogItem/DialogsItem";
-import {MessageType} from "./components/Dialogs/Message/Message";
+import {DialogItemType, MessageType, MyPostsType} from "./redux/state";
 
 
-type AppStateType = {
+
+export type AppStateType = {
     appState: {
         profilePage: ProfilePageType
         dialogsPage: MessagePageType
@@ -18,12 +17,12 @@ type AppStateType = {
     addPost: (postMessage: string) => void
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: MyPostsType[]
 
 }
 
-type MessagePageType = {
+export type MessagePageType = {
     messages: MessageType[]
     dialogs: DialogItemType[]
 }

@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from './Post.module.css';
+import {MessagePropTypes} from "../../../../redux/state";
 
-type  MessagePropTypes = {
-    message: string;
-    likesCount: string;
-}
+
 export const Post = ({message, likesCount}: MessagePropTypes) => {
 
     return (

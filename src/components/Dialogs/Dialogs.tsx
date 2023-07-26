@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from './Dialogs.module.css'
-import {DialogItem, DialogItemType} from "./DialogItem/DialogsItem";
-import {Message, MessageType} from "./Message/Message";
+import {DialogItem} from "./DialogItem/DialogsItem";
+import {Message} from "./Message/Message";
+import {DialogsAndMessagesType} from "../../redux/state";
 
-export type DialogsAndMessagesType = {
-    dialogsData: DialogItemType[]
-    messagesData: MessageType[]
-}
+
 
 export const Dialogs = (props: DialogsAndMessagesType ) => {
 

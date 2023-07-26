@@ -1,5 +1,36 @@
-import {MyPostsType} from "../components/Profile/MyPosts/MyPosts";
-import {rerenderEntireTree} from "../index";
+import {rerenderEntireTree} from "../render";
+
+
+export type DialogsAndMessagesType = {
+    dialogsData: DialogItemType[]
+    messagesData: MessageType[]
+}
+
+export type DialogItemType = {
+    name: string;
+    id: number;
+}
+
+export type MessageType = {
+    message: string
+    id: number
+}
+
+export type MyPostsType = {
+    id: number
+    message: string
+    likesCount: string
+}
+
+export type PostsTypeProps = {
+    postsData: MyPostsType[]
+    addPost: (post: string) => void
+}
+
+export type  MessagePropTypes = {
+    message: string;
+    likesCount: string;
+}
 
 export let state = {
     profilePage: {
@@ -32,5 +63,5 @@ export let state = {
 export const addPost = (postMessage: string) => {
     const newPost: MyPostsType = {id: new Date().getTime(), message: postMessage, likesCount: '0'}
     state.profilePage.posts.push(newPost)
-    rerenderEntireTree()
+    rerenderEntireTree(state)
 }
