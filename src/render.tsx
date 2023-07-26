@@ -8,7 +8,7 @@ import {addPost, RootStateType} from "./redux/state";
 export const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App  appState={state} addPost={addPost} />
+            <App appState={state} addPost={addPost}/>
         </BrowserRouter>,
         document.getElementById('root')
     );
