@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import {state, addPost} from "./redux/state";
 
-ReactDOM.render(
-    <App  appState={state} addPost={addPost}/>,
-    document.getElementById('root')
-);
+export let rerenderEntireTree = () => {
+    ReactDOM.render(
+        <App  appState={state} addPost={addPost}/>,
+        document.getElementById('root')
+    );
+}
+
+rerenderEntireTree()
