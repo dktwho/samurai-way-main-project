@@ -17,11 +17,13 @@ export const MyPosts = (props: PostsTypeProps) => {
         if (newPostEl.current) {
             props.addPost(newPostEl.current.value)
             newPostEl.current.value = ''
+            props.updateNewPostText('')
         }
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        let newText = e.currentTarget.value
+        props.updateNewPostText(newText)
     }
 
     return (
