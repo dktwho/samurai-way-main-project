@@ -14,7 +14,6 @@ export const MyPosts = (props: PostsTypeProps) => {
 
     const addPost = () => {
         props.addPost(props.newPostText)
-        props.updateNewPostText('')
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -35,7 +34,6 @@ export const MyPosts = (props: PostsTypeProps) => {
             </div>
             <div className={styled.posts}>New post</div>
             {resultPostsData}
-
         </div>
     );
 };
