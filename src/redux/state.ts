@@ -22,6 +22,7 @@ export type AppStateType = {
         dialogsPage: MessagePageType
     },
     addPost: (postMessage: string) => void
+    updateNewPostText: (text: string) => void
 }
 
 export type ProfilePageType = {
@@ -42,6 +43,7 @@ export type DialogsAndMessagesType = {
 export type PostsTypeProps = {
     postsData: MyPostsType[]
     addPost: (post: string) => void
+    updateNewPostText: (text: string) => void
     newPostText: string
 }
 
@@ -64,7 +66,7 @@ export let state: RootStateType = {
             {id: 4, message: 'Post 4', likesCount: '45'},
             {id: 5, message: 'Post 5', likesCount: '95'},
         ],
-        newPostText: 'it-kama',
+        newPostText: '',
     },
     dialogsPage: {
         messages: [
@@ -87,5 +89,10 @@ export let state: RootStateType = {
 export const addPost = (postMessage: string) => {
     const newPost: MyPostsType = {id: new Date().getTime(), message: postMessage, likesCount: '0'}
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
