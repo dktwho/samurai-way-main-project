@@ -26,6 +26,7 @@ export type AppStateType = {
 
 export type ProfilePageType = {
     posts: MyPostsType[]
+    newPostText: string
 }
 
 export type MessagePageType = {
@@ -41,6 +42,7 @@ export type DialogsAndMessagesType = {
 export type PostsTypeProps = {
     postsData: MyPostsType[]
     addPost: (post: string) => void
+    newPostText: string
 }
 
 export type RootStateType = {
@@ -61,7 +63,8 @@ export let state: RootStateType = {
             {id: 3, message: 'Post 3', likesCount: '63'},
             {id: 4, message: 'Post 4', likesCount: '45'},
             {id: 5, message: 'Post 5', likesCount: '95'},
-        ]
+        ],
+        newPostText: 'it-kama',
     },
     dialogsPage: {
         messages: [

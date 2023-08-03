@@ -1,4 +1,4 @@
-import React, {createRef, useRef} from 'react';
+import React, {ChangeEvent, createRef, useRef} from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostsTypeProps} from "../../../redux/state";
@@ -20,12 +20,17 @@ export const MyPosts = (props: PostsTypeProps) => {
         }
     }
 
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+
+        console.log(e.currentTarget.value)
+    }
+
     return (
         <div className={styled.postBlock}>
             <h3> My Posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostEl}></textarea>
+                    <textarea ref={newPostEl} onChange={onPostChange} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

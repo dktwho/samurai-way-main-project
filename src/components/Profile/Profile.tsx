@@ -10,7 +10,7 @@ export const Profile = (props: PostsTypeProps ) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postsData={props.postsData} addPost={props.addPost}/>
+            <MyPosts postsData={props.postsData} addPost={props.addPost} newPostText={props.newPostText}/>
         </div>
     );
 };

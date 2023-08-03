@@ -10,6 +10,7 @@ import {AppStateType} from "./redux/state";
 
 const App = (props: AppStateType) => {
 
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -20,7 +21,9 @@ const App = (props: AppStateType) => {
                            render={() => <Dialogs messagesData={props.appState.dialogsPage.messages}
                                                   dialogsData={props.appState.dialogsPage.dialogs}/>}/>
                     <Route path='/profile' render={() => <Profile addPost={props.addPost}
-                                                                  postsData={props.appState.profilePage.posts}/>}/>
+                                                                  postsData={props.appState.profilePage.posts}
+                                                                  newPostText={props.appState.profilePage.newPostText}
+                    />}/>
                 </div>
             </div>
         </BrowserRouter>
