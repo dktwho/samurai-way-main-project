@@ -10,7 +10,6 @@ import {AppStateType} from "./redux/state";
 
 const App = (props: AppStateType) => {
 
-
     return (
         <BrowserRouter>
             <div className="app-wrapper">
