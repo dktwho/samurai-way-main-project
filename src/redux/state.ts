@@ -1,5 +1,5 @@
 
-let rerenderEntireTree = (state:RootStateType ) => {
+let rerenderEntireTree = () => {
     console.log('state is changed')
 }
 export type MessageType = {
@@ -92,14 +92,14 @@ export const addPost = () => {
     const newPost: MyPostsType = {id: new Date().getTime(), message: state.profilePage.newPostText, likesCount: '0'}
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText= ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
-export const subscribe = (observer: any) => {
+export const subscribe = (observer: () => void) => {
     rerenderEntireTree  = observer
 }
