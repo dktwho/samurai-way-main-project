@@ -1,5 +1,7 @@
-import {rerenderEntireTree} from "../render";
 
+let rerenderEntireTree = (state:RootStateType ) => {
+    console.log('state is changed')
+}
 export type MessageType = {
     message: string
     id: number
