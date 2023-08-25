@@ -44,7 +44,7 @@ export type PostsTypeProps = {
     // addPost: (post: string) => void
     // updateNewPostText: (text: string) => void
     newPostText: string
-    dispatch: (action: ActionsTypes ) => void
+    dispatch: (action: ActionsTypes) => void
 
 }
 
@@ -60,15 +60,22 @@ export type  MessagePropTypes = {
     likesCount: string;
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST',
-    postText: string
+
+export type AddPostActionType = ReturnType<typeof addPostAC>
+
+export const addPostAC = (postText: string) => {
+    return {
+        type: 'ADD-POST',
+        postText
+    } as const
 }
 
-export type ChangeNewTextActionType = {
-    type: 'CHANGE-NEW-TEXT',
-    newText: string
-
+export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
+export const changeNewTextAC = (newText: string) => {
+    return {
+        type: 'CHANGE-NEW-TEXT',
+        newText
+    } as const
 }
 
 export type StoreType = {
