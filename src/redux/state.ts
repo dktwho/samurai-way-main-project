@@ -55,6 +55,17 @@ export type  MessagePropTypes = {
     likesCount: string;
 }
 
+type AddPostActionType = {
+    type: 'ADD-POST',
+    postText: string
+}
+
+type ChangeNewTextActionType = {
+    type: 'CHANGE-NEW-TEXT',
+    newText: string
+
+}
+
 export type StoreType = {
     _state: RootStateType,
     updateNewPostText: (newText: string) => void,
@@ -62,6 +73,7 @@ export type StoreType = {
     _rerenderEntireTree: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
 
 }
 
@@ -112,5 +124,16 @@ export let store: StoreType = {
     },
     getState() {
         return this._state
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: MyPostsType = {id: new Date().getTime(), message: action.postText, likesCount: '0'}
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._rerenderEntireTree()
+        } else if (action.type === 'CHANGE-NEW-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._rerenderEntireTree()
+        }
     }
 }
