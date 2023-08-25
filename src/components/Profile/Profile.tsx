@@ -10,8 +10,12 @@ export const Profile = (props: PostsTypeProps) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postsData={props.postsData} addPost={props.addPost} newPostText={props.newPostText}
-                     updateNewPostText={props.updateNewPostText}/>
+            <MyPosts postsData={props.postsData}
+                     // addPost={props.addPost}
+                     newPostText={props.newPostText}
+                     dispatch={props.dispatch}
+                     // updateNewPostText={props.updateNewPostText}
+            />
         </div>
     );
 };

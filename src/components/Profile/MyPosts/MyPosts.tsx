@@ -13,12 +13,15 @@ export const MyPosts = (props: PostsTypeProps) => {
     })
 
     const addPost = () => {
-        props.addPost(props.newPostText)
+        // props.addPost(props.newPostText)
+        props.dispatch({ type: 'ADD-POST', postText: props.newPostText })
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newText = e.currentTarget.value
-        props.updateNewPostText(newText)
+        // props.updateNewPostText(newText)
+        props.dispatch({type: 'CHANGE-NEW-TEXT', newText})
+
     }
 
     return (

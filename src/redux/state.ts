@@ -19,8 +19,9 @@ export type AppStateType = {
         profilePage: ProfilePageType
         dialogsPage: MessagePageType
     },
-    addPost: (postMessage: string) => void
-    updateNewPostText: (text: string) => void
+    // addPost: (postMessage: string) => void
+    // updateNewPostText: (text: string) => void
+    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
 }
 
 export type ProfilePageType = {
@@ -40,10 +41,14 @@ export type DialogsAndMessagesType = {
 
 export type PostsTypeProps = {
     postsData: MyPostsType[]
-    addPost: (post: string) => void
-    updateNewPostText: (text: string) => void
+    // addPost: (post: string) => void
+    // updateNewPostText: (text: string) => void
     newPostText: string
+    dispatch: (action: ActionsTypes ) => void
+
 }
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -55,12 +60,12 @@ export type  MessagePropTypes = {
     likesCount: string;
 }
 
-type AddPostActionType = {
+export type AddPostActionType = {
     type: 'ADD-POST',
     postText: string
 }
 
-type ChangeNewTextActionType = {
+export type ChangeNewTextActionType = {
     type: 'CHANGE-NEW-TEXT',
     newText: string
 
@@ -73,7 +78,7 @@ export type StoreType = {
     _rerenderEntireTree: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
+    dispatch: (action: ActionsTypes) => void
 
 }
 

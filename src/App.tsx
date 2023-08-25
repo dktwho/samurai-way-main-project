@@ -5,7 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {AppStateType} from "./redux/state";
+import {AppStateType, store} from "./redux/state";
 
 
 const App = (props: AppStateType) => {
@@ -19,10 +19,12 @@ const App = (props: AppStateType) => {
                     <Route path='/dialogs'
                            render={() => <Dialogs messagesData={props.appState.dialogsPage.messages}
                                                   dialogsData={props.appState.dialogsPage.dialogs}/>}/>
-                    <Route path='/profile' render={() => <Profile addPost={props.addPost}
-                                                                  postsData={props.appState.profilePage.posts}
-                                                                  newPostText={props.appState.profilePage.newPostText}
-                                                                  updateNewPostText={props.updateNewPostText}
+                    <Route path='/profile' render={() => <Profile
+                        // addPost={props.addPost}
+                        postsData={props.appState.profilePage.posts}
+                        dispatch={props.dispatch}
+                        newPostText={props.appState.profilePage.newPostText}
+                        // updateNewPostText={props.updateNewPostText}
 
                     />}/>
                 </div>
