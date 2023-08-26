@@ -1,3 +1,4 @@
+
 export type MessageType = {
     message: string
     id: number
@@ -33,12 +34,13 @@ export type MessagePageType = {
     messages: MessageType[]
     dialogs: DialogItemType[]
     newMessageBody: string
-
 }
 
 export type DialogsAndMessagesType = {
     dialogsData: DialogItemType[]
     messagesData: MessageType[]
+    newMessageBody: string
+    dispatch: (action: ActionsTypes) => void
 }
 
 export type PostsTypeProps = {
@@ -50,7 +52,11 @@ export type PostsTypeProps = {
 
 }
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateNewMessageBodyACType
+export type ActionsTypes =
+    AddPostActionType
+    | ChangeNewTextActionType
+    | UpdateNewMessageBodyACType
+    | SendMessageACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -82,12 +88,21 @@ export const changeNewTextAC = (newText: string) => {
 }
 
 export type UpdateNewMessageBodyACType = ReturnType<typeof updateNewMessageBodyAC>
+
 export const updateNewMessageBodyAC = (body: string) => {
     return {
         type: 'UPDATE-NEW-MESSAGE-BODY',
         body
     } as const
 }
+
+export type SendMessageACType = ReturnType<typeof sendMessageAC>
+export const sendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE',
+    } as const
+}
+
 
 export type StoreType = {
     _state: RootStateType,
@@ -160,6 +175,11 @@ export let store: StoreType = {
             this._rerenderEntireTree()
         } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
             this._state.dialogsPage.newMessageBody = action.body
+            this._rerenderEntireTree()
+        } else if (action.type === 'SEND-MESSAGE') {
+            let body: string = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({id: new Date().getTime(), message: body})
             this._rerenderEntireTree()
         }
     }
