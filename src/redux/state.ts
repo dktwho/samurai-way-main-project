@@ -1,3 +1,5 @@
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
 
 export type MessageType = {
     message: string
@@ -20,8 +22,6 @@ export type AppStateType = {
         profilePage: ProfilePageType
         dialogsPage: MessagePageType
     },
-    // addPost: (postMessage: string) => void
-    // updateNewPostText: (text: string) => void
     dispatch: (action: ActionsTypes) => void
     store: StoreType
 }
@@ -38,17 +38,11 @@ export type MessagePageType = {
 }
 
 export type DialogsAndMessagesType = {
-    // dialogsData: DialogItemType[]
-    // messagesData: MessageType[]
-    // newMessageBody: string
-    // dispatch: (action: ActionsTypes) => void
     store: StoreType
 }
 
 export type PostsTypeProps = {
     postsData: MyPostsType[]
-    // addPost: (post: string) => void
-    // updateNewPostText: (text: string) => void
     newPostText: string
     dispatch: (action: ActionsTypes) => void
 
@@ -63,7 +57,6 @@ export type ActionsTypes =
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: MessagePageType
-
 }
 
 export type  MessagePropTypes = {
@@ -167,22 +160,28 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: MyPostsType = {id: new Date().getTime(), message: action.postText, likesCount: '0'}
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._rerenderEntireTree()
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._rerenderEntireTree()
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._rerenderEntireTree()
-        } else if (action.type === 'SEND-MESSAGE') {
-            let body: string = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id: new Date().getTime(), message: body})
-            this._rerenderEntireTree()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._rerenderEntireTree()
+
+
+
+        // if (action.type === 'ADD-POST') {
+        //     const newPost: MyPostsType = {id: new Date().getTime(), message: action.postText, likesCount: '0'}
+        //     this._state.profilePage.posts.push(newPost)
+        //     this._state.profilePage.newPostText = ''
+        //     this._rerenderEntireTree()
+        // } else if (action.type === 'CHANGE-NEW-TEXT') {
+        //     this._state.profilePage.newPostText = action.newText
+        //     this._rerenderEntireTree()
+        // } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+        //     this._state.dialogsPage.newMessageBody = action.body
+        //     this._rerenderEntireTree()
+        // } else if (action.type === 'SEND-MESSAGE') {
+        //     let body: string = this._state.dialogsPage.newMessageBody
+        //     this._state.dialogsPage.newMessageBody = ''
+        //     this._state.dialogsPage.messages.push({id: new Date().getTime(), message: body})
+        //     this._rerenderEntireTree()
+        // }
     }
 }
