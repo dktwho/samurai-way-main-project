@@ -21,7 +21,7 @@ export type AppStateType = {
     },
     // addPost: (postMessage: string) => void
     // updateNewPostText: (text: string) => void
-    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export type ProfilePageType = {
@@ -32,6 +32,8 @@ export type ProfilePageType = {
 export type MessagePageType = {
     messages: MessageType[]
     dialogs: DialogItemType[]
+    newMessageBody: string
+
 }
 
 export type DialogsAndMessagesType = {
@@ -48,11 +50,12 @@ export type PostsTypeProps = {
 
 }
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateNewMessageBodyACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: MessagePageType
+
 }
 
 export type  MessagePropTypes = {
@@ -75,6 +78,14 @@ export const changeNewTextAC = (newText: string) => {
     return {
         type: 'CHANGE-NEW-TEXT',
         newText
+    } as const
+}
+
+export type UpdateNewMessageBodyACType = ReturnType<typeof updateNewMessageBodyAC>
+export const updateNewMessageBodyAC = (body: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-BODY',
+        body
     } as const
 }
 
@@ -115,7 +126,8 @@ export let store: StoreType = {
                 {id: 3, name: 'Sam'},
                 {id: 4, name: 'Tedd'},
                 {id: 5, name: 'John'},
-            ]
+            ],
+            newMessageBody: '',
         }
     },
     _rerenderEntireTree() {
@@ -145,6 +157,9 @@ export let store: StoreType = {
             this._rerenderEntireTree()
         } else if (action.type === 'CHANGE-NEW-TEXT') {
             this._state.profilePage.newPostText = action.newText
+            this._rerenderEntireTree()
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+            this._state.dialogsPage.newMessageBody = action.body
             this._rerenderEntireTree()
         }
     }
