@@ -5,9 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {AppStateType, store} from "./redux/state";
-
-
+import {AppStateType} from "./redux/state";
 const App = (props: AppStateType) => {
 
     return (
@@ -17,21 +15,17 @@ const App = (props: AppStateType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <Dialogs messagesData={props.appState.dialogsPage.messages}
-                                                  dialogsData={props.appState.dialogsPage.dialogs}
-                                                  newMessageBody={props.appState.dialogsPage.newMessageBody}
-                                                  dispatch={props.dispatch}
+                           render={() => <Dialogs store={props.store}
                            />}
 
                     />
-                    <Route path='/profile' render={() => <Profile
-                        // addPost={props.addPost}
-                        postsData={props.appState.profilePage.posts}
-                        dispatch={props.dispatch}
-                        newPostText={props.appState.profilePage.newPostText}
-                        // updateNewPostText={props.updateNewPostText}
-
-                    />}/>
+                    <Route
+                        path='/profile'
+                        render={() => <Profile
+                            postsData={props.appState.profilePage.posts}
+                            dispatch={props.dispatch}
+                            newPostText={props.appState.profilePage.newPostText}
+                        />}/>
                 </div>
             </div>
         </BrowserRouter>

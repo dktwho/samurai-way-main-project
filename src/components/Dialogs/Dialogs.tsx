@@ -7,29 +7,29 @@ import {DialogsAndMessagesType, sendMessageAC, updateNewMessageBodyAC} from "../
 
 export const Dialogs = (props: DialogsAndMessagesType) => {
 
-    let resultDialogsData = props.dialogsData.map(elem => {
+    let state = props.store.getState()
+
+    let resultDialogsData = state.dialogsPage.dialogs.map(elem => {
         return (
             <DialogItem key={elem.id} name={elem.name} id={elem.id}/>
         )
     })
 
-    let resultMessagesData = props.messagesData.map(elem => {
+    let resultMessagesData = state.dialogsPage.messages.map(elem => {
         return (
             <Message key={elem.id} message={elem.message} id={elem.id}/>
         )
     })
 
-    let newMessageBody = props.newMessageBody
-
+    let newMessageBody = state.dialogsPage.newMessageBody
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageAC())
+        props.store.dispatch(sendMessageAC())
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.currentTarget.value
-        props.dispatch(updateNewMessageBodyAC(body))
+        props.store.dispatch(updateNewMessageBodyAC(body))
     }
-
 
     return (
         <div className={styled.dialogs}>

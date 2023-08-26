@@ -23,6 +23,7 @@ export type AppStateType = {
     // addPost: (postMessage: string) => void
     // updateNewPostText: (text: string) => void
     dispatch: (action: ActionsTypes) => void
+    store: StoreType
 }
 
 export type ProfilePageType = {
@@ -37,10 +38,11 @@ export type MessagePageType = {
 }
 
 export type DialogsAndMessagesType = {
-    dialogsData: DialogItemType[]
-    messagesData: MessageType[]
-    newMessageBody: string
-    dispatch: (action: ActionsTypes) => void
+    // dialogsData: DialogItemType[]
+    // messagesData: MessageType[]
+    // newMessageBody: string
+    // dispatch: (action: ActionsTypes) => void
+    store: StoreType
 }
 
 export type PostsTypeProps = {
