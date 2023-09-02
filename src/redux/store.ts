@@ -164,24 +164,5 @@ export let store: StoreType = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._rerenderEntireTree()
 
-
-
-        // if (action.type === 'ADD-POST') {
-        //     const newPost: MyPostsType = {id: new Date().getTime(), message: action.postText, likesCount: '0'}
-        //     this._state.profilePage.posts.push(newPost)
-        //     this._state.profilePage.newPostText = ''
-        //     this._rerenderEntireTree()
-        // } else if (action.type === 'CHANGE-NEW-TEXT') {
-        //     this._state.profilePage.newPostText = action.newText
-        //     this._rerenderEntireTree()
-        // } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-        //     this._state.dialogsPage.newMessageBody = action.body
-        //     this._rerenderEntireTree()
-        // } else if (action.type === 'SEND-MESSAGE') {
-        //     let body: string = this._state.dialogsPage.newMessageBody
-        //     this._state.dialogsPage.newMessageBody = ''
-        //     this._state.dialogsPage.messages.push({id: new Date().getTime(), message: body})
-        //     this._rerenderEntireTree()
-        // }
     }
 }

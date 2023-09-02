@@ -5,7 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {AppStateType} from "./redux/state";
+import {AppStateType} from "./redux/store";
 const App = (props: AppStateType) => {
 
     return (

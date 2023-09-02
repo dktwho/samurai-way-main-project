@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {addPostAC, changeNewTextAC, PostsTypeProps} from "../../../redux/state";
+import {addPostAC, changeNewTextAC, PostsTypeProps} from "../../../redux/store";
 
 
 export const MyPosts = (props: PostsTypeProps) => {
