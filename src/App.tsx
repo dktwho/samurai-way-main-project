@@ -6,7 +6,6 @@ import "./App.css";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 const App = (props: any) => {
-
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -18,15 +17,22 @@ const App = (props: any) => {
                            />}
 
                     />
+
+
+                    {/*<Route*/}
+                    {/*    path='/profile'*/}
+                    {/*    render={() => <Profile*/}
+                    {/*        postsData={props.appState.profilePage.posts}*/}
+                    {/*        dispatch={props.dispatch}*/}
+                    {/*        newPostText={props.appState.profilePage.newPostText}*/}
+                    {/*        addPost={props.store.addPost}*/}
+                    {/*        updateNewPostText={props.store.updateNewPostText}*/}
+                    {/*    />}/>*/}
+
                     <Route
                         path='/profile'
                         render={() => <Profile
-                            postsData={props.appState.profilePage.posts}
-                            dispatch={props.dispatch}
-                            newPostText={props.appState.profilePage.newPostText}
-                            addPost={props.store.addPost}
-                            updateNewPostText={props.store.updateNewPostText}
-
+                            store={props.store}
                         />}/>
                 </div>
             </div>

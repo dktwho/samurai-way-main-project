@@ -1,22 +1,23 @@
 import React from 'react';
 import {addPostAC, changeNewTextAC} from "../../../redux/store";
-import {PostsTypeProps2} from "../Profile";
 import {MyPosts} from "./MyPosts";
 
-
-export const MyPostsContainer = (props: PostsTypeProps2) => {
+export const MyPostsContainer = (props: any) => {
+    let stateFromProps = props.store.getState()
     const addPostContainer = () => {
-        // props.addPost(props.newPostText)
-        // props.dispatch({type: 'ADD-POST', postText: props.newPostText})
-         props.dispatch(addPostAC(props.newPostText))
-        // props.addPost()
+        props.store.dispatch(addPostAC(stateFromProps.profilePage.newPostText))
     }
 
     const onPostChangeContainer = (newText: string) => {
-        props.dispatch(changeNewTextAC(newText))
+        props.store.dispatch(changeNewTextAC(newText))
+
     }
 
     return (
-        <MyPosts postsData={[]} newPostText={'d'}  addPost={addPostContainer} updateNewPostText={onPostChangeContainer}/>
+        <MyPosts
+            postsData={stateFromProps.profilePage.posts}
+            newPostText={stateFromProps.profilePage.newPostText}
+            addPost={addPostContainer}
+            updateNewPostText={onPostChangeContainer}/>
     );
 };

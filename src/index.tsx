@@ -15,6 +15,7 @@ let rerenderEntireTree = (state: any) => {
                     dispatch={store.dispatch.bind(store)}
                     // updateNewPostText={store.updateNewPostText.bind(store)}
                     state={state}
+                    store={store}
                 />
 
         </BrowserRouter>,
