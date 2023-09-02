@@ -24,6 +24,9 @@ const App = (props: any) => {
                             postsData={props.appState.profilePage.posts}
                             dispatch={props.dispatch}
                             newPostText={props.appState.profilePage.newPostText}
+                            addPost={props.store.addPost}
+                            updateNewPostText={props.store.updateNewPostText}
+
                         />}/>
                 </div>
             </div>
