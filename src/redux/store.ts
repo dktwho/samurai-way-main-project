@@ -17,15 +17,6 @@ export type MyPostsType = {
     likesCount: string
 }
 
-export type AppStateType = {
-    appState: {
-        profilePage: ProfilePageType
-        dialogsPage: MessagePageType
-    },
-    dispatch: (action: ActionsTypes) => void
-    state: RootStateType
-}
-
 export type ProfilePageType = {
     posts: MyPostsType[]
     newPostText: string
@@ -35,12 +26,6 @@ export type MessagePageType = {
     messages: MessageType[]
     dialogs: DialogItemType[]
     newMessageBody: string
-}
-
-export type PostsTypeProps = {
-    postsData: MyPostsType[]
-    newPostText: string
-    dispatch: (action: ActionsTypes) => void
 }
 
 export type ActionsTypes =
