@@ -23,7 +23,7 @@ export type AppStateType = {
         dialogsPage: MessagePageType
     },
     dispatch: (action: ActionsTypes) => void
-    store: StoreType
+    state: RootStateType
 }
 
 export type ProfilePageType = {
@@ -37,15 +37,14 @@ export type MessagePageType = {
     newMessageBody: string
 }
 
-export type DialogsAndMessagesType = {
-    store: StoreType
-}
+// export type DialogsAndMessagesType = {
+//     store: StoreType
+// }
 
 export type PostsTypeProps = {
     postsData: MyPostsType[]
     newPostText: string
     dispatch: (action: ActionsTypes) => void
-
 }
 
 export type ActionsTypes =
@@ -107,7 +106,6 @@ export type StoreType = {
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
-
 }
 
 export let store: StoreType = {
