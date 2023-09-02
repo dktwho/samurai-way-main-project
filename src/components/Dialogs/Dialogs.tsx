@@ -2,51 +2,47 @@ import React, {ChangeEvent} from 'react';
 import styled from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {
-    ActionsTypes,
-    DialogItemType,
-    MessageType,
-    sendMessageAC,
-    updateNewMessageBodyAC
-} from "../../redux/store";
 
-type GlobalMessageType = {
-    store: MessagePageType2
-    dispatch: (action: ActionsTypes) => void
+import {DialogItemType, MessageType} from "../../redux/store";
 
-}
-export type MessagePageType2 = {
+
+type MessagePageType2 = {
     messages: MessageType[]
     dialogs: DialogItemType[]
     newMessageBody: string
-
+}
+type GlobalMessageType2 = {
+    dialogsPage: MessagePageType2
+    updateNewMessageBody: (value: string) => void
+    sendMessage: () => void
 }
 
-export const Dialogs = (props: GlobalMessageType) => {
-     let state = props.store
+export const Dialogs = (props: GlobalMessageType2) => {
+    const {dialogsPage} = props
+    const {dialogs, newMessageBody, messages} = dialogsPage
 
-    let resultDialogsData = state.dialogs.map(elem => {
+    let resultDialogsData = dialogs.map(elem => {
         return (
             <DialogItem key={elem.id} name={elem.name} id={elem.id}/>
         )
     })
 
-    let resultMessagesData = state.messages.map(elem => {
+    let resultMessagesData = messages.map(elem => {
         return (
             <Message key={elem.id} message={elem.message} id={elem.id}/>
         )
     })
 
-    let newMessageBody = state.newMessageBody
+    // let newMessageBody = state.newMessageBody
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageAC())
-
+        // props.dispatch(sendMessageAC())
+        props.sendMessage()
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value
-        props.dispatch(updateNewMessageBodyAC(body))
-
+        let bodyText = e.currentTarget.value
+        props.updateNewMessageBody(bodyText)
+        // props.dispatch(updateNewMessageBodyAC(body))
     }
 
     return (

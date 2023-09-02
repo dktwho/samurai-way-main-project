@@ -37,10 +37,6 @@ export type MessagePageType = {
     newMessageBody: string
 }
 
-// export type DialogsAndMessagesType = {
-//     store: StoreType
-// }
-
 export type PostsTypeProps = {
     postsData: MyPostsType[]
     newPostText: string
