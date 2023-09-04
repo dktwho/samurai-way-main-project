@@ -1,5 +1,5 @@
 import React from "react";
-import {MessagePageType, ProfilePageType, StoreType} from "./redux/store";
+import {StoreType} from "./redux/store";
 
 
 export type ProviderType = {
