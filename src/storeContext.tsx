@@ -1,14 +1,15 @@
 import React from "react";
-import {StoreType} from "./redux/store";
+import {MessagePageType, ProfilePageType, StoreType} from "./redux/store";
 
 
 export type ProviderType = {
     store: StoreType
     children: React.ReactNode
 }
+
 export const StoreContext = React.createContext({} as StoreType)
 
-export const Provider = (props: ProviderType) => {
+export const Provider = (props: any) => {
     return (
         <StoreContext.Provider value={props.store}>
             {props.children}

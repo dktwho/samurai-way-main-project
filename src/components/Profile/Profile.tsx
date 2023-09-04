@@ -3,9 +3,9 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes, MyPostsType} from "../../redux/store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-export type StorePropsType2 = {
-    store: PostsTypeProps2
-}
+// export type StorePropsType2 = {
+//     store: PostsTypeProps2
+// }
 
 export type PostsTypeProps2 = {
     postsData: MyPostsType[]
@@ -16,7 +16,7 @@ export type PostsTypeProps2 = {
     getState: () => void
 }
 
-export const Profile = (props: StorePropsType2) => {
+export const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
