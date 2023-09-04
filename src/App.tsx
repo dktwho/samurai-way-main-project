@@ -19,7 +19,7 @@ const App = (props: any) => {
                     {/*/>*/}
 
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer store={props.store}
+                           render={() => <DialogsContainer
                            />}
 
                     />
@@ -38,7 +38,6 @@ const App = (props: any) => {
                     <Route
                         path='/profile'
                         render={() => <Profile
-                            store={props.store}
                         />}/>
                 </div>
             </div>

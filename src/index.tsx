@@ -7,9 +7,7 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom";
 
 
-
-
-const StoreContext = React.createContext({} )
+const StoreContext = React.createContext({})
 let rerenderEntireTree = (state: any) => {
     ReactDOM.render(
         <BrowserRouter>
@@ -17,13 +15,10 @@ let rerenderEntireTree = (state: any) => {
                 <App
                     appState={store.getState()}
                     dispatch={store.dispatch.bind(store)}
-                    // updateNewPostText={store.updateNewPostText.bind(store)}
                     state={state}
                     store={store}
                 />
             </StoreContext.Provider>
-
-
         </BrowserRouter>,
         document.getElementById('root')
     );

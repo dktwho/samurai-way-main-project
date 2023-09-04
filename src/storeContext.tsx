@@ -6,7 +6,7 @@ export type ProviderType = {
     store: StoreType
     children: React.ReactNode
 }
-const StoreContext = React.createContext({} as StoreType)
+export const StoreContext = React.createContext({} as StoreType)
 
 export const Provider = (props: ProviderType) => {
     return (

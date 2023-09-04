@@ -35,7 +35,7 @@ export const Profile = (props: StorePropsType2) => {
             {/*                  updateNewPostText={props.updateNewPostText}*/}
             {/*/>*/}
 
-            <MyPostsContainer store={props.store}
+            <MyPostsContainer
             />
         </div>
     );
