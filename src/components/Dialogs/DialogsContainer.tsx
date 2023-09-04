@@ -4,7 +4,6 @@ import {
     updateNewMessageBodyAC
 } from "../../redux/store";
 import {Dialogs} from "./Dialogs";
-import {StoreContext} from "../../storeContext";
 import {connect} from "react-redux";
 
 // export const DialogsContainer = () => {
