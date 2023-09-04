@@ -16,7 +16,7 @@ let mapStateToProps = (state: RootReducerType) => {
 let mapDispatchToProps = (dispatch: any) => {
     return {
         addPost: () => {
-            dispatch(addPostAC)
+            dispatch(addPostAC())
         },
         updateNewPostText: (newText: string) => {
             dispatch(changeNewTextAC(newText))

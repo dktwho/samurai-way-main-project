@@ -44,13 +44,11 @@ export type  MessagePropTypes = {
     likesCount: string;
 }
 
-
 export type AddPostActionType = ReturnType<typeof addPostAC>
 
-export const addPostAC = (postText: string) => {
+export const addPostAC = () => {
     return {
         type: 'ADD-POST',
-        postText
     } as const
 }
 
