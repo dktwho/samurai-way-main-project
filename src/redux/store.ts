@@ -76,6 +76,21 @@ export const sendMessageAC = () => {
     } as const
 }
 
+export type FollowACType = ReturnType<typeof followAC>
+export const followAC = () => {
+    return {
+        type: 'FOLLOW',
+    } as const
+}
+
+
+export type UnFollowACType = ReturnType<typeof unFollowAC>
+export const unFollowAC = () => {
+    return {
+        type: 'UNFOLLOW',
+    } as const
+}
+
 
 export type StoreType = {
     _state: RootStateType,
