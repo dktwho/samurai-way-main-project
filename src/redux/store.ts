@@ -1,5 +1,6 @@
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
+import {UsersType} from "./usersReducer";
 
 export type MessageType = {
     message: string
@@ -35,6 +36,7 @@ export type ActionsTypes =
     | SendMessageACType
     | UnFollowACType
     | FollowACType
+    | SetUsersACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -95,6 +97,13 @@ export const unFollowAC = (userId: number) => {
     } as const
 }
 
+export type SetUsersACType = ReturnType<typeof setUsersAC>
+export const setUsersAC = (users: UsersType) => {
+    return {
+        type: 'SET-USERS',
+        users
+    } as const
+}
 
 export type StoreType = {
     _state: RootStateType,
