@@ -1,13 +1,31 @@
 import React from 'react';
+import {UsersPropsType} from "./UsersContainer";
 
-export const Users = (props: any) => {
-    console.log(props.usersPage)
+import styles from './users.module.css'
+
+export const Users = (props: UsersPropsType) => {
     return (
         <div>
-            {props.usersPage.usersPage.map(u => {
+            {props.usersPage.users.map(u => {
                 return <div key={u.id}>
-                    <span>{}</span>
-                    <span></span>
+                    <span>
+                        <div>
+                            <img src={u.photoUrl} className={styles.userPhoto} alt="photo"/>
+                        </div>
+                        <div>
+                            <button>Follow</button>
+                        </div>
+                    </span>
+                    <span>
+                        <span>
+                            <div>{u.fullName}</div>
+                            <div>{u.status}</div>
+                        </span>
+                        <span>
+                            <div>{u.location.state}</div>
+                            <div>{u.location.city}</div>
+                        </span>
+                    </span>
                 </div>
             })}
         </div>

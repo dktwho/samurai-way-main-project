@@ -15,6 +15,8 @@ type MapDispatchToPropsType = {
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
 }
+
+export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 let mapStateToProps = (state: RootReducerType):MapStatePropsType => {
     return {
         usersPage: state.usersPage
