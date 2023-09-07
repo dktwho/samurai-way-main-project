@@ -1,10 +1,21 @@
+import {ActionsTypes} from "./store";
+
 
 type UsersType = {
+    users: UserType[]
+}
+
+type UserType = {
     id: number,
     fullName: string,
     status: string,
-    followed: false,
-    location: {city: 'Los-Angeles', state: 'California'}
+    followed: boolean,
+    location: LocationType
+}
+
+type LocationType = {
+    city: string
+    state: string
 }
 
 let initialState = {
@@ -17,9 +28,14 @@ let initialState = {
     ],
 
 }
-export const usersReducer = (state: any = initialState, action: any) => {
+export const usersReducer = (state: UsersType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-
+        case "FOLLOW": {
+            return {...state, users: state.users.map(user => user.id === action.userId ? {...user, followed: true } : user)}
+        }
+        case "UNFOLLOW": {
+            return {...state, users: state.users.map(user => user.id === action.userId ? {...user, followed: false } : user)}
+        }
         default : {
             return state
         }

@@ -33,6 +33,8 @@ export type ActionsTypes =
     | ChangeNewTextActionType
     | UpdateNewMessageBodyACType
     | SendMessageACType
+    | UnFollowACType
+    | FollowACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -77,17 +79,19 @@ export const sendMessageAC = () => {
 }
 
 export type FollowACType = ReturnType<typeof followAC>
-export const followAC = () => {
+export const followAC = (userId: number) => {
     return {
         type: 'FOLLOW',
+        userId
     } as const
 }
 
 
 export type UnFollowACType = ReturnType<typeof unFollowAC>
-export const unFollowAC = () => {
+export const unFollowAC = (userId: number) => {
     return {
         type: 'UNFOLLOW',
+        userId
     } as const
 }
 
