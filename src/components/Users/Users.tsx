@@ -4,8 +4,7 @@ import {UsersPropsType} from "./UsersContainer";
 import styles from './users.module.css'
 
 export const Users = (props: UsersPropsType) => {
-
-    useEffect(() => {
+    if(props.usersPage.users.length === 0) {
         props.setUsers([{
             id: 1,
             fullName: 'Bill B',
@@ -46,8 +45,7 @@ export const Users = (props: UsersPropsType) => {
                 followed: true,
                 location: {city: 'Houston', state: 'Texas'}
             }])
-    }, [])
-
+    }
 
 
 
