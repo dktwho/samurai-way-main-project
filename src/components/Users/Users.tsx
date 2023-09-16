@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import styles from './users.module.css'
 import axios from "axios";
-import {UserType} from "../../redux/usersReducer";
+import userIcon3 from '../../assets/userIcon3.jpeg'
 
 
 const settings = {
@@ -23,9 +23,9 @@ export const Users = (props: UsersPropsType) => {
                 return <div key={u.id}>
                     <span>
                         <div>
-                            <img
-                                src={u.photos.small ? u.photos.small : 'https://icon-library.com/images/bart-simpson-icon/bart-simpson-icon-5.jpg'}
-                                className={styles.userPhoto} alt="photo"/>
+                            <img style={{width: '40px'}}
+                                 src={u.photos.small ? u.photos.small : userIcon3}
+                                 className={styles.userPhoto} alt="photo"/>
                         </div>
                         <div>
                             {u.followed
@@ -53,3 +53,4 @@ export const Users = (props: UsersPropsType) => {
         </div>
     );
 };
+// 'https://icon-library.com/images/bart-simpson-icon/bart-simpson-icon-5.jpg'
