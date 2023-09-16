@@ -10,15 +10,19 @@ const settings = {
 }
 
 export const Users = (props: UsersPropsType) => {
-    if (props.usersPage.users.length === 0) {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
-            .then((res) => {
-                props.setUsers(res.data.items)
-            })
+    let getUsers = () => {
+        if (props.usersPage.users.length === 0) {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
+                .then((res) => {
+                    props.setUsers(res.data.items)
+                })
+        }
     }
+
 
     return (
         <div>
+            <button onClick={getUsers}>get Users from API</button>
             {props.usersPage.users.map(u => {
                 return <div key={u.id}>
                     <span>
