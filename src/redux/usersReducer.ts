@@ -2,26 +2,21 @@ import {ActionsTypes} from "./store";
 
 export type UserType = {
     id: number,
-    fullName: string,
-    photoUrl: string,
+    name: string,
+    photos: {
+        small: string,
+        large: string
+    },
     status: string,
     followed: boolean,
-    location: LocationType
-}
 
-export type LocationType = {
-    city: string
-    state: string
 }
-
 export type InitialStateType = {
     users: UserType[]
 }
 
 const initialState: InitialStateType = {
-    users: [
-
-    ],
+    users: [],
 
 }
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
