@@ -8,6 +8,7 @@ import {UserType} from "../../redux/usersReducer";
 const settings = {
     withCredentials: true
 }
+
 export const Users = (props: UsersPropsType) => {
     if (props.usersPage.users.length === 0) {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
