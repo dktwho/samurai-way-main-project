@@ -11,6 +11,7 @@ export type MapStatePropsType = {
     usersPage: InitialStateType,
     pageSize: number
     totalUsersCount: number
+    currentPage: number
 }
 
 export type MapDispatchToPropsType = {
@@ -24,7 +25,8 @@ let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
     return {
         usersPage: state.usersPage,
         pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
     }
 }
 

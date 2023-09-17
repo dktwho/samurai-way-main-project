@@ -19,14 +19,19 @@ export class Users extends React.Component<PropsType> {
     }
 
     render() {
+        let pagesCount = this.props.totalUsersCount / this.props.pageSize
+        let pagesArrCount = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pagesArrCount.push(i)
+        }
         return (
             <div>
                 <div>
-                    <span>1</span>
-                    <span className={styles.selectedPage}>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
+                    {pagesArrCount.map(el => {
+                        return (
+                            <span className={this.props.currentPage === el ? styles.selectedPage : ''}>{el}</span>
+                        )
+                    })}
                 </div>
                 {this.props.usersPage.users.map(u => {
                     return <div key={u.id}>
