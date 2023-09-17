@@ -29,7 +29,9 @@ export class Users extends React.Component<PropsType> {
                 <div>
                     {pagesArrCount.map(el => {
                         return (
-                            <span className={this.props.currentPage === el ? styles.selectedPage : ''}>{el}</span>
+                            <span onClick={() => {
+                                this.props.setCurrentPage(el)
+                            }} className={this.props.currentPage === el ? styles.selectedPage : ''}>{el}</span>
                         )
                     })}
                 </div>
