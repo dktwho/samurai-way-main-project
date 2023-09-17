@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import userIcon3 from "../../assets/userIcon3.jpeg";
 import styles from "./users.module.css";
 import axios from "axios"
@@ -9,14 +9,13 @@ const settings = {
 }
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
+
 export class Users extends React.Component<PropsType> {
-    constructor(props: PropsType) {
-        super(props);
+    componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
             .then((res) => {
                 this.props.setUsers(res.data.items)
             })
-
     }
 
     render() {
@@ -45,6 +44,7 @@ export class Users extends React.Component<PropsType> {
                         <span>
                             <div>{u.name}</div>
                             <div>{u.status}</div>
+                            <div>ID: {u.id}</div>
                         </span>
                         <span>
                             <div>{'u.location.state'}</div>
