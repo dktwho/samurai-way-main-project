@@ -17,20 +17,25 @@ export const Navbar = () => {
                 }>Messages</NavLink>
             </div>
             <div>
-                <NavLink to='' className={navData =>
+                <NavLink to='/users' className={navData =>
                     navData ? styled.active : styled.item
-                }>News</NavLink>
+                }>Users</NavLink>
             </div>
-            <div>
-                <NavLink to='' className={navData =>
-                    navData ? styled.active : styled.item
-                }>Music</NavLink>
-            </div>
-            <div>
-                <NavLink to='' className={navData =>
-                    navData ? styled.active : styled.item
-                }>Settings</NavLink>
-            </div>
+            {/*<div>*/}
+            {/*    <NavLink to='' className={navData =>*/}
+            {/*        navData ? styled.active : styled.item*/}
+            {/*    }>News</NavLink>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <NavLink to='' className={navData =>*/}
+            {/*        navData ? styled.active : styled.item*/}
+            {/*    }>Music</NavLink>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <NavLink to='' className={navData =>*/}
+            {/*        navData ? styled.active : styled.item*/}
+            {/*    }>Settings</NavLink>*/}
+            {/*</div>*/}
         </nav>
     );
 };
