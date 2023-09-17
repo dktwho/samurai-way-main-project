@@ -10,20 +10,18 @@ const settings = {
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
 export class Users extends React.Component<PropsType> {
+    constructor(props: PropsType) {
+        super(props);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
+            .then((res) => {
+                this.props.setUsers(res.data.items)
+            })
 
-    getUsers = () => {
-        if (this.props.usersPage.users.length === 0) {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
-                .then((res) => {
-                    this.props.setUsers(res.data.items)
-                })
-        }
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.getUsers}>get Users from API</button>
                 {this.props.usersPage.users.map(u => {
                     return <div key={u.id}>
                     <span>
