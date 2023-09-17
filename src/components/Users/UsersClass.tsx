@@ -12,14 +12,14 @@ type PropsType = MapStatePropsType & MapDispatchToPropsType
 
 export class Users extends React.Component<PropsType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.currentPage}`, settings)
             .then((res) => {
                 this.props.setUsers(res.data.items)
             })
     }
 
     render() {
-        let pagesCount = this.props.totalUsersCount / this.props.pageSize
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
         let pagesArrCount = []
         for (let i = 1; i <= pagesCount; i++) {
             pagesArrCount.push(i)

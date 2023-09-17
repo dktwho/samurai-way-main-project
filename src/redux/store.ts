@@ -1,6 +1,6 @@
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
-import { UserType} from "./usersReducer";
+import {UserType} from "./usersReducer";
 
 export type MessageType = {
     message: string
@@ -37,6 +37,7 @@ export type ActionsTypes =
     | UnFollowACType
     | FollowACType
     | SetUsersACType
+    | SetCurrentPageACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -105,6 +106,15 @@ export const setUsersAC = (users: UserType[]) => {
         users
     } as const
 }
+
+export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: 'SET-CURRENT-PAGE',
+        currentPage
+    } as const
+}
+
 
 export type StoreType = {
     _state: RootStateType,

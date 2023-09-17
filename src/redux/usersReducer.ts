@@ -21,8 +21,8 @@ export type InitialStateType = {
 const initialState: InitialStateType = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 20,
-    currentPage: 1
+    totalUsersCount: 19,
+    currentPage: 2
 }
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
@@ -40,6 +40,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         }
         case "SET-USERS": {
             return {...state, users: [...state.users, ...action.users]}
+        }
+        case 'SET-CURRENT-PAGE': {
+            return {...state, currentPage: action.currentPage }
         }
         default : {
             return state
