@@ -38,6 +38,7 @@ export type ActionsTypes =
     | FollowACType
     | SetUsersACType
     | SetCurrentPageACType
+    | setTotalCountACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -112,6 +113,15 @@ export const setCurrentPageAC = (currentPage: number) => {
     return {
         type: 'SET-CURRENT-PAGE',
         currentPage
+    } as const
+}
+
+
+export type setTotalCountACType = ReturnType<typeof setTotalCountAC>
+export const setTotalCountAC = (totalUsersCount: number) => {
+    return {
+        type: 'SET-TOTAL-COUNT',
+        totalUsersCount
     } as const
 }
 
