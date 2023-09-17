@@ -8,7 +8,9 @@ import {InitialStateType, UserType} from "../../redux/usersReducer";
 import {Dispatch} from "redux";
 
 export type MapStatePropsType = {
-    usersPage: InitialStateType
+    usersPage: InitialStateType,
+    pageSize: number
+    totalUsersCount: number
 }
 
 export type MapDispatchToPropsType = {
@@ -18,9 +20,11 @@ export type MapDispatchToPropsType = {
 }
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
-let mapStateToProps = (state: RootReducerType):MapStatePropsType => {
+let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
     return {
         usersPage: state.usersPage,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount
     }
 }
 
@@ -39,4 +43,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 }
 
 
-export default connect (mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

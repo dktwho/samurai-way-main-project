@@ -13,11 +13,14 @@ export type UserType = {
 }
 export type InitialStateType = {
     users: UserType[]
+    pageSize: number,
+    totalUsersCount: number,
 }
 
 const initialState: InitialStateType = {
     users: [],
-
+    pageSize: 5,
+    totalUsersCount: 0,
 }
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
