@@ -1,7 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {RootReducerType} from "../../redux/reduxStore";
-import {followAC, setUsersAC, unFollowAC, setCurrentPageAC, setTotalCountAC} from "../../redux/store";
+import {
+    followAC,
+    setUsersAC,
+    unFollowAC,
+    setCurrentPageAC,
+    setTotalCountAC,
+    toggleIsFetchingAC
+} from "../../redux/store";
 import {InitialStateType, UserType} from "../../redux/usersReducer";
 import {Dispatch} from "redux";
 import axios from "axios";
@@ -63,6 +70,7 @@ export type MapDispatchToPropsType = {
     setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
@@ -92,6 +100,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setTotalCountAC(totalUsersCount))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
 }

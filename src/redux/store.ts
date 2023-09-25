@@ -39,6 +39,7 @@ export type ActionsTypes =
     | SetUsersACType
     | SetCurrentPageACType
     | setTotalCountACType
+    | ToggleIsFetchingACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -113,6 +114,14 @@ export const setCurrentPageAC = (currentPage: number) => {
     return {
         type: 'SET-CURRENT-PAGE',
         currentPage
+    } as const
+}
+
+export type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: 'TOGGLE-IS-FETCHING',
+        isFetching
     } as const
 }
 

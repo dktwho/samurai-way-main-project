@@ -50,6 +50,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case 'SET-TOTAL-COUNT': {
             return {...state, totalUsersCount: action.totalUsersCount}
         }
+        case 'TOGGLE-IS-FETCHING': {
+            return  {...state, isFetching: action.isFetching}
+        }
         default : {
             return state
         }
