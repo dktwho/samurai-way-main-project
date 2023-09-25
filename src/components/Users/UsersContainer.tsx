@@ -14,6 +14,7 @@ import {Dispatch} from "redux";
 import axios from "axios";
 import {Users2} from "./Users2";
 import loader from '../../assets/1.svg'
+import {Preloader} from "../common/Preloader/Preloader";
 
 const settings = {
     withCredentials: true
@@ -45,7 +46,7 @@ class UsersContainer extends React.Component<PropsType> {
     render() {
         return (
             <>
-                {this.props.isFetching ? <img src={loader}/>  : null }
+                {this.props.isFetching ? <Preloader/>   : null }
                 <Users2 onPageChanged={this.onPageChanged}
                         totalUsersCount={this.props.totalUsersCount}
                         pageSize={this.props.pageSize}
