@@ -6,14 +6,15 @@ import {InitialStateType, UserType} from "../../redux/usersReducer";
 import {Dispatch} from "redux";
 import axios from "axios";
 import {Users2} from "./Users2";
-
+import loader from '../../assets/1.svg'
 
 const settings = {
     withCredentials: true
 }
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
- class UsersContainer extends React.Component<PropsType> {
+
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.currentPage}`, settings)
             .then((res) => {
@@ -32,9 +33,18 @@ type PropsType = MapStatePropsType & MapDispatchToPropsType
 
     render() {
         return (
-            <Users2 onPageChanged={this.onPageChanged} totalUsersCount={this.props.totalUsersCount}
-                    pageSize={this.props.pageSize} currentPage={this.props.currentPage} usersPage={this.props.usersPage}
-                    follow={this.props.follow} unfollow={this.props.unfollow}  />
+            <>
+                {this.props.isFetching ? <img src={loader}/>  : null }
+                <Users2 onPageChanged={this.onPageChanged}
+                        totalUsersCount={this.props.totalUsersCount}
+                        pageSize={this.props.pageSize}
+                        currentPage={this.props.currentPage}
+                        usersPage={this.props.usersPage}
+                        follow={this.props.follow}
+                        unfollow={this.props.unfollow}
+                />
+            </>
+
         )
     }
 }
