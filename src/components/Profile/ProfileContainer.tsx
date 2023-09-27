@@ -6,7 +6,7 @@ import {ResponseProfileType, setUserProfileAC, SetUserProfileActionType} from ".
 
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/3`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/9`)
             .then(res => {
                 this.props.setUserProfileAC(res.data)
 
