@@ -3,6 +3,7 @@ import styles from "./users.module.css";
 import userIcon3 from "../../assets/userIcon3.jpeg";
 import {InitialStateType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
+import {v4} from 'uuid';
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
@@ -31,7 +32,7 @@ export const Users2 = (props: PropsType) => {
                 })}
             </div>
             {props.usersPage.users.map(u => {
-                return <div key={u.id}>
+                return <div>
                     <span>
                         <div>
                             <NavLink to={`./profile/${u.id}`} >

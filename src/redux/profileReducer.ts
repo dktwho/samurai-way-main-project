@@ -10,6 +10,7 @@ let initialState = {
         {id: 5, message: 'Post 5', likesCount: '95'},
     ],
     newPostText: '',
+    profile: null
 }
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
@@ -17,6 +18,10 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             const newPost: MyPostsType = {id: new Date().getTime(), message: state.newPostText, likesCount: '0'}
             state.newPostText = ''
             return {...state, posts: [...state.posts, newPost]}
+        }
+
+        case 'SET-USER-PROFILE': {
+            return  {...state, profile: action.profile}
         }
 
         case 'CHANGE-NEW-TEXT' : {

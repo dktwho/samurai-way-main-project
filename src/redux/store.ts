@@ -40,6 +40,7 @@ export type ActionsTypes =
     | SetCurrentPageACType
     | setTotalCountACType
     | ToggleIsFetchingACType
+    | SetUserProfileActionType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -59,6 +60,16 @@ export const addPostAC = () => {
         type: 'ADD-POST',
     } as const
 }
+
+export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
+
+export const setUserProfileAC = (profile: any ) => {
+    return {
+        type: 'SET-USER-PROFILE',
+        profile
+    } as const
+}
+
 
 export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
 export const changeNewTextAC = (newText: string) => {

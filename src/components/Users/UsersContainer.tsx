@@ -7,12 +7,13 @@ import {
     unFollowAC,
     setCurrentPageAC,
     setTotalCountAC,
-    toggleIsFetchingAC
+    toggleIsFetchingAC, setUserProfileAC
 } from "../../redux/store";
 import {InitialStateType, UserType} from "../../redux/usersReducer";
 import axios from "axios";
 import {Users2} from "./Users2";
 import {Preloader} from "../common/Preloader/Preloader";
+import {v4} from 'uuid';
 
 const settings = {
     withCredentials: true
