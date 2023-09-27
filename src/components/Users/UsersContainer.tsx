@@ -7,7 +7,7 @@ import {
     unFollowAC,
     setCurrentPageAC,
     setTotalCountAC,
-    toggleIsFetchingAC, setUserProfileAC
+    toggleIsFetchingAC,
 } from "../../redux/store";
 import {InitialStateType, UserType} from "../../redux/usersReducer";
 import axios from "axios";

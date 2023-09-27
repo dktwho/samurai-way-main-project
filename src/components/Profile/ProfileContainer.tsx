@@ -1,32 +1,34 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfileAC} from "../../redux/store";
+import {ResponseProfileType, setUserProfileAC, SetUserProfileActionType} from "../../redux/store";
 
-
-
-
-
-class ProfileContainer extends Component {
-
+class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-            .then((res) => {
-                 setUserProfileAC(res.data)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/3`)
+            .then(res => {
+                this.props.setUserProfileAC(res.data)
+
             })
     }
 
     render() {
         return (
             <div>
-                <Profile {...this.props} />
+                <Profile {...this.props} profile={this.props.profile}/>
             </div>
         );
     }
 }
-
-let mapStateToProps = (state: any) => ({
-    a: 31
+type MapStateToPropsType = {
+    profile:ResponseProfileType
+}
+type MapDispatchToPropsType = {
+    setUserProfileAC:(data:SetUserProfileActionType)=>void
+}
+let mapStateToProps = (state: any):MapStateToPropsType => ({
+    profile: state.profilePage.profile
 })
+
 export default connect(mapStateToProps, {setUserProfileAC})(ProfileContainer);

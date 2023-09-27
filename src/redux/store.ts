@@ -21,6 +21,7 @@ export type MyPostsType = {
 export type ProfilePageType = {
     posts: MyPostsType[]
     newPostText: string
+    profile: null
 }
 
 export type MessagePageType = {
@@ -28,6 +29,34 @@ export type MessagePageType = {
     dialogs: DialogItemType[]
     newMessageBody: string
 }
+
+export type ResponseProfileType = {
+    aboutMe: string;
+    contacts: ContactsType;
+    lookingForAJob: boolean;
+    lookingForAJobDescription: string;
+    fullName: string;
+    userId: number;
+    photos: PhotoType;
+}
+export type ContactsType = {
+    facebook: string;
+    website?: any;
+    vk: string;
+    twitter: string;
+    instagram: string;
+    youtube?: any;
+    github: string;
+    mainLink?: any;
+}
+
+export type PhotoType = {
+    small: string;
+    large: string;
+}
+
+
+
 
 export type ActionsTypes =
     AddPostActionType
@@ -167,6 +196,7 @@ export let store: StoreType = {
                 {id: 5, message: 'Post 5', likesCount: '95'},
             ],
             newPostText: '',
+            profile: null
         },
         dialogsPage: {
             messages: [
@@ -212,3 +242,7 @@ export let store: StoreType = {
 
     }
 }
+
+
+
+

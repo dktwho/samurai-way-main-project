@@ -1,7 +1,15 @@
 import React from 'react';
 import styled from './ProfileInfo.module.css'
+import {Preloader} from "../../common/Preloader/Preloader";
+import {ResponseProfileType} from "../../../redux/store";
 
-export const ProfileInfo = () => {
+type PropsType = {
+    profile: ResponseProfileType
+}
+export const ProfileInfo = (props: PropsType) => {
+    if(!props.profile) {
+        return <Preloader/>
+    }
     return (
         <div >
             <div>
@@ -10,7 +18,10 @@ export const ProfileInfo = () => {
                     alt="profile-logo"
                 />
             </div>
-            <div className={styled.descriptionBlock}>Ava + description</div>
+            <div className={styled.descriptionBlock}>
+                <div>{props.profile.fullName}</div>
+                Ava + description
+            </div>
         </div>
     );
 };
