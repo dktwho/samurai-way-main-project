@@ -10,10 +10,8 @@ import {
     toggleIsFetchingAC
 } from "../../redux/store";
 import {InitialStateType, UserType} from "../../redux/usersReducer";
-import {Dispatch} from "redux";
 import axios from "axios";
 import {Users2} from "./Users2";
-import loader from '../../assets/1.svg'
 import {Preloader} from "../common/Preloader/Preloader";
 
 const settings = {
