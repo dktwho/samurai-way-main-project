@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./users.module.css";
 import userIcon3 from "../../assets/userIcon3.jpeg";
 import {InitialStateType} from "../../redux/usersReducer";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
@@ -33,9 +34,12 @@ export const Users2 = (props: PropsType) => {
                 return <div key={u.id}>
                     <span>
                         <div>
-                            <img style={{width: '40px'}}
-                                 src={u.photos.small ? u.photos.small : userIcon3}
-                                 className={styles.userPhoto} alt="photo"/>
+                            <NavLink to={`./profile/${u.id}`} >
+                                    <img style={{width: '40px'}}
+                                         src={u.photos.small ? u.photos.small : userIcon3}
+                                         className={styles.userPhoto} alt="photo"/>
+                            </NavLink>
+
                         </div>
                         <div>
                             {u.followed
