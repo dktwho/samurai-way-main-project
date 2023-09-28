@@ -1,15 +1,13 @@
-import {MyPostsType} from "./store";
-
-
 let initialState = {
-    userId: null,
-    email: null,
-    login: null
+    id: 0,
+    email: '',
+    login: '',
+    isAuth: false
 }
-export const authReducer = (state: any = initialState, action: AuthReducerTypeActions) => {
+export const authReducer = (state: DataType = initialState, action: AuthReducerTypeActions) => {
     switch (action.type) {
         case 'SET-USER-DATA': {
-            return {...state, ...action.data}
+            return {...state, ...action.data, isAuth: true}
         }
         default : {
             return state
@@ -19,22 +17,14 @@ export const authReducer = (state: any = initialState, action: AuthReducerTypeAc
 
 type AuthReducerTypeActions = SetUserDataACType
 type SetUserDataACType = ReturnType<typeof setUserDataAC>
-const setUserDataAC = ({userId, email, login}: DataType) => {
-    return {type: 'SET-USER-DATA', data: {userId, email, login}} as const
+export const setUserDataAC = ({id, email, login}: DataType) => {
+    return {type: 'SET-USER-DATA', data: {id, email, login}} as const
 }
 
-// type a = {
-//     resultCode: number
-//     messages: MyPostsType[],
-//     data: {
-//         userId: number,
-//         email: string,
-//         login: string
-//     }
-// }
 
 type DataType = {
-    userId: number,
+    id: number,
     email: string,
-    login: string
+    login: string,
+    isAuth: boolean,
 }
