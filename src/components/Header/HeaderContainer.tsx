@@ -23,7 +23,6 @@ class HeaderContainer extends Component<any, any> {
                     this.props.setUserDataAC(res.data.data)
                 }
             })
-
     }
 
     render() {
