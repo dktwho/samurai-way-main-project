@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
-export const Header = () => {
+export const Header = (props : any) => {
   return (
     <header className={styled.header}>
       <img
