@@ -14,8 +14,9 @@ import axios from "axios";
 import {Users2} from "./Users2";
 import {Preloader} from "../common/Preloader/Preloader";
 import {v4} from 'uuid';
+import {getUsers} from "../../api/api";
 
-const settings = {
+export const settings = {
     withCredentials: true
 }
 
@@ -24,8 +25,7 @@ type PropsType = MapStatePropsType & MapDispatchToPropsType
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.currentPage}`, settings)
-            .then((res) => {
+        getUsers(this.props.currentPage, this.props.pageSize).then((res) => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(res.data.items)
                 this.props.setTotalUsersCount(res.data.totalCount)
