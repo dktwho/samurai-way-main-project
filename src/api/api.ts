@@ -21,3 +21,6 @@ export const follow = (user: any) => {
     })
 }
 
+export const authMe = () => {
+    return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
+}

@@ -3,6 +3,7 @@ import {Header} from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setUserDataAC} from "../../redux/authReducer";
+import {authMe} from "../../api/api";
 
 
 // type ResponseType = {
@@ -17,7 +18,7 @@ import {setUserDataAC} from "../../redux/authReducer";
 
 class HeaderContainer extends Component<any, any> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
+        authMe()
             .then((res) => {
                 if (res.data.resultCode === 0) {
                     this.props.setUserDataAC(res.data.data)
