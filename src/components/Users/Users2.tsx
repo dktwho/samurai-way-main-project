@@ -3,9 +3,7 @@ import styles from "./users.module.css";
 import userIcon3 from "../../assets/userIcon3.jpeg";
 import {InitialStateType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
-import {v4} from 'uuid';
-import axios from "axios";
-import {follow, unfollow} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
@@ -49,7 +47,7 @@ export const Users2 = (props: PropsType) => {
                         <div>
                             {u.followed
                                 ? <button onClick={() =>
-                                    unfollow(u).then((res) => {
+                                    usersAPI.unfollow(u).then((res) => {
                                         if (res.data.resultCode === 0) {
                                             props.unfollow(u.id)
                                         }
@@ -57,7 +55,7 @@ export const Users2 = (props: PropsType) => {
                                 }>Unfollow</button>
 
                                 : <button onClick={() => {
-                                    follow(u).then((res) => {
+                                    usersAPI.follow(u).then((res) => {
                                         if (res.data.resultCode === 0) {
                                             props.follow(u.id)
                                         }

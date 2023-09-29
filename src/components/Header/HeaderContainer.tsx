@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Header} from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {setUserDataAC} from "../../redux/authReducer";
-import {authMe} from "../../api/api";
+import { usersAPI} from "../../api/api";
 
 
 // type ResponseType = {
@@ -18,7 +17,7 @@ import {authMe} from "../../api/api";
 
 class HeaderContainer extends Component<any, any> {
     componentDidMount() {
-        authMe()
+        usersAPI.authMe()
             .then((res) => {
                 if (res.data.resultCode === 0) {
                     this.props.setUserDataAC(res.data.data)
