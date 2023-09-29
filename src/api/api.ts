@@ -1,5 +1,4 @@
 import axios from "axios";
-import {InitialStateType} from "../redux/usersReducer";
 
 export const settings = {
     withCredentials: true
