@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ResponseProfileType} from "../../../redux/store";
+import {ResponseProfileType} from "../ProfileContainer";
 
 type PropsType = {
     profile: ResponseProfileType

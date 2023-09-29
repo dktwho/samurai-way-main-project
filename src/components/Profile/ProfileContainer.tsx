@@ -2,8 +2,47 @@ import React from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {ResponseProfileType, setUserProfileAC, SetUserProfileActionType} from "../../redux/store";
+import { setUserProfileAC, SetUserProfileActionType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+
+ export type ResponseProfileType = {
+    aboutMe: string;
+    contacts: ContactsType;
+    lookingForAJob: boolean;
+    lookingForAJobDescription: string;
+    fullName: string;
+    userId: number;
+    photos: PhotoType;
+}
+ type ContactsType = {
+    facebook: string;
+    website?: any;
+    vk: string;
+    twitter: string;
+    instagram: string;
+    youtube?: any;
+    github: string;
+    mainLink?: any;
+}
+
+ type PhotoType = {
+    small: string;
+    large: string;
+}
+
+type MapStateToPropsType = {
+    profile: ResponseProfileType
+    match: {
+        isExact: boolean,
+        params: {
+            userId: number
+        }
+    },
+}
+type MapDispatchToPropsType = {
+    setUserProfileAC: (data: SetUserProfileActionType) => void
+}
+
 
 
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
@@ -28,18 +67,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
     }
 }
 
-type MapStateToPropsType = {
-    profile: ResponseProfileType
-    match: {
-        isExact: boolean,
-        params: {
-            userId: number
-        }
-    },
-}
-type MapDispatchToPropsType = {
-    setUserProfileAC: (data: SetUserProfileActionType) => void
-}
+
 let mapStateToProps = (state: any): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     match: {

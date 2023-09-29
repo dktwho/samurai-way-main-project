@@ -30,34 +30,6 @@ export type MessagePageType = {
     newMessageBody: string
 }
 
-export type ResponseProfileType = {
-    aboutMe: string;
-    contacts: ContactsType;
-    lookingForAJob: boolean;
-    lookingForAJobDescription: string;
-    fullName: string;
-    userId: number;
-    photos: PhotoType;
-}
-export type ContactsType = {
-    facebook: string;
-    website?: any;
-    vk: string;
-    twitter: string;
-    instagram: string;
-    youtube?: any;
-    github: string;
-    mainLink?: any;
-}
-
-export type PhotoType = {
-    small: string;
-    large: string;
-}
-
-
-
-
 export type ActionsTypes =
     AddPostActionType
     | ChangeNewTextActionType
