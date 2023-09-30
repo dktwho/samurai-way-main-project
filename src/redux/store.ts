@@ -42,6 +42,7 @@ export type ActionsTypes =
     | setTotalCountACType
     | ToggleIsFetchingACType
     | SetUserProfileActionType
+    | ToggleIsFetchingProgressACType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -64,7 +65,7 @@ export const addPostAC = () => {
 
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
 
-export const setUserProfileAC = (profile: any ) => {
+export const setUserProfileAC = (profile: any) => {
     return {
         type: 'SET-USER-PROFILE',
         profile
@@ -143,6 +144,14 @@ export const setTotalCountAC = (totalUsersCount: number) => {
     return {
         type: 'SET-TOTAL-COUNT',
         totalUsersCount
+    } as const
+}
+
+export type ToggleIsFetchingProgressACType = ReturnType<typeof toggleIsFetchingProgressAC>
+export const toggleIsFetchingProgressAC = (isFetching: boolean) => {
+    return {
+        type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
+        isFetching
     } as const
 }
 

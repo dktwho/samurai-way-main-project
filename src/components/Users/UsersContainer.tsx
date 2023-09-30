@@ -60,6 +60,7 @@ export type MapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+
 }
 
 export type MapDispatchToPropsType = {
@@ -69,6 +70,7 @@ export type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+
 }
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType

@@ -17,6 +17,7 @@ export type InitialStateType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean
+    followingInProgress: boolean
 }
 
 const initialState: InitialStateType = {
@@ -24,7 +25,8 @@ const initialState: InitialStateType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: false
 }
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
@@ -41,7 +43,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             }
         }
         case "SET-USERS": {
-            return {...state, users: [...action.users,...state.users]}
+            return {...state, users: [...action.users, ...state.users]}
         }
         case 'SET-CURRENT-PAGE': {
             return {...state, currentPage: action.currentPage}
@@ -51,7 +53,10 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, totalUsersCount: action.totalUsersCount}
         }
         case 'TOGGLE-IS-FETCHING': {
-            return  {...state, isFetching: action.isFetching}
+            return {...state, isFetching: action.isFetching}
+        }
+        case "TOGGLE-IS-FOLLOWING-PROGRESS": {
+            return {...state, followingInProgress: action.isFetching}
         }
         default : {
             return state
