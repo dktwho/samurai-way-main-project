@@ -21,7 +21,7 @@ export const ProfileInfo = (props: PropsType) => {
             <div className={styled.descriptionBlock}>
                 <div>
                     <div>Full name: {props.profile.fullName}</div>
-                    <img src={props.profile.photos.small}/>
+                    <img src={props.profile.photos.small} alt='profile-photo'/>
                     <div>Instagram: {props.profile.contacts.instagram}</div>
                     <div>Github: {props.profile.contacts.github}</div>
                 </div>

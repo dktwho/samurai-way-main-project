@@ -148,10 +148,11 @@ export const setTotalCountAC = (totalUsersCount: number) => {
 }
 
 export type ToggleIsFetchingProgressACType = ReturnType<typeof toggleIsFetchingProgressAC>
-export const toggleIsFetchingProgressAC = (isFetching: boolean) => {
+export const toggleIsFetchingProgressAC = (isFetching: boolean, userId: number) => {
     return {
         type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
-        isFetching
+        isFetching,
+        userId
     } as const
 }
 
