@@ -21,7 +21,6 @@ export const setUserDataAC = ({id, email, login}: DataType) => {
     return {type: 'SET-USER-DATA', data: {id, email, login}} as const
 }
 
-
 type DataType = {
     id: number,
     email: string,

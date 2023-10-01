@@ -56,9 +56,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, isFetching: action.isFetching}
         }
         case "TOGGLE-IS-FOLLOWING-PROGRESS": {
-            return {...state, followingInProgress: action.isFetching
+            return {
+                ...state, followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id !== action.userId)}
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            }
         }
         default : {
             return state

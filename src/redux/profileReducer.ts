@@ -21,7 +21,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         }
 
         case 'SET-USER-PROFILE': {
-            return  {...state, profile: action.profile}
+            return {...state, profile: action.profile}
         }
 
         case 'CHANGE-NEW-TEXT' : {

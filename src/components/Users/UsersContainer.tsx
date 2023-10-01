@@ -14,7 +14,6 @@ import {Users2} from "./Users2";
 import {Preloader} from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
 
-
 type PropsType = MapStatePropsType & MapDispatchToPropsType
 
 class UsersContainer extends React.Component<PropsType> {
@@ -63,7 +62,6 @@ export type MapStatePropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
-
 }
 
 export type MapDispatchToPropsType = {
