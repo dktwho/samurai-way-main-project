@@ -10,7 +10,6 @@ type PropsType = {
     currentPage: number
     pageSize: number
     usersPage: InitialStateType
-    toggleIsFetchingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
     followThunkCreator: (userId: number) => void
     unFollowThunkCreator: (userId: number) => void

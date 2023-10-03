@@ -34,7 +34,6 @@ class UsersContainer extends React.Component<PropsType> {
                         pageSize={this.props.pageSize}
                         currentPage={this.props.currentPage}
                         usersPage={this.props.usersPage}
-                        toggleIsFetchingProgress={this.props.toggleIsFetchingProgress}
                         followingInProgress={this.props.followingInProgress}
                         followThunkCreator={this.props.followThunkCreator}
                         unFollowThunkCreator={this.props.unFollowThunkCreator}
