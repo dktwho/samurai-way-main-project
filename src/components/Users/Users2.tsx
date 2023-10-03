@@ -10,16 +10,11 @@ type PropsType = {
     currentPage: number
     pageSize: number
     usersPage: InitialStateType
-    // follow: (userId: number) => void
-    // unfollow: (userId: number) => void
     toggleIsFetchingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
     followThunkCreator: (userId: number) => void
     unFollowThunkCreator: (userId: number) => void
-
-
 }
-
 
 export const Users2 = (props: PropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -52,28 +47,11 @@ export const Users2 = (props: PropsType) => {
                         <div>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                    // props.toggleIsFetchingProgress(true, u.id);
-                                    // usersAPI.unfollow(u).then((res) => {
-                                    //     if (res.data.resultCode === 0) {
-                                    //         props.unfollow(u.id)
-                                    //     }
-                                    //     props.toggleIsFetchingProgress(false, u.id);
-                                    // });
                                     props.unFollowThunkCreator(u.id)
                                 }}>Unfollow</button>
 
                                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                    // props.toggleIsFetchingProgress(true, u.id);
-                                    // usersAPI.follow(u).then((res) => {
-                                    //     if (res.data.resultCode === 0) {
-                                    //         props.follow(u.id)
-                                    //     }
-                                    //     props.toggleIsFetchingProgress(false, u.id);
-                                    // });
-                                    // props.follow(u.id)
                                     props.followThunkCreator(u.id)
-
-
                                 }}>Follow</button>}
 
                         </div>
@@ -92,7 +70,5 @@ export const Users2 = (props: PropsType) => {
                 </div>
             })}
         </div>
-    )
-        ;
-
+    );
 };

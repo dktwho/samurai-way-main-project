@@ -78,7 +78,6 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 }
 
 
-
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(toggleIsFetchingAC(true))
     usersAPI.getUsers(currentPage, pageSize).then((data) => {
@@ -88,7 +87,6 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
         dispatch(setTotalCountAC(data.totalCount))
     })
 }
-
 
 export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
     dispatch(toggleIsFetchingProgressAC(true, userId))
