@@ -97,8 +97,8 @@ export const sendMessageAC = () => {
     } as const
 }
 
-export type FollowACType = ReturnType<typeof followAC>
-export const followAC = (userId: number) => {
+export type FollowACType = ReturnType<typeof followSuccessAC>
+export const followSuccessAC = (userId: number) => {
     return {
         type: 'FOLLOW',
         userId
@@ -106,8 +106,8 @@ export const followAC = (userId: number) => {
 }
 
 
-export type UnFollowACType = ReturnType<typeof unFollowAC>
-export const unFollowAC = (userId: number) => {
+export type UnFollowACType = ReturnType<typeof unFollowSuccessAC>
+export const unFollowSuccessAC = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         userId

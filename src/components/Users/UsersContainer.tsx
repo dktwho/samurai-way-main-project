@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from "react-redux";
 import {RootReducerType} from "../../redux/reduxStore";
 import {
-    followAC,
+    followSuccessAC,
     setUsersAC,
-    unFollowAC,
+    unFollowSuccessAC,
     setCurrentPageAC,
     setTotalCountAC,
     toggleIsFetchingAC, toggleIsFetchingProgressAC,
@@ -18,6 +18,26 @@ type PropsType = MapStatePropsType & MapDispatchToPropsType
 
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: any) => {
+    dispatch(toggleIsFetchingAC(true))
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        dispatch(setCurrentPageAC(currentPage))
+        dispatch(toggleIsFetchingAC(false))
+        dispatch(setUsersAC(data.items))
+        dispatch(setTotalCountAC(data.totalCount))
+    })
+}
+
+export const followThunkCreator = (currentPage: number, pageSize: number) => (dispatch: any) => {
+    dispatch(toggleIsFetchingAC(true))
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        dispatch(setCurrentPageAC(currentPage))
+        dispatch(toggleIsFetchingAC(false))
+        dispatch(setUsersAC(data.items))
+        dispatch(setTotalCountAC(data.totalCount))
+    })
+}
+
+export const unFollowThunkCreator = (currentPage: number, pageSize: number) => (dispatch: any) => {
     dispatch(toggleIsFetchingAC(true))
     usersAPI.getUsers(currentPage, pageSize).then((data) => {
         dispatch(setCurrentPageAC(currentPage))
@@ -93,8 +113,8 @@ let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
 
 
 export default connect(mapStateToProps, {
-    follow: followAC,
-    unfollow: unFollowAC,
+    follow: followSuccessAC,
+    unfollow: unFollowSuccessAC,
     setUsers: setUsersAC,
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalCountAC,
