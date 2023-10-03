@@ -14,7 +14,7 @@ export const Users = (props: UsersPropsType) => {
         if (props.usersPage.users.length === 0) {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
                 .then((res) => {
-                    props.setUsers(res.data.items)
+                    // props.setUsers(res.data.items)
                 })
         }
     }
@@ -34,10 +34,10 @@ export const Users = (props: UsersPropsType) => {
                         <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(u.id)
+                                    // props.unfollow(u.id)
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                    props.follow(u.id)
+                                    // props.follow(u.id)
                                 }}>Follow</button>}
 
                         </div>

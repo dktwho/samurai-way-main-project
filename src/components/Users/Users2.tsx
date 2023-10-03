@@ -10,12 +10,13 @@ type PropsType = {
     currentPage: number
     pageSize: number
     usersPage: InitialStateType
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    // follow: (userId: number) => void
+    // unfollow: (userId: number) => void
     toggleIsFetchingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
-    followThunk: (userId: number) => void
-    unFollowThunk: (userId: number) => void
+    followThunkCreator: (userId: number) => void
+    unFollowThunkCreator: (userId: number) => void
+
 
 }
 
@@ -26,7 +27,6 @@ export const Users2 = (props: PropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pagesArrCount.push(i)
     }
-
 
     return (
         <div>
@@ -59,8 +59,7 @@ export const Users2 = (props: PropsType) => {
                                     //     }
                                     //     props.toggleIsFetchingProgress(false, u.id);
                                     // });
-                                    props.unFollowThunk(u.id)
-
+                                    props.unFollowThunkCreator(u.id)
                                 }}>Unfollow</button>
 
                                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
@@ -72,7 +71,7 @@ export const Users2 = (props: PropsType) => {
                                     //     props.toggleIsFetchingProgress(false, u.id);
                                     // });
                                     // props.follow(u.id)
-                                    props.followThunk(u.id)
+                                    props.followThunkCreator(u.id)
 
 
                                 }}>Follow</button>}

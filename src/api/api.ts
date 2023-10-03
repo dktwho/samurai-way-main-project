@@ -5,20 +5,20 @@ const settings = {
     withCredentials: true
 }
 const headers = {
-    "API-KEY": "706d8068-13d3-44f9-aada-12ec1dbdb516"
+    "API-KEY": "f31ffa20-0ff3-4086-b0e8-28ca7dcbaac2"
 }
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return axios.get(`${BASE_URL}users?page=${currentPage}&count=${pageSize}`, settings).then(res => res.data)
     },
-    unfollow(user: any) {
-        return axios.delete(`${BASE_URL}follow/${user.id}`, {
+    unfollow(userId: number) {
+        return axios.delete(`${BASE_URL}follow/${userId}`, {
             ...settings, headers
         })
     },
-    follow(user: any) {
-        return axios.post(`${BASE_URL}follow/${user.id}`, {}, {
+    follow(userId: number) {
+        return axios.post(`${BASE_URL}follow/${userId}`, {}, {
             ...settings, headers
         })
     },

@@ -1,4 +1,13 @@
-import {ActionsTypes} from "./store";
+import {
+    ActionsTypes, followSuccessAC,
+    setCurrentPageAC,
+    setTotalCountAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    toggleIsFetchingProgressAC, unFollowSuccessAC
+} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export type UserType = {
     id: number,
@@ -66,12 +75,40 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return state
         }
     }
-
-
 }
 
 
 
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        dispatch(setCurrentPageAC(currentPage))
+        dispatch(toggleIsFetchingAC(false))
+        dispatch(setUsersAC(data.items))
+        dispatch(setTotalCountAC(data.totalCount))
+    })
+}
 
+
+export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingProgressAC(true, userId))
+    usersAPI.follow(userId).then((res) => {
+        if (res.data.resultCode === 0) {
+            dispatch(followSuccessAC(userId))
+        }
+        dispatch(toggleIsFetchingProgressAC(false, userId))
+    });
+    dispatch(followSuccessAC(userId))
+}
+
+export const unFollowThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingProgressAC(true, userId))
+    usersAPI.unfollow(userId).then((res) => {
+        if (res.data.resultCode === 0) {
+            dispatch(unFollowSuccessAC(userId))
+        }
+        dispatch(toggleIsFetchingProgressAC(false, userId))
+    });
+}
 
 
