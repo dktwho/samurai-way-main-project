@@ -3,7 +3,6 @@ import styles from "./users.module.css";
 import userIcon3 from "../../assets/userIcon3.jpeg";
 import {InitialStateType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
@@ -15,6 +14,9 @@ type PropsType = {
     unfollow: (userId: number) => void
     toggleIsFetchingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
+    followThunk: (userId: number) => void
+    unFollowThunk: (userId: number) => void
+
 }
 
 
@@ -24,6 +26,7 @@ export const Users2 = (props: PropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pagesArrCount.push(i)
     }
+
 
     return (
         <div>
@@ -49,25 +52,28 @@ export const Users2 = (props: PropsType) => {
                         <div>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                    props.toggleIsFetchingProgress(true, u.id);
-                                    usersAPI.unfollow(u).then((res) => {
-                                        if (res.data.resultCode === 0) {
-                                            props.unfollow(u.id)
-                                        }
-                                        props.toggleIsFetchingProgress(false, u.id);
-                                    });
+                                    // props.toggleIsFetchingProgress(true, u.id);
+                                    // usersAPI.unfollow(u).then((res) => {
+                                    //     if (res.data.resultCode === 0) {
+                                    //         props.unfollow(u.id)
+                                    //     }
+                                    //     props.toggleIsFetchingProgress(false, u.id);
+                                    // });
+                                    props.unFollowThunk(u.id)
 
                                 }}>Unfollow</button>
 
                                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                    props.toggleIsFetchingProgress(true, u.id);
-                                    usersAPI.follow(u).then((res) => {
-                                        if (res.data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.toggleIsFetchingProgress(false, u.id);
-                                    });
-                                    props.follow(u.id)
+                                    // props.toggleIsFetchingProgress(true, u.id);
+                                    // usersAPI.follow(u).then((res) => {
+                                    //     if (res.data.resultCode === 0) {
+                                    //         props.follow(u.id)
+                                    //     }
+                                    //     props.toggleIsFetchingProgress(false, u.id);
+                                    // });
+                                    // props.follow(u.id)
+                                    props.followThunk(u.id)
+
 
                                 }}>Follow</button>}
 
