@@ -22,14 +22,17 @@ export const usersAPI = {
             ...settings, headers
         })
     },
-    authMe() {
-        return axios.get(`${BASE_URL}auth/me`, settings)
-    },
+
     getProfile(userId: number) {
-        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        return axios.get(`${BASE_URL}/profile/${userId}`)
     }
 }
 
+export const authAPI = {
+    authMe() {
+        return axios.get(`${BASE_URL}auth/me`, settings)
+    },
+}
 
 
 
