@@ -2,8 +2,8 @@ import React, {ChangeEvent} from 'react';
 import styled from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
-
 import {DialogItemType, MessageType} from "../../redux/store";
+import {Redirect} from "react-router-dom";
 
 
 type MessagePageType2 = {
@@ -15,10 +15,12 @@ type GlobalMessageType2 = {
     dialogsPage: MessagePageType2
     updateNewMessageBody: (value: string) => void
     sendMessage: () => void
+    isAuth: boolean
 }
 
+
 export const Dialogs = (props: GlobalMessageType2) => {
-    const {dialogsPage} = props
+    const {dialogsPage, isAuth} = props
     const {dialogs, newMessageBody, messages} = dialogsPage
 
     let resultDialogsData = dialogs.map(elem => {
@@ -33,7 +35,7 @@ export const Dialogs = (props: GlobalMessageType2) => {
         )
     })
 
-    // let newMessageBody = state.newMessageBody
+
     let onSendMessageClick = () => {
         // props.dispatch(sendMessageAC())
         props.sendMessage()
@@ -44,6 +46,9 @@ export const Dialogs = (props: GlobalMessageType2) => {
         props.updateNewMessageBody(bodyText)
         // props.dispatch(updateNewMessageBodyAC(body))
     }
+
+
+    if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={styled.dialogs}>
