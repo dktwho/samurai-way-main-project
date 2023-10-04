@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {setUserDataAC} from "../../redux/authReducer";
 import {authAPI} from "../../api/api";
 
-// !!! make headerApi thunk move to apart api and Profile container
 class HeaderContainer extends Component<any, any> {
     componentDidMount() {
         authAPI.authMe()
