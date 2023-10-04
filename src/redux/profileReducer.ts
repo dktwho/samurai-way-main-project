@@ -1,4 +1,13 @@
-import {ActionsTypes, MyPostsType, ProfilePageType} from "./store";
+import {
+    ActionsTypes,
+    followSuccessAC,
+    MyPostsType,
+    ProfilePageType,
+    setUserProfileAC,
+    toggleIsFetchingProgressAC
+} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 
 let initialState = {
@@ -31,4 +40,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return state
         }
     }
+}
+
+export const getUserProfileThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(res => {
+            dispatch(setUserProfileAC(res.data))
+        })
 }

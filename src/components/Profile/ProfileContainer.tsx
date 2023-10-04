@@ -1,10 +1,9 @@
 import React from 'react';
 import {Profile} from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfileAC, SetUserProfileActionType} from "../../redux/store";
+import {SetUserProfileActionType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {usersAPI} from "../../api/api";
+import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 
 export type ResponseProfileType = {
     aboutMe: string;
@@ -42,6 +41,7 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     setUserProfileAC: (data: SetUserProfileActionType) => void
+    getUserProfileThunkCreator: (userId: number) => void
 }
 
 
@@ -51,11 +51,8 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
         if (!userId) {
             userId = 1
         }
+        this.props.getUserProfileThunkCreator(userId)
 
-        usersAPI.getProfile(userId)
-            .then(res => {
-                this.props.setUserProfileAC(res.data)
-            })
     }
 
     render() {
@@ -79,4 +76,4 @@ let mapStateToProps = (state: any): MapStateToPropsType => ({
 })
 
 let WitUrlDataContainerComponent = withRouter<RouteComponentProps, any>(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfileAC})(WitUrlDataContainerComponent);
+export default connect(mapStateToProps, {getUserProfileThunkCreator})(WitUrlDataContainerComponent);
