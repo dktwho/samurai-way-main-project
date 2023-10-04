@@ -4,6 +4,9 @@ import {connect} from "react-redux";
 import {SetUserProfileActionType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
+import {Redirect} from "react-router-dom";
+import {RootReducerType} from "../../redux/reduxStore";
+
 
 export type ResponseProfileType = {
     aboutMe: string;
@@ -32,6 +35,7 @@ type PhotoType = {
 
 type MapStateToPropsType = {
     profile: ResponseProfileType
+    isAuth: boolean
     match: {
         isExact: boolean,
         params: {
@@ -52,21 +56,20 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
             userId = 1
         }
         this.props.getUserProfileThunkCreator(userId)
-
     }
 
     render() {
+        if (!this.props.isAuth) return <Redirect to={'/login'}/>
+
         return (
-            <div>
-                <Profile {...this.props} profile={this.props.profile}/>
-            </div>
+                <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth}/>
         );
     }
 }
 
-
-let mapStateToProps = (state: any): MapStateToPropsType => ({
+let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth,
     match: {
         isExact: true,
         params: {
