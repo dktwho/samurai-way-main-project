@@ -4,18 +4,6 @@ import {connect} from "react-redux";
 import {setUserDataAC} from "../../redux/authReducer";
 import {usersAPI} from "../../api/api";
 
-
-// type ResponseType = {
-//     resultCode: number
-//     messages: MyPostsType[],
-//     data: {
-//         userId: number,
-//         email: string,
-//         login: string
-//     }
-// }
-
-
 // !!! make headerApi thunk move to apart api and Profile container
 class HeaderContainer extends Component<any, any> {
     componentDidMount() {

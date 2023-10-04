@@ -24,8 +24,10 @@ export const usersAPI = {
     },
     authMe() {
         return axios.get(`${BASE_URL}auth/me`, settings)
+    },
+    getProfile(userId: number) {
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
     }
-
 }
 
 

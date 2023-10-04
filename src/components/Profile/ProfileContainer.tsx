@@ -2,10 +2,11 @@ import React from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import { setUserProfileAC, SetUserProfileActionType} from "../../redux/store";
+import {setUserProfileAC, SetUserProfileActionType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
- export type ResponseProfileType = {
+export type ResponseProfileType = {
     aboutMe: string;
     contacts: ContactsType;
     lookingForAJob: boolean;
@@ -14,7 +15,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
     userId: number;
     photos: PhotoType;
 }
- type ContactsType = {
+type ContactsType = {
     facebook: string;
     website?: any;
     vk: string;
@@ -25,7 +26,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
     mainLink?: any;
 }
 
- type PhotoType = {
+type PhotoType = {
     small: string;
     large: string;
 }
@@ -44,17 +45,16 @@ type MapDispatchToPropsType = {
 }
 
 
-
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = 1
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+
+        usersAPI.getProfile(userId)
             .then(res => {
                 this.props.setUserProfileAC(res.data)
-
             })
     }
 
