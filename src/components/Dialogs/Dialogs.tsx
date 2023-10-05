@@ -5,7 +5,6 @@ import {Message} from "./Message/Message";
 import {DialogItemType, MessageType} from "../../redux/store";
 import {Redirect} from "react-router-dom";
 
-
 type MessagePageType2 = {
     messages: MessageType[]
     dialogs: DialogItemType[]
@@ -17,7 +16,6 @@ type GlobalMessageType2 = {
     sendMessage: () => void
     isAuth: boolean
 }
-
 
 export const Dialogs = (props: GlobalMessageType2) => {
     const {dialogsPage, isAuth} = props
@@ -35,7 +33,6 @@ export const Dialogs = (props: GlobalMessageType2) => {
         )
     })
 
-
     let onSendMessageClick = () => {
         // props.dispatch(sendMessageAC())
         props.sendMessage()
@@ -46,7 +43,6 @@ export const Dialogs = (props: GlobalMessageType2) => {
         props.updateNewMessageBody(bodyText)
         // props.dispatch(updateNewMessageBodyAC(body))
     }
-
 
     if (!isAuth) return <Redirect to={'/login'}/>
 

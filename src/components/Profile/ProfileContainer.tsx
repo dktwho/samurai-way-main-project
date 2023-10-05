@@ -7,7 +7,6 @@ import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {Redirect} from "react-router-dom";
 import {RootReducerType} from "../../redux/reduxStore";
 
-
 export type ResponseProfileType = {
     aboutMe: string;
     contacts: ContactsType;
@@ -47,7 +46,6 @@ type MapDispatchToPropsType = {
     setUserProfileAC: (data: SetUserProfileActionType) => void
     getUserProfileThunkCreator: (userId: number) => void
 }
-
 
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     componentDidMount() {

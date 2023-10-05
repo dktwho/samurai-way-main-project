@@ -2,7 +2,6 @@ import React from "react";
 import styled from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
-
 export const Header = (props: any) => {
     return (
         <header className={styled.header}>
