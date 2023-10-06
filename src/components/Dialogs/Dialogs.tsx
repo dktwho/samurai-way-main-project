@@ -3,7 +3,6 @@ import styled from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
 import {DialogItemType, MessageType} from "../../redux/store";
-import {Redirect} from "react-router-dom";
 
 type MessagePageType2 = {
     messages: MessageType[]
@@ -14,11 +13,10 @@ type GlobalMessageType2 = {
     dialogsPage: MessagePageType2
     updateNewMessageBody: (value: string) => void
     sendMessage: () => void
-    isAuth: boolean
 }
 
 export const Dialogs = (props: GlobalMessageType2) => {
-    const {dialogsPage, isAuth} = props
+    const {dialogsPage} = props
     const {dialogs, newMessageBody, messages} = dialogsPage
 
     let resultDialogsData = dialogs.map(elem => {
@@ -34,14 +32,12 @@ export const Dialogs = (props: GlobalMessageType2) => {
     })
 
     let onSendMessageClick = () => {
-        // props.dispatch(sendMessageAC())
         props.sendMessage()
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let bodyText = e.currentTarget.value
         props.updateNewMessageBody(bodyText)
-        // props.dispatch(updateNewMessageBodyAC(body))
     }
 
 

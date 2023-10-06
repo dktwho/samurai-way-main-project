@@ -1,6 +1,13 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 
+type DataType = {
+    id: number,
+    email: string,
+    login: string,
+    isAuth: boolean,
+}
+
 let initialState = {
     id: 0,
     email: '',
@@ -23,14 +30,6 @@ export type SetUserDataACType = ReturnType<typeof setUserDataAC>
 export const setUserDataAC = ({id, email, login}: DataType) => {
     return {type: 'SET-USER-DATA', data: {id, email, login} as const}
 }
-
-type DataType = {
-    id: number,
-    email: string,
-    login: string,
-    isAuth: boolean,
-}
-
 
 export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
     authAPI.authMe()
