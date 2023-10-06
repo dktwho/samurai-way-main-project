@@ -44,7 +44,6 @@ export const Dialogs = (props: GlobalMessageType2) => {
         // props.dispatch(updateNewMessageBodyAC(body))
     }
 
-    if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={styled.dialogs}>

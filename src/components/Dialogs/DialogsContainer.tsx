@@ -7,7 +7,6 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../redux/reduxStore";
 import {compose, Dispatch} from "redux";
-import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state: RootReducerType) => {
