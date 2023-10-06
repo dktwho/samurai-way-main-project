@@ -81,5 +81,5 @@ let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     },
 })
 
-let WitUrlDataContainerComponent = withRouter<RouteComponentProps, any>(ProfileContainer)
+let WitUrlDataContainerComponent = withRouter<RouteComponentProps, any>(AuthRedirectComponent)
 export default connect(mapStateToProps, {getUserProfileThunkCreator})(WitUrlDataContainerComponent);
