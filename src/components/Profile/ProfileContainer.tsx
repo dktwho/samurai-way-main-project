@@ -2,10 +2,11 @@ import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {SetUserProfileActionType} from "../../redux/store";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {RootReducerType} from "../../redux/reduxStore";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 export type ResponseProfileType = {
     aboutMe: string;
@@ -74,5 +75,8 @@ let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     },
 })
 
-let WitUrlDataContainerComponent = withRouter<RouteComponentProps, any>(ProfileContainer)
-export default withAuthRedirect(connect(mapStateToProps, {getUserProfileThunkCreator})(WitUrlDataContainerComponent))
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,{getUserProfileThunkCreator}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)
