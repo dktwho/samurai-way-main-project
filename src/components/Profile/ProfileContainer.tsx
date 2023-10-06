@@ -63,8 +63,6 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
     }
 }
 
-
-
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
