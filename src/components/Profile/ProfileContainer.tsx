@@ -57,12 +57,17 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
     }
 
     render() {
-        if (!this.props.isAuth) return <Redirect to={'/login'}/>
+
 
         return (
-                <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth}/>
+            <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth}/>
         );
     }
+}
+
+let AuthRedirectComponent = (props: any) => {
+    if (!props.isAuth) return <Redirect to={'/login'}/>
+    return <ProfileContainer {...props}/>
 }
 
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
