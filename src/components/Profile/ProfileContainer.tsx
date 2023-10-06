@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 import {SetUserProfileActionType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
-import {Redirect} from "react-router-dom";
 import {RootReducerType} from "../../redux/reduxStore";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export type ResponseProfileType = {
     aboutMe: string;
@@ -57,18 +57,13 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
     }
 
     render() {
-
-
         return (
             <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth}/>
         );
     }
 }
 
-let AuthRedirectComponent = (props: any) => {
-    if (!props.isAuth) return <Redirect to={'/login'}/>
-    return <ProfileContainer {...props}/>
-}
+
 
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
@@ -81,5 +76,5 @@ let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     },
 })
 
-let WitUrlDataContainerComponent = withRouter<RouteComponentProps, any>(AuthRedirectComponent)
-export default connect(mapStateToProps, {getUserProfileThunkCreator})(WitUrlDataContainerComponent);
+let WitUrlDataContainerComponent = withRouter<RouteComponentProps, any>(ProfileContainer)
+export default withAuthRedirect(connect(mapStateToProps, {getUserProfileThunkCreator})(WitUrlDataContainerComponent))
