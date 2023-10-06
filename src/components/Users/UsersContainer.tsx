@@ -13,6 +13,7 @@ import {
 } from "../../redux/usersReducer";
 import {Users2} from "./Users2";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
 
@@ -73,10 +74,10 @@ let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
 }
 
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
     setCurrentPage: setCurrentPageAC,
     toggleIsFetchingProgress: toggleIsFetchingProgressAC,
     getUsersThunkCreator,
     followThunkCreator,
     unFollowThunkCreator
-})(UsersContainer)
+})(UsersContainer))
