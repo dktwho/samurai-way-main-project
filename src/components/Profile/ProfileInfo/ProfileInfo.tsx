@@ -14,12 +14,12 @@ export const ProfileInfo = (props: PropsType) => {
     }
     return (
         <div>
-            <div>
-                {/*<img*/}
-                {/*    src="https://www.freewebheaders.com/wp-content/gallery/nature-size-800x200/beautiful-river-trees-snow-mountain-clouds-nature-landscape-web-header_size-800x200.jpg"*/}
-                {/*    alt="profile-logo"*/}
-                {/*/>*/}
-            </div>
+            {/*<div>*/}
+            {/*    <img*/}
+            {/*        src="https://www.freewebheaders.com/wp-content/gallery/nature-size-800x200/beautiful-river-trees-snow-mountain-clouds-nature-landscape-web-header_size-800x200.jpg"*/}
+            {/*        alt="profile-logo"*/}
+            {/*    />*/}
+            {/*</div>*/}
             <div className={styled.descriptionBlock}>
                 <div>
                     <div>Full name: {props.profile.fullName}</div>
