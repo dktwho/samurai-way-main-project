@@ -24,7 +24,7 @@ export const usersAPI = {
     },
 
     getProfile(userId: number) {
-        return axios.get(`${BASE_URL}/profile/${userId}`)
+        return axios.get(`${BASE_URL}profile/${userId}`, settings)
     }
 }
 

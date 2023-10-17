@@ -2,7 +2,7 @@ import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {SetUserProfileActionType} from "../../redux/store";
-import {Redirect, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {RootReducerType} from "../../redux/reduxStore";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -36,26 +36,34 @@ type PhotoType = {
 type MapStateToPropsType = {
     profile: ResponseProfileType
     isAuth: boolean
-    match: {
-        isExact: boolean,
-        params: {
-            userId: number
-        }
-    },
+    meId: number
 }
+
+type PathParamType = {
+    userId?: string
+}
+
 type MapDispatchToPropsType = {
     setUserProfileAC: (data: SetUserProfileActionType) => void
     getUserProfileThunkCreator: (userId: number) => void
 }
 
-class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
+class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamType>> {
     componentDidMount() {
-        let userId = this.props.match.params.userId
-        if (!userId) {
-            userId = 1
-        }
+        const pathUserId = this.props.match.params.userId
+
+        let userId = this.props.meId
+
+        // if (pathUserId) {
+        //
+        //     userId = +pathUserId;
+        // }
+        // this.props.getUserProfileThunkCreator(Number(pathUserId) ?? userId)
+        // }
         this.props.getUserProfileThunkCreator(userId)
+
     }
+
 
     render() {
         return (
@@ -67,12 +75,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
-    match: {
-        isExact: true,
-        params: {
-            userId: 1
-        }
-    },
+    meId: state.auth.id
 })
 
 export default compose<React.ComponentType>(

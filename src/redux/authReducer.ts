@@ -27,8 +27,8 @@ export const authReducer = (state: DataType = initialState, action: AuthReducerT
 
 type AuthReducerTypeActions = SetUserDataACType
 export type SetUserDataACType = ReturnType<typeof setUserDataAC>
-export const setUserDataAC = ({id, email, login}: DataType) => {
-    return {type: 'SET-USER-DATA', data: {id, email, login} as const}
+export const setUserDataAC = ({id, email, login, isAuth}: DataType) => {
+    return {type: 'SET-USER-DATA', data: {id, email, login, isAuth} as const}
 }
 
 export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {

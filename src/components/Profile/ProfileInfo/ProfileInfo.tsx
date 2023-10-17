@@ -7,6 +7,7 @@ type PropsType = {
     profile: ResponseProfileType
 }
 export const ProfileInfo = (props: PropsType) => {
+
     if(!props.profile) {
         return <Preloader/>
     }

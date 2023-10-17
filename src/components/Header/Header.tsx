@@ -10,7 +10,7 @@ export const Header = (props: any) => {
                 alt="logo"
             />
             <div className={styled.loginBlock}>
-                {props.isAuth ? props.login : <NavLink to={'./login'}>Login</NavLink>}
+                {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     );
