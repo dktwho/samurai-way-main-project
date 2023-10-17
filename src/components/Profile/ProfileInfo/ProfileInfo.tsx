@@ -2,22 +2,23 @@ import React from 'react';
 import styled from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ResponseProfileType} from "../ProfileContainer";
+import ProfileStatus from "./ProfileStatus";
 
 type PropsType = {
     profile: ResponseProfileType
 }
 export const ProfileInfo = (props: PropsType) => {
 
-    if(!props.profile) {
+    if (!props.profile) {
         return <Preloader/>
     }
     return (
-        <div >
+        <div>
             <div>
-                <img
-                    src="https://www.freewebheaders.com/wp-content/gallery/nature-size-800x200/beautiful-river-trees-snow-mountain-clouds-nature-landscape-web-header_size-800x200.jpg"
-                    alt="profile-logo"
-                />
+                {/*<img*/}
+                {/*    src="https://www.freewebheaders.com/wp-content/gallery/nature-size-800x200/beautiful-river-trees-snow-mountain-clouds-nature-landscape-web-header_size-800x200.jpg"*/}
+                {/*    alt="profile-logo"*/}
+                {/*/>*/}
             </div>
             <div className={styled.descriptionBlock}>
                 <div>
@@ -26,7 +27,7 @@ export const ProfileInfo = (props: PropsType) => {
                     <div>Instagram: {props.profile.contacts.instagram}</div>
                     <div>Github: {props.profile.contacts.github}</div>
                 </div>
-                Ava + description
+                <ProfileStatus status={'Hello friends'}/>
             </div>
         </div>
     );

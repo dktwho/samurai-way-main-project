@@ -51,13 +51,10 @@ type MapDispatchToPropsType = {
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamType>> {
     componentDidMount() {
         const pathUserId = this.props.match.params.userId
-
         let userId = this.props.meId
-
-        // if (pathUserId) {
-        //
-        //     userId = +pathUserId;
-        // }
+        if (pathUserId) {
+            userId = +pathUserId;
+        }
         // this.props.getUserProfileThunkCreator(Number(pathUserId) ?? userId)
         // }
         this.props.getUserProfileThunkCreator(userId)
@@ -81,5 +78,5 @@ let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
 export default compose<React.ComponentType>(
     connect(mapStateToProps,{getUserProfileThunkCreator}),
     withRouter,
-    withAuthRedirect
+   // withAuthRedirect
 )(ProfileContainer)
