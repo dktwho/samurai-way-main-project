@@ -2,10 +2,9 @@ import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {SetUserProfileActionType} from "../../redux/store";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import { RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {RootReducerType} from "../../redux/reduxStore";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 export type ResponseProfileType = {

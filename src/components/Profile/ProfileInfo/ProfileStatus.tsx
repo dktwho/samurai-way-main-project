@@ -35,6 +35,6 @@ class ProfileStatus extends React.Component<StatusType> {
 
         );
     }
-};
+}
 
 export default ProfileStatus;
