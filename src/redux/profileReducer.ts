@@ -2,10 +2,10 @@ import {
     ActionsTypes,
     MyPostsType,
     ProfilePageType,
-    setUserProfileAC,
+    setUserProfileAC, setUserStatusAC,
 } from "./store";
 import {Dispatch} from "redux";
-import { usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 
 let initialState = {
@@ -17,7 +17,8 @@ let initialState = {
         {id: 5, message: 'Post 5', likesCount: '95'},
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
@@ -34,6 +35,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         case 'CHANGE-NEW-TEXT' : {
             return {...state, newPostText: action.newText}
         }
+        case "SET-STATUS": {
+            return {...state, status: action.status}
+        }
         default : {
             return state
         }
@@ -44,5 +48,12 @@ export const getUserProfileThunkCreator = (userId: number) => (dispatch: Dispatc
     usersAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfileAC(res.data))
+        })
+}
+
+export const getUsersStatusThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(res => {
+            dispatch(setUserStatusAC(res.data.status))
         })
 }

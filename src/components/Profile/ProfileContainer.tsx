@@ -3,7 +3,7 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {SetUserProfileActionType} from "../../redux/store";
 import { RouteComponentProps, withRouter} from "react-router-dom";
-import {getUserProfileThunkCreator} from "../../redux/profileReducer";
+import {getUserProfileThunkCreator, getUsersStatusThunkCreator} from "../../redux/profileReducer";
 import {RootReducerType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
@@ -36,6 +36,7 @@ type MapStateToPropsType = {
     profile: ResponseProfileType
     isAuth: boolean
     meId: number
+    status: string
 }
 
 type PathParamType = {
@@ -45,6 +46,7 @@ type PathParamType = {
 type MapDispatchToPropsType = {
     setUserProfileAC: (data: SetUserProfileActionType) => void
     getUserProfileThunkCreator: (userId: number) => void
+    getUsersStatusThunkCreator: (userId: number) => void
 }
 
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamType>> {
@@ -57,6 +59,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
         // this.props.getUserProfileThunkCreator(Number(pathUserId) ?? userId)
         // }
         this.props.getUserProfileThunkCreator(userId)
+        this.props.getUsersStatusThunkCreator(userId)
 
     }
 
@@ -71,11 +74,12 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
-    meId: state.auth.id
+    meId: state.auth.id,
+    status: state.profilePage.status,
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps,{getUserProfileThunkCreator}),
+    connect(mapStateToProps,{getUserProfileThunkCreator, getUsersStatusThunkCreator}),
     withRouter,
    // withAuthRedirect
 )(ProfileContainer)

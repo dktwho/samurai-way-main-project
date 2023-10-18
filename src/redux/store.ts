@@ -22,6 +22,7 @@ export type ProfilePageType = {
     posts: MyPostsType[]
     newPostText: string
     profile: null
+    status: string
 }
 
 export type MessagePageType = {
@@ -43,6 +44,7 @@ export type ActionsTypes =
     | ToggleIsFetchingACType
     | SetUserProfileActionType
     | ToggleIsFetchingProgressACType
+    | SetUserStatusActionType
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -69,6 +71,14 @@ export const setUserProfileAC = (profile: any) => {
     return {
         type: 'SET-USER-PROFILE',
         profile
+    } as const
+}
+
+export type SetUserStatusActionType = ReturnType<typeof setUserStatusAC>
+export const setUserStatusAC = (status: string) => {
+    return {
+        type: 'SET-STATUS',
+        status
     } as const
 }
 
@@ -178,7 +188,8 @@ export let store: StoreType = {
                 {id: 5, message: 'Post 5', likesCount: '95'},
             ],
             newPostText: '',
-            profile: null
+            profile: null,
+            status: ''
         },
         dialogsPage: {
             messages: [
