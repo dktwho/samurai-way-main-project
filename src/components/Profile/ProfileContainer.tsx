@@ -71,7 +71,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth}/>
+            <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth} status={this.props.status} updateStatus={this.props.updateUsersStatusThunkCreator}/>
         );
     }
 }
