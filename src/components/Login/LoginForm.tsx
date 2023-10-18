@@ -1,17 +1,17 @@
 import React from 'react';
-import {reduxForm} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 
 export const LoginForm = () => {
     return (
         <form>
             <div>
-                <input type="text" placeholder={'Login'}/>
+                <Field name={'login'} type="text" placeholder={'Login'} component={'input'}/>
             </div>
             <div>
-                <input type="email" placeholder={'Password'}/>
+                <Field name={'password'} type="email" placeholder={'Password'} component={'input'}/>
             </div>
             <div>
-                <input type="checkbox"/>Remember me
+                <Field name={'rememberMe'} type="checkbox" component={'input'}/>Remember me
             </div>
             <div>
                 <button>Login</button>
