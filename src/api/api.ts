@@ -33,6 +33,12 @@ export const usersAPI = {
 export const profileAPI = {
     getProfile(userId: number) {
         return axios.get(`${BASE_URL}profile/${userId}`, settings)
+    },
+    getStatus(userId: number) {
+        return axios.get(`${BASE_URL}profile/status/${userId}`, settings)
+    },
+    updateStatus(status:string) {
+        return axios.put(`${BASE_URL}profile/status`, {status}, settings)
     }
 }
 
