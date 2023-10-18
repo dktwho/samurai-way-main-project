@@ -30,8 +30,7 @@ export const ProfileInfo = (props: PropsType) => {
                     <div>Instagram: {props.profile.contacts.instagram}</div>
                     <div>Github: {props.profile.contacts.github}</div>
                 </div>
-                Profile Status:
-                <ProfileStatus status={props.status}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     );

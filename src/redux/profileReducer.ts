@@ -18,7 +18,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
-    status: ''
+    status: 'status from global state redux'
 }
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
