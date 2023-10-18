@@ -22,7 +22,15 @@ export const usersAPI = {
             ...settings, headers
         })
     },
+    getProfile(userId: number) {
+        console.warn('Obselete method. Please use profileAPI object ')
+        return profileAPI.getProfile(userId)
+    }
 
+}
+
+
+export const profileAPI = {
     getProfile(userId: number) {
         return axios.get(`${BASE_URL}profile/${userId}`, settings)
     }

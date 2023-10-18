@@ -5,7 +5,7 @@ import {
     setUserProfileAC,
 } from "./store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import { usersAPI} from "../api/api";
 
 
 let initialState = {
