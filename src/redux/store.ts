@@ -189,7 +189,7 @@ export let store: StoreType = {
             ],
             newPostText: '',
             profile: null,
-            status: ''
+            status: 'status from store'
         },
         dialogsPage: {
             messages: [

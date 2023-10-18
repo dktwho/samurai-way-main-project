@@ -35,7 +35,8 @@ class ProfileStatus extends React.Component<StatusType> {
         return (
             <div>
                 {!this.state.editMode && <div>
-                    <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+                    <span
+                        onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status || 'no status, click for insert'}</span>
                 </div>}
                 {this.state.editMode && <div>
                     <input onChange={this.onStatusChange}

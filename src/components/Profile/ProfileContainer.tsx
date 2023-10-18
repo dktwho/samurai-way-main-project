@@ -65,9 +65,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
         // }
         this.props.getUserProfileThunkCreator(userId)
         this.props.getUsersStatusThunkCreator(userId)
-
     }
-
 
     render() {
         return (
