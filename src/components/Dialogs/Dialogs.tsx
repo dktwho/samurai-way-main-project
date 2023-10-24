@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React  from 'react';
 import styled from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
@@ -19,7 +19,7 @@ type GlobalMessageType2 = {
 
 export const Dialogs = (props: GlobalMessageType2) => {
     const {dialogsPage} = props
-    const {dialogs, newMessageBody, messages} = dialogsPage
+    const {dialogs,messages} = dialogsPage
 
     let resultDialogsData = dialogs.map(elem => {
         return (
