@@ -14,7 +14,7 @@ type MessagePageType2 = {
 type GlobalMessageType2 = {
     dialogsPage: MessagePageType2
     updateNewMessageBody: (value: string) => void
-    sendMessage: () => void
+    sendMessage: (newMessageBody: string) => void
 }
 
 export const Dialogs = (props: GlobalMessageType2) => {
@@ -34,12 +34,16 @@ export const Dialogs = (props: GlobalMessageType2) => {
     })
 
     let onSendMessageClick = () => {
-        props.sendMessage()
+        props.sendMessage(newMessageBody)
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let bodyText = e.currentTarget.value
         props.updateNewMessageBody(bodyText)
+    }
+
+    let addNewMessage = (values: any) => {
+        props.sendMessage(values.newMessageBody)
     }
 
 
@@ -50,7 +54,7 @@ export const Dialogs = (props: GlobalMessageType2) => {
             </div>
             <div className={styled.messages}>
                 <div>{resultMessagesData}</div>
-                <AddMessageFormRedux/>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     );

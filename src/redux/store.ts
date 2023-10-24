@@ -28,7 +28,7 @@ export type ProfilePageType = {
 export type MessagePageType = {
     messages: MessageType[]
     dialogs: DialogItemType[]
-    newMessageBody: string
+
 }
 
 export type ActionsTypes =
@@ -101,9 +101,10 @@ export const updateNewMessageBodyAC = (body: string) => {
 }
 
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
-export const sendMessageAC = () => {
+export const sendMessageAC = (newMessageBody: string) => {
     return {
         type: 'SEND-MESSAGE',
+        newMessageBody
     } as const
 }
 
@@ -206,7 +207,6 @@ export let store: StoreType = {
                 {id: 4, name: 'Tedd'},
                 {id: 5, name: 'John'},
             ],
-            newMessageBody: '',
         }
     },
     _rerenderEntireTree() {

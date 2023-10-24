@@ -21,8 +21,8 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
         updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyAC(body))
         },
-        sendMessage: () => {
-            dispatch(sendMessageAC())
+        sendMessage: (newMessageBody: string) => {
+            dispatch(sendMessageAC(newMessageBody))
         }
     }
 }

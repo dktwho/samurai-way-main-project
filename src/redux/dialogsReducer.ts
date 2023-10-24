@@ -15,7 +15,7 @@ let initialState = {
         {id: 4, name: 'Tedd'},
         {id: 5, name: 'John'},
     ],
-    newMessageBody: '',
+
 }
 export const dialogsReducer = (state: MessagePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
@@ -24,8 +24,7 @@ export const dialogsReducer = (state: MessagePageType = initialState, action: Ac
         }
 
         case 'SEND-MESSAGE': {
-            let body = state.newMessageBody
-            state.newMessageBody = ''
+            let body = action.newMessageBody
             return {...state, messages: [...state.messages, {id: new Date().getTime(), message: body}]}
         }
 
