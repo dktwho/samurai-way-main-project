@@ -2,9 +2,11 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {loginThunkCreator} from "../../redux/authReducer";
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
@@ -12,10 +14,10 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props: any)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field validate={[required]} name={'login'} type="text" placeholder={'Login'} component={Input}/>
+                <Field validate={[required]} name={'email'} type="text" placeholder={'Email'} component={Input}/>
             </div>
             <div>
-                <Field validate={[required]} name={'password'} type="text" placeholder={'Password'} component={Input}/>
+                <Field validate={[required]} name={'password'} type="password" placeholder={'Password'} component={Input}/>
             </div>
             <div>
                 <Field name={'rememberMe'} type="checkbox" component={Input}/>Remember me
@@ -31,9 +33,9 @@ const LoginReduxForm = reduxForm<FormDataType>({
     form: 'login'
 })(LoginForm)
 
-export const Login = () => {
+const Login = (props: any) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.loginThunkCreator(formData.email, formData.password, formData.rememberMe)
     }
 
     return (
@@ -44,3 +46,4 @@ export const Login = () => {
     );
 };
 
+export default connect(null, {loginThunkCreator})(Login)
