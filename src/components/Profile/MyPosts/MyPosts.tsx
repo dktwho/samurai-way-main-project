@@ -3,6 +3,7 @@ import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {MyPostsType} from "../../../redux/store";
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
 
 export type PostsTypeProps3 = {
     postsData: MyPostsType[]
@@ -22,6 +23,8 @@ export const MyPosts = (props: PostsTypeProps3) => {
         props.addPost(values.newPostText)
     }
 
+
+
     return (
         <div className={styled.postBlock}>
             <h3> My Posts</h3>
@@ -31,12 +34,13 @@ export const MyPosts = (props: PostsTypeProps3) => {
         </div>
     );
 };
-
+const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name={'newPostText'} component={'textarea'} placeholder={'Enter your message'}/>
+                <Field validate={[required, maxLength10]} name={'newPostText'} component={'textarea'}
+                       placeholder={'Enter your message'}/>
             </div>
             <div>
                 <button>Add post</button>
