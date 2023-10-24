@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {getAuthUserDataThunkCreator} from "../../redux/authReducer";
+import {getAuthUserDataThunkCreator, logOutThunkCreator} from "../../redux/authReducer";
 
-type MapStateToPropsType = {}
+type MapStateToPropsType = {
+    isAuth: boolean
+}
 type MapDispatchToPropsType = {
     getAuthUserDataThunkCreator: () => void
 }
@@ -25,4 +27,4 @@ const mapStateToProps = (state: any) => ({
     login: state.auth.login
 })
 
-export default connect(mapStateToProps, {getAuthUserDataThunkCreator})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserDataThunkCreator, logOutThunkCreator})(HeaderContainer);

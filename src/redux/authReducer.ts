@@ -17,7 +17,7 @@ let initialState = {
 export const authReducer = (state: DataType = initialState, action: AuthReducerTypeActions) => {
     switch (action.type) {
         case 'SET-USER-DATA': {
-            return {...state, ...action.payload, isAuth: true}
+            return {...state, ...action.payload}
         }
         default : {
             return state
@@ -35,8 +35,8 @@ export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
     authAPI.authMe()
         .then((res) => {
             if (res.data.resultCode === 0) {
-                let {login, email, id, isAuth} = res.data.data
-                dispatch(setUserDataAC({login, email, id, isAuth}))
+                let {id, email, login} = res.data.data
+                dispatch(setUserDataAC({id, email, login, isAuth: true}))
             }
         })
 }
@@ -55,6 +55,7 @@ export const logOutThunkCreator = () => (dispatch: any) => {
         .then((res) => {
             if (res.data.resultCode === 0) {
                 dispatch(setUserDataAC({id: 0, email: '', login: '', isAuth: false}))
+
             }
         })
 }
