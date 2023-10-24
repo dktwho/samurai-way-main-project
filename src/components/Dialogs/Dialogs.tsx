@@ -33,15 +33,6 @@ export const Dialogs = (props: GlobalMessageType2) => {
         )
     })
 
-    let onSendMessageClick = () => {
-        props.sendMessage(newMessageBody)
-    }
-
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let bodyText = e.currentTarget.value
-        props.updateNewMessageBody(bodyText)
-    }
-
     let addNewMessage = (values: any) => {
         props.sendMessage(values.newMessageBody)
     }
@@ -74,4 +65,4 @@ const AddMessageForm = (props: any) => {
     )
 }
 
-const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'}) (AddMessageForm)
+const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)

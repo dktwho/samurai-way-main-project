@@ -34,7 +34,6 @@ export type MessagePageType = {
 export type ActionsTypes =
     AddPostActionType
     | ChangeNewTextActionType
-    | UpdateNewMessageBodyACType
     | SendMessageACType
     | UnFollowACType
     | FollowACType
@@ -91,14 +90,6 @@ export const changeNewTextAC = (newText: string) => {
     } as const
 }
 
-export type UpdateNewMessageBodyACType = ReturnType<typeof updateNewMessageBodyAC>
-
-export const updateNewMessageBodyAC = (body: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-BODY',
-        body
-    } as const
-}
 
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
 export const sendMessageAC = (newMessageBody: string) => {
