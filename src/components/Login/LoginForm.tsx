@@ -40,7 +40,12 @@ const LoginReduxForm = reduxForm<FormDataType>({
     form: 'login'
 })(LoginForm)
 
-const Login = (props: any) => {
+
+type LoginPropsType = {
+    isAuth: boolean,
+    loginThunkCreator: (email: string, password: string, isAuth: boolean) => void
+}
+const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.loginThunkCreator(formData.email, formData.password, formData.rememberMe)
     }
