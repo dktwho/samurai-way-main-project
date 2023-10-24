@@ -3,6 +3,8 @@ import styled from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {Message} from "./Message/Message";
 import {DialogItemType, MessageType} from "../../redux/store";
+import {Field, reduxForm} from "redux-form";
+
 
 type MessagePageType2 = {
     messages: MessageType[]
@@ -48,14 +50,24 @@ export const Dialogs = (props: GlobalMessageType2) => {
             </div>
             <div className={styled.messages}>
                 <div>{resultMessagesData}</div>
-                <div>
-                    <div><textarea value={newMessageBody} onChange={onNewMessageChange}
-                                   placeholder={'Enter your message'}></textarea></div>
-                    <div>
-                        <button onClick={onSendMessageClick}>Send</button>
-                    </div>
-                </div>
+                <AddMessageFormRedux/>
             </div>
         </div>
     );
 };
+
+
+const AddMessageForm = (props: any) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'}/>
+            </div>
+            <div>
+                <button>Send</button>
+            </div>
+        </form>
+    )
+}
+
+const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'}) (AddMessageForm)
