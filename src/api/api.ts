@@ -37,7 +37,7 @@ export const profileAPI = {
     getStatus(userId: number) {
         return axios.get(`${BASE_URL}profile/status/${userId}`, settings)
     },
-    updateStatus(status:string) {
+    updateStatus(status: string) {
         return axios.put(`${BASE_URL}profile/status`, {status}, settings)
     }
 }
@@ -46,6 +46,12 @@ export const authAPI = {
     authMe() {
         return axios.get(`${BASE_URL}auth/me`, settings)
     },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return axios.post(`${BASE_URL}auth/login`, {email, password, rememberMe}, settings)
+    },
+    logOut() {
+        return axios.delete(`${BASE_URL}auth/login`, settings)
+    }
 }
 
 
