@@ -33,13 +33,14 @@ export const setUserDataAC = ({id, email, login, isAuth}: DataType) => {
 }
 
 export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
-    authAPI.authMe()
+    return authAPI.authMe()
         .then((res) => {
             if (res.data.resultCode === 0) {
                 let {id, email, login} = res.data.data
                 dispatch(setUserDataAC({id, email, login, isAuth: true}))
             }
         })
+
 }
 
 export const loginThunkCreator = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {

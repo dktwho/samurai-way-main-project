@@ -1,16 +1,30 @@
 import React from "react";
 import {Navbar} from "./components/Navbar/Navbar";
 import "./App.css";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Login from "./components/Login/LoginForm";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {initializeAppThunkCreator} from "./redux/appReducer";
 
-const App = () => {
-    return (
-        <BrowserRouter>
+
+type MapStateToPropsType = {}
+type MapDispatchToPropsType = {
+    initializeAppThunkCreator: () => void
+}
+
+class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
+    componentDidMount() {
+        this.props.initializeAppThunkCreator()
+    }
+
+    render() {
+        return (
+            // <BrowserRouter>
             <div className="app-wrapper">
                 <HeaderContainer/>
                 <Navbar/>
@@ -31,8 +45,12 @@ const App = () => {
                         render={() => <Login/>}/>
                 </div>
             </div>
-        </BrowserRouter>
-    );
-};
+            // </BrowserRouter>
+        );
+    }
+}
 
-export default App;
+// export default App;
+export default compose(
+    withRouter,
+    connect(null, {initializeAppThunkCreator}))(App)
