@@ -51,8 +51,6 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
     }
 }
 
-// export default App;
-
 
 type MapStateToPropsType = {
     initialized: boolean

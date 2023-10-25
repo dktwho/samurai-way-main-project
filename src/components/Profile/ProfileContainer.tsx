@@ -58,9 +58,12 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
     componentDidMount() {
         const pathUserId = this.props.match.params.userId
         let userId = this.props.authorizedUserId
-        if (pathUserId) {
+        if (!pathUserId) {
             // userId = +pathUserId;
             userId = this.props.authorizedUserId
+            if(!userId) {
+               this.props.history.push('/login')
+            }
         }
         // this.props.getUserProfileThunkCreator(Number(pathUserId) ?? userId)
         // }
