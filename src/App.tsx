@@ -10,12 +10,9 @@ import Login from "./components/Login/LoginForm";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
+import {RootReducerType} from "./redux/reduxStore";
+import {Preloader} from "./components/common/Preloader/Preloader";
 
-
-type MapStateToPropsType = {}
-type MapDispatchToPropsType = {
-    initializeAppThunkCreator: () => void
-}
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     componentDidMount() {
@@ -23,6 +20,10 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
     }
 
     render() {
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+
         return (
             // <BrowserRouter>
             <div className="app-wrapper">
@@ -51,6 +52,19 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
 }
 
 // export default App;
-export default compose(
+
+
+type MapStateToPropsType = {
+    initialized: boolean
+}
+type MapDispatchToPropsType = {
+    initializeAppThunkCreator: () => void
+}
+
+let mapStateToProps = (state: RootReducerType) => ({
+    initialized: state.app.initialized
+})
+
+export default compose<React.ComponentType>(
     withRouter,
-    connect(null, {initializeAppThunkCreator}))(App)
+    connect(mapStateToProps, {initializeAppThunkCreator}))(App)

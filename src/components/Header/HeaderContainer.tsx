@@ -6,9 +6,7 @@ import {logOutThunkCreator} from "../../redux/authReducer";
 type MapStateToPropsType = {
     isAuth: boolean
 }
-type MapDispatchToPropsType = {
-    // getAuthUserDataThunkCreator: () => void
-}
+type MapDispatchToPropsType = {}
 
 class HeaderContainer extends Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     render() {
