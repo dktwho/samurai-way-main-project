@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 type DataType = {
     id: number,
@@ -46,6 +47,9 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
         .then((res) => {
             if (res.data.resultCode === 0) {
                 dispatch(getAuthUserDataThunkCreator())
+            } else {
+                let messages = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
+                dispatch(stopSubmit('login', {_error: messages}))
             }
         })
 }

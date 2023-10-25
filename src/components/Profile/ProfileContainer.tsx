@@ -39,7 +39,7 @@ type PhotoType = {
 type MapStateToPropsType = {
     profile: ResponseProfileType
     isAuth: boolean
-    meId: number
+    authorizedUserId: number
     status: string
 }
 
@@ -57,9 +57,10 @@ type MapDispatchToPropsType = {
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamType>> {
     componentDidMount() {
         const pathUserId = this.props.match.params.userId
-        let userId = this.props.meId
+        let userId = this.props.authorizedUserId
         if (pathUserId) {
-            userId = +pathUserId;
+            // userId = +pathUserId;
+            userId = this.props.authorizedUserId
         }
         // this.props.getUserProfileThunkCreator(Number(pathUserId) ?? userId)
         // }
@@ -69,7 +70,11 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} isAuth={this.props.isAuth} status={this.props.status} updateStatus={this.props.updateUsersStatusThunkCreator}/>
+            <Profile {...this.props}
+                     profile={this.props.profile}
+                     isAuth={this.props.isAuth}
+                     status={this.props.status}
+                     updateStatus={this.props.updateUsersStatusThunkCreator}/>
         );
     }
 }
@@ -77,7 +82,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
 let mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
-    meId: state.auth.id,
+    authorizedUserId: state.auth.id,
     status: state.profilePage.status,
 })
 

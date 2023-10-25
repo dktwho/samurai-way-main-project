@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/authReducer";
 import {Redirect} from "react-router-dom";
 import {RootReducerType} from "../../redux/reduxStore";
+import styles from '../../components/common/FormsControls/FormsControls.module.css'
 
 type FormDataType = {
     email: string
@@ -30,6 +31,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props: any)
                 <Field name={'rememberMe'} type="checkbox" component={Input}/>Remember me
             </div>
             <div>
+                {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
                 <button>Login</button>
             </div>
         </form>
