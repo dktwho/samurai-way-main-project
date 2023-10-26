@@ -1,7 +1,7 @@
 import {RootReducerType} from "./reduxStore";
 
 export const getUsersPageSelectors = (state: RootReducerType) => {
-    return state.usersPage.users
+    return state.usersPage
 }
 
 export const getPageSizeSelectors = (state: RootReducerType) => {
