@@ -15,6 +15,13 @@ import {Users2} from "./Users2";
 import {Preloader} from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    followingInProgressSelector,
+    getCurrentPageSelector,
+    getPageSizeSelectors,
+    getTotalUsersCountSelector,
+    getUsersPageSelectors, isFetchingSelector
+} from "../../redux/usersSelectors";
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
 
@@ -63,23 +70,36 @@ export type MapDispatchToPropsType = {
 }
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
-let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
+// let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
+//     return {
+//         usersPage: state.usersPage,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
+
+let mapStateToProps = (state: RootReducerType) => {
     return {
-        usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        usersPage: getUsersPageSelectors(state),
+        pageSize: getPageSizeSelectors(state),
+        totalUsersCount: getTotalUsersCountSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: isFetchingSelector(state),
+        followingInProgress: followingInProgressSelector(state),
     }
+
 }
+
 
 export default compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, {
-    setCurrentPage: setCurrentPageAC,
-    toggleIsFetchingProgress: toggleIsFetchingProgressAC,
-    getUsersThunkCreator,
-    followThunkCreator,
-    unFollowThunkCreator,
-})) (UsersContainer)
+        setCurrentPage: setCurrentPageAC,
+        toggleIsFetchingProgress: toggleIsFetchingProgressAC,
+        getUsersThunkCreator,
+        followThunkCreator,
+        unFollowThunkCreator,
+    }))(UsersContainer)
