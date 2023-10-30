@@ -3,6 +3,7 @@ import styled from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ResponseProfileType} from "../ProfileContainer";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 type PropsType = {
     profile: ResponseProfileType
@@ -30,7 +31,8 @@ export const ProfileInfo = (props: PropsType) => {
                     <div>Instagram: {props.profile.contacts.instagram}</div>
                     <div>Github: {props.profile.contacts.github}</div>
                 </div>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     );
