@@ -13,10 +13,10 @@ export type PostsTypeProps3 = {
 }
 
 
-export class MyPosts extends React.Component<PostsTypeProps3> {
-    shouldComponentUpdate(nextProps: Readonly<PostsTypeProps3>, nextState: Readonly<{}>, nextContext: any): boolean {
-        return  this.props !==  nextProps  || nextState !== this.state
-    }
+export class MyPosts extends React.PureComponent<PostsTypeProps3> {
+    // shouldComponentUpdate(nextProps: Readonly<PostsTypeProps3>, nextState: Readonly<{}>, nextContext: any): boolean {
+    //     return  this.props !==  nextProps  || nextState !== this.state
+    // }
 
     render() {
         let resultPostsData = this.props.postsData.map(elem => {
