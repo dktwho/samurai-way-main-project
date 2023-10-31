@@ -13,27 +13,30 @@ export type PostsTypeProps3 = {
 }
 
 
-export const MyPosts = (props: PostsTypeProps3) => {
-    let resultPostsData = props.postsData.map(elem => {
+export class MyPosts extends React.Component<PostsTypeProps3> {
+    render() {
+        let resultPostsData = this.props.postsData.map(elem => {
+            return (
+                <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
+            )
+        })
+
+        const addPost = (values: any) => {
+            this.props.addPost(values.newPostText)
+        }
+
+
         return (
-            <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
-        )
-    })
-
-    const addPost = (values: any) => {
-        props.addPost(values.newPostText)
+            <div className={styled.postBlock}>
+                <h3> My Posts</h3>
+                <AddNewPostFormRedux onSubmit={addPost}/>
+                <div className={styled.posts}>New post</div>
+                {resultPostsData}
+            </div>
+        );
     }
+}
 
-
-    return (
-        <div className={styled.postBlock}>
-            <h3> My Posts</h3>
-            <AddNewPostFormRedux onSubmit={addPost}/>
-            <div className={styled.posts}>New post</div>
-            {resultPostsData}
-        </div>
-    );
-};
 const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm = (props: any) => {
     return (
