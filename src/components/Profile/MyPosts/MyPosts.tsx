@@ -14,6 +14,10 @@ export type PostsTypeProps3 = {
 
 
 export class MyPosts extends React.Component<PostsTypeProps3> {
+    shouldComponentUpdate(nextProps: Readonly<PostsTypeProps3>, nextState: Readonly<{}>, nextContext: any): boolean {
+        return  this.props !==  nextProps  || nextState !== this.state
+    }
+
     render() {
         let resultPostsData = this.props.postsData.map(elem => {
             return (
@@ -24,7 +28,6 @@ export class MyPosts extends React.Component<PostsTypeProps3> {
         const addPost = (values: any) => {
             this.props.addPost(values.newPostText)
         }
-
 
         return (
             <div className={styled.postBlock}>
