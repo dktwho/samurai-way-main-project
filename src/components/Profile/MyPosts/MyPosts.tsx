@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styled from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {MyPostsType} from "../../../redux/store";
@@ -12,33 +12,26 @@ export type PostsTypeProps3 = {
     addPost: (value: string) => void
 }
 
-
-export class MyPosts extends React.PureComponent<PostsTypeProps3> {
-    // shouldComponentUpdate(nextProps: Readonly<PostsTypeProps3>, nextState: Readonly<{}>, nextContext: any): boolean {
-    //     return  this.props !==  nextProps  || nextState !== this.state
-    // }
-
-    render() {
-        let resultPostsData = this.props.postsData.map(elem => {
-            return (
-                <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
-            )
-        })
-
-        const addPost = (values: any) => {
-            this.props.addPost(values.newPostText)
-        }
-
+export const MyPosts = memo((props: PostsTypeProps3) => {
+    let resultPostsData = props.postsData.map(elem => {
         return (
-            <div className={styled.postBlock}>
-                <h3> My Posts</h3>
-                <AddNewPostFormRedux onSubmit={addPost}/>
-                <div className={styled.posts}>New post</div>
-                {resultPostsData}
-            </div>
-        );
+            <Post key={elem.id} message={elem.message} likesCount={elem.likesCount}/>
+        )
+    })
+
+    const addPost = (values: any) => {
+        props.addPost(values.newPostText)
     }
-}
+
+    return (
+        <div className={styled.postBlock}>
+            <h3> My Posts</h3>
+            <AddNewPostFormRedux onSubmit={addPost}/>
+            <div className={styled.posts}>New post</div>
+            {resultPostsData}
+        </div>
+    );
+})
 
 const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm = (props: any) => {
