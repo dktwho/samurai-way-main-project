@@ -3,6 +3,7 @@ import styles from "./users.module.css";
 import userIcon3 from "../../assets/userIcon3.jpeg";
 import {InitialStateType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
+import {Pagination} from "../common/Pagination/Pagination";
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
@@ -24,14 +25,10 @@ export const Users2 = (props: PropsType) => {
 
     return (
         <div>
-            <div>
-                {pagesArrCount?.map(el => {
-                    return (
-                        <span onClick={() => props.onPageChanged(el)}
-                              className={props.currentPage === el ? styles.selectedPage : ''}>{el}</span>
-                    )
-                })}
-            </div>
+            <Pagination totalUsersCount={props.totalUsersCount}
+                        pageSize={props.pageSize}
+                        currentPage={props.currentPage}
+                        onPageChanged={props.onPageChanged}/>
             {props.usersPage.users.map(u => {
                 return <div>
                     <span>

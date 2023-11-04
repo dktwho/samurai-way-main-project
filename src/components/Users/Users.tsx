@@ -1,4 +1,3 @@
-import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import styles from './users.module.css'
 import axios from "axios";
@@ -14,7 +13,6 @@ export const Users = (props: UsersPropsType) => {
         if (props.usersPage.users.length === 0) {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users`, settings)
                 .then((res) => {
-                    // props.setUsers(res.data.items)
                 })
         }
     }
