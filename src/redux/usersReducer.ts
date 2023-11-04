@@ -1,14 +1,10 @@
 import {
-    ActionsTypes, followSuccessAC,
-    setCurrentPageAC,
-    setTotalCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    toggleIsFetchingProgressAC, unFollowSuccessAC
+    ActionsTypes
 } from "./store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
 
+// type
 export type UserType = {
     id: number,
     name: string,
@@ -37,34 +33,44 @@ const initialState: InitialStateType = {
     isFetching: false,
     followingInProgress: []
 }
+
+const FOLLOW = 'users/FOLLOW'
+const UNFOLLOW = 'users/UNFOLLOW'
+const SET_USERS = 'users/SET-USERS'
+const SET_CURRENT_PAGE = 'users/SET-CURRENT-PAGE'
+const SET_TOTAL_COUNT = 'users/SET-TOTAL-COUNT'
+const TOGGLE_IS_FETCHING = 'users/TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE-IS-FOLLOWING-PROGRESS'
+
+// Reducer
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case "FOLLOW": {
+        case FOLLOW: {
             return {
                 ...state,
                 users: state.users.map(user => user.id === action.userId ? {...user, followed: true} : user)
             }
         }
-        case "UNFOLLOW": {
+        case UNFOLLOW: {
             return {
                 ...state,
                 users: state.users.map(user => user.id === action.userId ? {...user, followed: false} : user)
             }
         }
-        case "SET-USERS": {
+        case SET_USERS: {
             return {...state, users: [...action.users, ...state.users]}
         }
-        case 'SET-CURRENT-PAGE': {
+        case SET_CURRENT_PAGE: {
             return {...state, currentPage: action.currentPage}
         }
 
-        case 'SET-TOTAL-COUNT': {
+        case SET_TOTAL_COUNT: {
             return {...state, totalUsersCount: action.totalUsersCount}
         }
-        case 'TOGGLE-IS-FETCHING': {
+        case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
-        case "TOGGLE-IS-FOLLOWING-PROGRESS": {
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
             return {
                 ...state, followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
@@ -77,37 +83,93 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
-
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
-    dispatch(toggleIsFetchingAC(true))
-    dispatch(setCurrentPageAC(currentPage))
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
-        // dispatch(setCurrentPageAC(currentPage))
-        dispatch(toggleIsFetchingAC(false))
-        dispatch(setUsersAC(data.items))
-        dispatch(setTotalCountAC(data.totalCount))
-    })
+// AC type
+export type FollowACType = ReturnType<typeof followSuccessAC>
+export const followSuccessAC = (userId: number) => {
+    return {
+        type: FOLLOW,
+        userId
+    } as const
 }
 
-export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+export type UnFollowACType = ReturnType<typeof unFollowSuccessAC>
+export const unFollowSuccessAC = (userId: number) => {
+    return {
+        type: UNFOLLOW,
+        userId
+    } as const
+}
+
+export type SetUsersACType = ReturnType<typeof setUsersAC>
+export const setUsersAC = (users: UserType[]) => {
+    return {
+        type: SET_USERS,
+        users
+    } as const
+}
+
+export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage
+    } as const
+}
+
+export type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        isFetching
+    } as const
+}
+
+
+export type SetTotalCountACType = ReturnType<typeof setTotalCountAC>
+export const setTotalCountAC = (totalUsersCount: number) => {
+    return {
+        type: SET_TOTAL_COUNT,
+        totalUsersCount
+    } as const
+}
+
+export type ToggleIsFetchingProgressACType = ReturnType<typeof toggleIsFetchingProgressAC>
+export const toggleIsFetchingProgressAC = (isFetching: boolean, userId: number) => {
+    return {
+        type: TOGGLE_IS_FOLLOWING_PROGRESS,
+        isFetching,
+        userId
+    } as const
+}
+
+
+// thunksCreator
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+    dispatch(setCurrentPageAC(currentPage))
+    const data = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(toggleIsFetchingAC(false))
+    dispatch(setUsersAC(data.items))
+    dispatch(setTotalCountAC(data.totalCount))
+}
+
+export const followThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
     dispatch(toggleIsFetchingProgressAC(true, userId))
-    usersAPI.follow(userId).then((res) => {
-        if (res.data.resultCode === 0) {
-            dispatch(followSuccessAC(userId))
-        }
-        dispatch(toggleIsFetchingProgressAC(false, userId))
-    });
+    const res = await usersAPI.follow(userId)
+    if (res.data.resultCode === 0) {
+        dispatch(followSuccessAC(userId))
+    }
+    dispatch(toggleIsFetchingProgressAC(false, userId))
     dispatch(followSuccessAC(userId))
 }
 
-export const unFollowThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+export const unFollowThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
     dispatch(toggleIsFetchingProgressAC(true, userId))
-    usersAPI.unfollow(userId).then((res) => {
-        if (res.data.resultCode === 0) {
-            dispatch(unFollowSuccessAC(userId))
-        }
-        dispatch(toggleIsFetchingProgressAC(false, userId))
-    });
+    const res = await usersAPI.unfollow(userId)
+    if (res.data.resultCode === 0) {
+        dispatch(unFollowSuccessAC(userId))
+    }
+    dispatch(toggleIsFetchingProgressAC(false, userId))
 }
 
 

@@ -2,14 +2,10 @@ import React from 'react';
 import {connect} from "react-redux";
 import {RootReducerType} from "../../redux/reduxStore";
 import {
-    setCurrentPageAC,
-    toggleIsFetchingProgressAC,
-} from "../../redux/store";
-import {
     followThunkCreator,
     getUsersThunkCreator,
+    InitialStateType, setCurrentPageAC, toggleIsFetchingProgressAC,
     unFollowThunkCreator,
-    InitialStateType,
 } from "../../redux/usersReducer";
 import {Users2} from "./Users2";
 import {Preloader} from "../common/Preloader/Preloader";
@@ -20,7 +16,8 @@ import {
     getCurrentPageSelector,
     getPageSizeSelectors,
     getTotalUsersCountSelector,
-    getUsersPageSelectors, isFetchingSelector
+    getUsersPageSelectors,
+    isFetchingSelector
 } from "../../redux/usersSelectors";
 
 type PropsType = MapStatePropsType & MapDispatchToPropsType
@@ -70,17 +67,6 @@ export type MapDispatchToPropsType = {
 }
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
-// let mapStateToProps = (state: RootReducerType): MapStatePropsType => {
-//     return {
-//         usersPage: state.usersPage,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
-
 let mapStateToProps = (state: RootReducerType) => {
     return {
         usersPage: getUsersPageSelectors(state),
@@ -90,9 +76,7 @@ let mapStateToProps = (state: RootReducerType) => {
         isFetching: isFetchingSelector(state),
         followingInProgress: followingInProgressSelector(state),
     }
-
 }
-
 
 export default compose<React.ComponentType>(
     withAuthRedirect,
