@@ -42,6 +42,7 @@ const SET_TOTAL_COUNT = 'users/SET-TOTAL-COUNT'
 const TOGGLE_IS_FETCHING = 'users/TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE-IS-FOLLOWING-PROGRESS'
 
+
 // Reducer
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
@@ -142,6 +143,16 @@ export const toggleIsFetchingProgressAC = (isFetching: boolean, userId: number) 
     } as const
 }
 
+// utils func follow/unfollow case
+const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: any, actionCreator: any) => {
+    dispatch(toggleIsFetchingProgressAC(true, userId))
+    const res = await apiMethod(userId)
+    if (res.data.resultCode === 0) {
+        dispatch(followSuccessAC(userId))
+    }
+    dispatch(toggleIsFetchingProgressAC(false, userId))
+    dispatch(actionCreator(userId))
+}
 
 // thunksCreator
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
@@ -154,22 +165,11 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
 }
 
 export const followThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
-    dispatch(toggleIsFetchingProgressAC(true, userId))
-    const res = await usersAPI.follow(userId)
-    if (res.data.resultCode === 0) {
-        dispatch(followSuccessAC(userId))
-    }
-    dispatch(toggleIsFetchingProgressAC(false, userId))
-    dispatch(followSuccessAC(userId))
+    followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccessAC)
 }
 
 export const unFollowThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
-    dispatch(toggleIsFetchingProgressAC(true, userId))
-    const res = await usersAPI.unfollow(userId)
-    if (res.data.resultCode === 0) {
-        dispatch(unFollowSuccessAC(userId))
-    }
-    dispatch(toggleIsFetchingProgressAC(false, userId))
+    followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unFollowSuccessAC)
 }
 
 
