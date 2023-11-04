@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
+import {InjectedFormProps, reduxForm} from "redux-form";
+import {createField} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/authReducer";
@@ -20,16 +20,9 @@ type MapStateToPropsType = {
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}: any) => {
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <Field validate={[required]} name={'email'} type="text" placeholder={'Email'} component={Input}/>
-            </div>
-            <div>
-                <Field validate={[required]} name={'password'} type="password" placeholder={'Password'}
-                       component={Input}/>
-            </div>
-            <div>
-                <Field name={'rememberMe'} type="checkbox" component={Input}/>Remember me
-            </div>
+            {createField('text', 'Email', 'email', [required], 'input', '')}
+            {createField('password', 'Password', 'password', [required], 'input', '')}
+            {createField('checkbox', '', 'rememberMe', '', 'input', 'Remember me')}
             <div>
                 {error && <div className={styles.formSummaryError}>{error}</div>}
                 <button>Login</button>
