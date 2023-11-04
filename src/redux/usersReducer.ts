@@ -3,6 +3,7 @@ import {
 } from "./store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
+import {updateObjectInArray} from "../utils/objectsHelper";
 
 // type
 export type UserType = {
@@ -49,13 +50,13 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case FOLLOW: {
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.userId ? {...user, followed: true} : user)
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: true})
             }
         }
         case UNFOLLOW: {
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.userId ? {...user, followed: false} : user)
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: false})
             }
         }
         case SET_USERS: {
