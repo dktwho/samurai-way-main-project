@@ -13,6 +13,7 @@ type PropsType = {
 
 export const User = ({user, followingInProgress, unFollowThunkCreator, followThunkCreator}: PropsType) => {
     let u = user
+
     return (
         <div>
                     <span>
