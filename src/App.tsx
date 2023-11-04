@@ -25,7 +25,6 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
         }
 
         return (
-            // <BrowserRouter>
             <div className="app-wrapper">
                 <HeaderContainer/>
                 <Navbar/>
@@ -46,7 +45,6 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
                         render={() => <Login/>}/>
                 </div>
             </div>
-            // </BrowserRouter>
         );
     }
 }
