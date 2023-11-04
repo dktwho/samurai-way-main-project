@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../Users/users.module.css";
+import styles from './Pagination.module.css'
 
 type PropsType = {
     totalUsersCount: number
@@ -8,7 +8,7 @@ type PropsType = {
     currentPage: number
 }
 
-export const Pagination = ({totalUsersCount, pageSize, onPageChanged, currentPage} : PropsType) => {
+export const Pagination = ({totalUsersCount, pageSize, onPageChanged, currentPage}: PropsType) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pagesArrCount = []
     for (let i = 1; i <= pagesCount; i++) {
