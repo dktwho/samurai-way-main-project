@@ -22,7 +22,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubm
         <form onSubmit={handleSubmit}>
             {createField('text', 'Email', 'email', [required], 'input', '')}
             {createField('password', 'Password', 'password', [required], 'input', '')}
-            {createField('checkbox', '', 'rememberMe', '', 'input', 'Remember me')}
+            {createField('checkbox', '', 'rememberMe', [], 'input', 'Remember me')}
             <div>
                 {error && <div className={styles.formSummaryError}>{error}</div>}
                 <button>Login</button>

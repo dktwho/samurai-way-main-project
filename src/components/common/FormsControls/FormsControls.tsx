@@ -2,15 +2,15 @@ import styles from './FormsControls.module.css'
 import {Field} from "redux-form";
 import  {ComponentType} from "react";
 
-const FormControl = ({input, meta, child, ...props}: any) => {
-    const hasError = meta.touched && meta.error
+const FormControl = ({ touched, error,  children}: any) => {
+    const hasError = touched && error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
             <div>
-                {props.children}
+                {children}
             </div>
             <div>
-                {hasError ? <span className={styles.error}>{meta.error}</span> : ''}
+                {hasError ? <span className={styles.error}>{error}</span> : ''}
             </div>
         </div>
 
