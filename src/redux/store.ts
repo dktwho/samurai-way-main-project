@@ -1,4 +1,4 @@
-import {profileReducer} from "./profileReducer";
+import {AddPostActionType, profileReducer, SetUserProfileActionType, SetUserStatusActionType} from "./profileReducer";
 import {dialogsReducer, SendMessageACType} from "./dialogsReducer";
 import {UserType} from "./usersReducer";
 
@@ -55,34 +55,6 @@ export type  MessagePropTypes = {
     likesCount: string;
 }
 
-export type AddPostActionType = ReturnType<typeof addPostAC>
-
-export const addPostAC = (newPostText: string) => {
-    return {
-        type: 'ADD-POST',
-        newPostText
-    } as const
-}
-
-export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
-
-export const setUserProfileAC = (profile: any) => {
-    return {
-        type: 'SET-USER-PROFILE',
-        profile
-    } as const
-}
-
-export type SetUserStatusActionType = ReturnType<typeof setUserStatusAC>
-export const setUserStatusAC = (status: string) => {
-    return {
-        type: 'SET-STATUS',
-        status
-    } as const
-}
-
-
-
 export type FollowACType = ReturnType<typeof followSuccessAC>
 export const followSuccessAC = (userId: number) => {
     return {
@@ -90,7 +62,6 @@ export const followSuccessAC = (userId: number) => {
         userId
     } as const
 }
-
 
 export type UnFollowACType = ReturnType<typeof unFollowSuccessAC>
 export const unFollowSuccessAC = (userId: number) => {

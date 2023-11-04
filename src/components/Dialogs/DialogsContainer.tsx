@@ -1,6 +1,4 @@
 import React from 'react';
-import {
-} from "../../redux/store";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../redux/reduxStore";

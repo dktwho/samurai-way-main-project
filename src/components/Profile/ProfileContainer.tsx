@@ -1,11 +1,10 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {SetUserProfileActionType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {
     getUserProfileThunkCreator,
-    getUsersStatusThunkCreator,
+    getUsersStatusThunkCreator, SetUserProfileActionType,
     updateUsersStatusThunkCreator
 } from "../../redux/profileReducer";
 import {RootReducerType} from "../../redux/reduxStore";

@@ -1,5 +1,5 @@
 import {ActionsTypes, ProfilePageType} from "./store";
-import {profileReducer} from "./profileReducer";
+import {ADD_POST, profileReducer, SET_STATUS, SET_USER_PROFILE} from "./profileReducer";
 
 describe('profileReducer', () => {
     let initialState: ProfilePageType;
@@ -21,7 +21,7 @@ describe('profileReducer', () => {
 
     it('should add a new post', () => {
         const action: ActionsTypes = {
-            type: 'ADD-POST',
+            type: ADD_POST,
             newPostText: 'New post',
         };
 
@@ -42,7 +42,7 @@ describe('profileReducer', () => {
     it('should set user profile', () => {
         const profile = null;
         const action: ActionsTypes = {
-            type: 'SET-USER-PROFILE',
+            type: SET_USER_PROFILE,
             profile,
         };
 
@@ -59,7 +59,7 @@ describe('profileReducer', () => {
     it('should set user status', () => {
         const status = 'New status';
         const action: ActionsTypes = {
-            type: 'SET-STATUS',
+            type: SET_STATUS,
             status,
         };
 

@@ -1,9 +1,7 @@
-import {addPostAC} from "../../../redux/store";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../../redux/reduxStore";
-
-
+import {addPostAC} from "../../../redux/profileReducer";
 
 let mapStateToProps = (state: RootReducerType) => {
     return {
@@ -19,5 +17,4 @@ let mapDispatchToProps = (dispatch: any) => {
         },
     }
 }
-
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
