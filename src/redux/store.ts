@@ -1,5 +1,5 @@
 import {profileReducer} from "./profileReducer";
-import {dialogsReducer} from "./dialogsReducer";
+import {dialogsReducer, SendMessageACType} from "./dialogsReducer";
 import {UserType} from "./usersReducer";
 
 export type MessageType = {
@@ -81,13 +81,7 @@ export const setUserStatusAC = (status: string) => {
     } as const
 }
 
-export type SendMessageACType = ReturnType<typeof sendMessageAC>
-export const sendMessageAC = (newMessageBody: string) => {
-    return {
-        type: 'SEND-MESSAGE',
-        newMessageBody
-    } as const
-}
+
 
 export type FollowACType = ReturnType<typeof followSuccessAC>
 export const followSuccessAC = (userId: number) => {

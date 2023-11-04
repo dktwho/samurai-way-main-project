@@ -1,5 +1,7 @@
 import {ActionsTypes, MessagePageType} from "./store";
 
+const SEND_MESSAGE = 'dialogs/SEND-MESSAGE'
+
 let initialState = {
     messages: [
         {id: 1, message: 'Hi'},
@@ -15,19 +17,23 @@ let initialState = {
         {id: 4, name: 'Tedd'},
         {id: 5, name: 'John'},
     ],
+}
 
+export type SendMessageACType = ReturnType<typeof sendMessageAC>
+export const sendMessageAC = (newMessageBody: string) => {
+    return {
+        type: SEND_MESSAGE,
+        newMessageBody
+    } as const
 }
 export const dialogsReducer = (state: MessagePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-
-        case 'SEND-MESSAGE': {
+        case SEND_MESSAGE: {
             let body = action.newMessageBody
             return {...state, messages: [...state.messages, {id: new Date().getTime(), message: body}]}
         }
-
         default : {
             return state
         }
     }
-
 }
