@@ -15,6 +15,8 @@ let rootReducer = combineReducers({
     form: formReducer,
     app: appReducer
 })
-
+const compose = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const composeEnhancers = compose || compose;
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 export type RootReducerType = ReturnType<typeof rootReducer>
-export let store = createStore(rootReducer, applyMiddleware(thunk))
+// export let _store = createStore(rootReducer, applyMiddleware(thunk))
