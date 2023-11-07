@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import React from "react";
 import {Navbar} from "./components/Navbar/Navbar";
 import "./App.css";
 import {Route, withRouter} from "react-router-dom";
@@ -10,6 +10,7 @@ import {compose} from "redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
 import {RootReducerType} from "./redux/reduxStore";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import {withSuspense} from "./hoc/withSuspense";
 
 
 const DialogsContainer = React.lazy(() => import ("./components/Dialogs/DialogsContainer"))
@@ -31,15 +32,13 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => {
-                               return <Suspense fallback={<div>Loading...</div>}><DialogsContainer/></Suspense>
-                           }}/>
+                           render={withSuspense(DialogsContainer)}/>
 
                     <Route
                         path='/profile/:userId?'
-                        render={() => {
-                            return <Suspense fallback={<div>Loading...</div>}><ProfileContainer/></Suspense>
-                        }}/>
+                        render={withSuspense(ProfileContainer)}
+
+                    />
 
                     <Route
                         path='/users'
