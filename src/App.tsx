@@ -3,9 +3,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import "./App.css";
 import {Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Login from "./components/Login/LoginForm";
 import {connect} from "react-redux";
 import {compose} from "redux";
@@ -13,6 +11,9 @@ import {initializeAppThunkCreator} from "./redux/appReducer";
 import {RootReducerType} from "./redux/reduxStore";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
+
+const DialogsContainer = React.lazy(() => import ("./components/Dialogs/DialogsContainer" ))
+const ProfileContainer = React.lazy(() => import ("./components/Profile/ProfileContainer" ))
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
     componentDidMount() {
