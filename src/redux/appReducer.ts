@@ -1,4 +1,3 @@
-import {Dispatch} from "redux";
 import {getAuthUserDataThunkCreator} from "./authReducer";
 
 type AppDataType = {

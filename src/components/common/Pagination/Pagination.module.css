@@ -1,4 +1,18 @@
-.selectedPage {
+/*.selectedPage {*/
+/*    font-weight: bold;*/
+/*    background-color: gray;*/
+/*}*/
+
+.paginator {
+    margin: 10px;
+}
+
+.pageNumber {
+    padding: 2px;
+    border: 1px solid gray;
+}
+
+.pageNumber.selectedPage {
     font-weight: bold;
-    background-color: gray;
+    border-color: black;
 }

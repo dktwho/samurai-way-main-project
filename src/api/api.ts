@@ -27,9 +27,7 @@ export const usersAPI = {
         console.warn('Obselete method. Please use profileAPI object ')
         return profileAPI.getProfile(userId)
     }
-
 }
-
 
 export const profileAPI = {
     getProfile(userId: number) {
