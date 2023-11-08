@@ -2,7 +2,7 @@
   "name": "samurai-way-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": "https://github.com/dktwho/samurai-way-main-project",
   "dependencies": {
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
