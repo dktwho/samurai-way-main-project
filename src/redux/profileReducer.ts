@@ -9,6 +9,7 @@ import {profileAPI, usersAPI} from "../api/api";
 export const ADD_POST = 'profile/ADD-POST'
 export const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
 export const SET_STATUS = 'profile/SET-STATUS'
+export const SET_PHOTO = 'profile/SET-PHOTO'
 
 let initialState = {
     posts: [
@@ -19,9 +20,36 @@ let initialState = {
         {id: 5, message: 'Post 5', likesCount: '95'},
     ],
     newPostText: '',
-    profile: null,
-    status: 'status from global state redux'
+    profile: {
+        aboutMe: 'about me default text',
+        contacts: {
+            facebook: 'string facebook ',
+            website: 'any website string',
+            vk: 'string vk',
+            twitter: 'string twitter',
+            instagram: 'string instagram',
+            youtube: 'any youtube',
+            github: 'string github',
+            mainLink: 'any mainLink',
+        },
+        lookingForAJob: false,
+        lookingForAJobDescription: 'string lookingForAJobDescription',
+        fullName: ' fullName string',
+        userId: 10000,
+        photos: {
+            small: 'string small photo',
+            large: 'string large photo',
+        }
+    },
+    status: 'status from global state redux',
+
 }
+
+// type AllActionsProfileReducerType =
+//     SetUserProfileActionType
+//     | AddPostActionType
+//     | SetUserStatusActionType
+//     | SavePhotoActionType
 
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
 
@@ -50,6 +78,14 @@ export const setUserStatusAC = (status: string) => {
     } as const
 }
 
+export type SavePhotoActionType = ReturnType<typeof savePhotoAC>
+export const savePhotoAC = (photos: any) => {
+    return {
+        type: SET_PHOTO,
+        photos
+    } as const
+}
+
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
@@ -62,6 +98,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         }
         case SET_STATUS: {
             return {...state, status: action.status}
+        }
+        case SET_PHOTO: {
+            return {...state, profile: {...state.profile, photos: action.photos}}
         }
         default : {
             return state
@@ -85,3 +124,11 @@ export const updateUsersStatusThunkCreator = (status: string) => async (dispatch
         dispatch(setUserStatusAC(status))
     }
 }
+
+export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch) => {
+    const res = await profileAPI.savePhoto(photos)
+    if (res.data.resultCode === 0) {
+        dispatch(savePhotoAC(res.data.data.photos))
+    }
+}
+

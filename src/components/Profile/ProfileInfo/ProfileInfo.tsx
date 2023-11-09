@@ -9,9 +9,18 @@ type PropsType = {
     profile: ResponseProfileType
     status: string,
     updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: any) => void
 
 }
-export const ProfileInfo = ({profile, status, updateStatus}: PropsType) => {
+export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}: PropsType) => {
+
+    const onMainPhotoSelected = (e: any) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
+
+    }
 
     if (!profile) {
         return <Preloader/>
@@ -21,6 +30,7 @@ export const ProfileInfo = ({profile, status, updateStatus}: PropsType) => {
             <div className={styled.descriptionBlock}>
                 <div>Full name: {profile.fullName}</div>
                 <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
+                {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
                 <div>Instagram: {profile.contacts.instagram}</div>
                 <div>Github: {profile.contacts.github}</div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>

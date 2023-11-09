@@ -1,4 +1,10 @@
-import {AddPostActionType, profileReducer, SetUserProfileActionType, SetUserStatusActionType} from "./profileReducer";
+import {
+    AddPostActionType,
+    profileReducer,
+    SavePhotoActionType,
+    SetUserProfileActionType,
+    SetUserStatusActionType
+} from "./profileReducer";
 import {dialogsReducer, SendMessageACType} from "./dialogsReducer";
 import {
     FollowACType,
@@ -9,6 +15,7 @@ import {
     ToggleIsFetchingProgressACType,
     UnFollowACType,
 } from "./usersReducer";
+import {ResponseProfileType} from "../components/Profile/ProfileContainer";
 
 export type MessageType = {
     message: string
@@ -29,7 +36,7 @@ export type MyPostsType = {
 export type ProfilePageType = {
     posts: MyPostsType[]
     newPostText: string
-    profile: null
+    profile: ResponseProfileType
     status: string
 }
 
@@ -50,6 +57,8 @@ export type ActionsTypes =
     | SetUserProfileActionType
     | ToggleIsFetchingProgressACType
     | SetUserStatusActionType
+    | SavePhotoActionType
+
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -83,7 +92,27 @@ export let store: StoreType = {
                 {id: 5, message: 'Post 5', likesCount: '95'},
             ],
             newPostText: '',
-            profile: null,
+            profile: {
+                aboutMe: 'about me default text',
+                contacts: {
+                    facebook: 'string facebook ',
+                    website: 'any website string',
+                    vk: 'string vk',
+                    twitter: 'string twitter',
+                    instagram: 'string instagram',
+                    youtube: 'any youtube',
+                    github: 'string github',
+                    mainLink: 'any mainLink',
+                },
+                lookingForAJob: false,
+                lookingForAJobDescription: 'string lookingForAJobDescription',
+                fullName: ' fullName string',
+                userId: 10000,
+                photos: {
+                    small: 'string small photo',
+                    large: 'string large photo',
+                }
+            },
             status: 'status from store'
         },
         dialogsPage: {
