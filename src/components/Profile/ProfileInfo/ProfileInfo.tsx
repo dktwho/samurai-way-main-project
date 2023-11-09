@@ -32,6 +32,12 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}:
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
                 <div>Instagram: {profile.contacts.instagram}</div>
                 <div>Github: {profile.contacts.github}</div>
+                <div>aboutMe: {profile.aboutMe}</div>
+                <div>lookingForAJob: {profile.lookingForAJob}</div>
+                <div>lookingForAJobDescription: {profile.lookingForAJobDescription}</div>
+                <div>vk: {profile.contacts.vk}</div>
+                <div>facebook: {profile.contacts.facebook}</div>
+                <div>twitter: {profile.contacts.twitter}</div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
