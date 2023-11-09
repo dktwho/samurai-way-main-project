@@ -1,7 +1,7 @@
 import {
     AddPostActionType,
     profileReducer,
-    SavePhotoActionType,
+    SavePhotoActionType, SaveProfileACActionType,
     SetUserProfileActionType,
     SetUserStatusActionType
 } from "./profileReducer";
@@ -58,6 +58,7 @@ export type ActionsTypes =
     | ToggleIsFetchingProgressACType
     | SetUserStatusActionType
     | SavePhotoActionType
+    | SaveProfileACActionType
 
 
 export type RootStateType = {

@@ -4,7 +4,6 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {ContactsType, ResponseProfileType} from "../ProfileContainer";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userIcon3 from '../../../assets/userIcon3.jpeg'
-import ProfileDataForm from "./ProfileDataForm";
 import ProfileDataFormReduxForm from "./ProfileDataForm";
 
 type PropsType = {
@@ -13,6 +12,7 @@ type PropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: any) => void
+    saveProfile: (formData: any) => void
 }
 
 type ProfileDataType = {
@@ -23,7 +23,7 @@ type ProfileDataType = {
 
 
 
-export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}: PropsType) => {
+export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}: PropsType) => {
     const [editMode, setEditMode] = useState(false)
     const onMainPhotoSelected = (e: any) => {
         if (e.target.files.length) {
@@ -35,12 +35,18 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}:
         return <Preloader/>
     }
 
+    const onSubmit = (formData: any) => {
+        saveProfile(formData)
+
+
+    }
+
 
     return (
         <div>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-            {editMode ? <ProfileDataFormReduxForm profile={profile}/> : <ProfileData goToEditMode={() => {
+            {editMode ? <ProfileDataFormReduxForm profile={profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {
                 setEditMode(true)
             }} profile={profile} isOwner={isOwner}/>}
 
