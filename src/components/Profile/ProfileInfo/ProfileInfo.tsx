@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ResponseProfileType} from "../ProfileContainer";
@@ -13,7 +13,19 @@ type PropsType = {
     savePhoto: (file: any) => void
 }
 
+type ProfileDataType = {
+    goToEditMode: () => void
+    profile: ResponseProfileType
+    isOwner: boolean
+}
+
+type ProfileDataFormType = {
+    profile: ResponseProfileType
+}
+
+
 export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}: PropsType) => {
+    const [editMode, setEditMode] = useState(false)
     const onMainPhotoSelected = (e: any) => {
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
@@ -29,16 +41,21 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}:
         <div>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-            <ProfileData profile={profile}/>
+            {editMode ? <ProfileDataForm profile={profile}/> : <ProfileData goToEditMode={() => {
+                setEditMode(true)
+            }} profile={profile} isOwner={isOwner}/>}
+
             <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
         </div>
 
     );
 };
 
-const ProfileData = ({ profile }: { profile: ResponseProfileType }) => {
+const ProfileData = ({profile, isOwner, goToEditMode}: ProfileDataType) => {
     return (
-        <div>
+        <div> {isOwner && <div>
+            <button onClick={goToEditMode}>Edit</button>
+        </div>}
             <div className={styled.descriptionBlock}>
                 <div><b>Full name:</b> {profile.fullName}</div>
                 <div><b>aboutMe</b>: {profile.aboutMe}</div>
@@ -52,6 +69,14 @@ const ProfileData = ({ profile }: { profile: ResponseProfileType }) => {
                 </div>
 
             </div>
+        </div>
+    )
+}
+
+const ProfileDataForm = ({profile}: ProfileDataFormType) => {
+    return (
+        <div>
+            <form action=""></form>
         </div>
     )
 }
