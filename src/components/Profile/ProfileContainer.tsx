@@ -12,23 +12,24 @@ import {RootReducerType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
 export type ResponseProfileType = {
-    aboutMe: string;
+    aboutMe: string | null;
     contacts: ContactsType;
     lookingForAJob: boolean;
-    lookingForAJobDescription: string;
+    lookingForAJobDescription: string | null;
     fullName: string;
     userId: number;
     photos: PhotoType;
 }
-type ContactsType = {
-    facebook: string;
-    website?: any;
-    vk: string;
-    twitter: string;
-    instagram: string;
-    youtube?: any;
-    github: string;
-    mainLink?: any;
+export type ContactsType = {
+    // facebook: string;
+    // website: string;
+    // vk: string;
+    // twitter: string;
+    // instagram: string;
+    // youtube: string;
+    // github: string;
+    // mainLink: string;
+    [key: string]: any;
 }
 
 type PhotoType = {
