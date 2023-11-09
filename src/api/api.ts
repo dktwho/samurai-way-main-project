@@ -6,14 +6,12 @@ const settings = {
     withCredentials: true,
     "API-KEY": "f31ffa20-0ff3-4086-b0e8-28ca7dcbaac2"
 };
-const headers = {
-
-};
+const headers = {};
 
 
 const baseApi = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
-    withCredentials:true,
+    withCredentials: true,
     headers: {
         "API-KEY": 'f31ffa20-0ff3-4086-b0e8-28ca7dcbaac2'
     }
@@ -21,15 +19,15 @@ const baseApi = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return axios.get(`${BASE_URL}users?page=${currentPage}&count=${pageSize}`, settings).then(res => res.data)
+        return baseApi.get(`users?page=${currentPage}&count=${pageSize}`, settings).then(res => res.data)
     },
     unfollow(userId: number) {
-        return axios.delete(`${BASE_URL}follow/${userId}`, {
+        return baseApi.delete(`follow/${userId}`, {
             ...settings, headers
         })
     },
     follow(userId: number) {
-        return axios.post(`${BASE_URL}follow/${userId}`, {}, {
+        return baseApi.post(`follow/${userId}`, {}, {
             ...settings, headers
         })
     },
@@ -41,13 +39,13 @@ export const usersAPI = {
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return axios.get(`${BASE_URL}profile/${userId}`, settings)
+        return baseApi.get(`profile/${userId}`, settings)
     },
     getStatus(userId: number) {
-        return axios.get(`${BASE_URL}profile/status/${userId}`, settings)
+        return baseApi.get(`profile/status/${userId}`, settings)
     },
     updateStatus(status: string) {
-        return axios.put(`${BASE_URL}profile/status`, {status}, settings)
+        return baseApi.put(`profile/status`, {status}, settings)
     },
     savePhoto(file: any) {
         let formData = new FormData()
@@ -62,13 +60,13 @@ export const profileAPI = {
 
 export const authAPI = {
     authMe() {
-        return axios.get(`${BASE_URL}auth/me`, settings)
+        return baseApi.get(`auth/me`, settings)
     },
     login(email: string, password: string, rememberMe: boolean = false) {
-        return axios.post(`${BASE_URL}auth/login`, {email, password, rememberMe}, settings)
+        return baseApi.post(`auth/login`, {email, password, rememberMe}, settings)
     },
     logOut() {
-        return axios.delete(`${BASE_URL}auth/login`, settings)
+        return baseApi.delete(`auth/login`, settings)
     }
 }
 
