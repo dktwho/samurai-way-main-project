@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import styled from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ResponseProfileType} from "../ProfileContainer";
+import {ContactsType, ResponseProfileType} from "../ProfileContainer";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userIcon3 from '../../../assets/userIcon3.jpeg'
+import ProfileDataForm from "./ProfileDataForm";
+import ProfileDataFormReduxForm from "./ProfileDataForm";
 
 type PropsType = {
     profile: ResponseProfileType
@@ -19,9 +21,6 @@ type ProfileDataType = {
     isOwner: boolean
 }
 
-type ProfileDataFormType = {
-    profile: ResponseProfileType
-}
 
 
 export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}: PropsType) => {
@@ -41,7 +40,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}:
         <div>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-            {editMode ? <ProfileDataForm profile={profile}/> : <ProfileData goToEditMode={() => {
+            {editMode ? <ProfileDataFormReduxForm profile={profile}/> : <ProfileData goToEditMode={() => {
                 setEditMode(true)
             }} profile={profile} isOwner={isOwner}/>}
 
@@ -73,15 +72,9 @@ const ProfileData = ({profile, isOwner, goToEditMode}: ProfileDataType) => {
     )
 }
 
-const ProfileDataForm = ({profile}: ProfileDataFormType) => {
-    return (
-        <div>
-            <form action=""></form>
-        </div>
-    )
-}
 
-const Contact = ({contactTitle, contactValue}: any) => {
+
+export const Contact = ({contactTitle, contactValue}: ContactsType) => {
     return (
         <div className={styled.contact}><b>{contactTitle}</b>: {contactValue}</div>
     )
