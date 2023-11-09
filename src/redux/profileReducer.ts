@@ -45,11 +45,6 @@ let initialState = {
 
 }
 
-// type AllActionsProfileReducerType =
-//     SetUserProfileActionType
-//     | AddPostActionType
-//     | SetUserStatusActionType
-//     | SavePhotoActionType
 
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
 

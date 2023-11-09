@@ -19,7 +19,6 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}:
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
-
     }
 
     if (!profile) {
