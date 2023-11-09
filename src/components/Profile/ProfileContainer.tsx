@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {
     getUserProfileThunkCreator,
-    getUsersStatusThunkCreator, SetUserProfileActionType,
+    getUsersStatusThunkCreator,
+    SetUserProfileActionType,
     updateUsersStatusThunkCreator
 } from "../../redux/profileReducer";
 import {RootReducerType} from "../../redux/reduxStore";
@@ -54,21 +55,33 @@ type MapDispatchToPropsType = {
 }
 
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamType>> {
-    componentDidMount() {
+
+    refreshProfile() {
         const pathUserId = this.props.match.params.userId
         let userId = this.props.authorizedUserId
         if (!pathUserId) {
             // userId = +pathUserId;
             userId = this.props.authorizedUserId
-            if(!userId) {
-               this.props.history.push('/login')
+            if (!userId) {
+                this.props.history.push('/login')
             }
         }
         // this.props.getUserProfileThunkCreator(Number(pathUserId) ?? userId)
-        // }
         this.props.getUserProfileThunkCreator(userId)
         this.props.getUsersStatusThunkCreator(userId)
     }
+
+    componentDidMount() {
+
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if(this.props.match.params.userId !== prevProps.match.params.userId ) {
+            this.refreshProfile()
+        }
+    }
+
 
     render() {
         return (
