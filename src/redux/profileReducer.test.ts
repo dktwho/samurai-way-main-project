@@ -1,18 +1,17 @@
-import {ProfilePageType} from "./store";
-import {addPostAC, profileReducer, savePhotoAC, setUserProfileAC, setUserStatusAC} from "./profileReducer";
-
+import { ProfilePageType } from "./store";
+import { addPostAC, profileReducer, savePhotoAC, setUserProfileAC, setUserStatusAC } from "./profileReducer";
 
 describe('profileReducer', () => {
     let initialState: ProfilePageType;
 
     beforeEach(() => {
-        initialState = initialState = {
+        initialState = {
             posts: [
-                {id: 1, message: 'Post 1', likesCount: '13'},
-                {id: 2, message: 'Post 2', likesCount: '22'},
-                {id: 3, message: 'Post 3', likesCount: '63'},
-                {id: 4, message: 'Post 4', likesCount: '45'},
-                {id: 5, message: 'Post 5', likesCount: '95'},
+                { id: 1, message: 'Post 1', likesCount: '13' },
+                { id: 2, message: 'Post 2', likesCount: '22' },
+                { id: 3, message: 'Post 3', likesCount: '63' },
+                { id: 4, message: 'Post 4', likesCount: '45' },
+                { id: 5, message: 'Post 5', likesCount: '95' },
             ],
             newPostText: '',
             profile: {
@@ -34,54 +33,49 @@ describe('profileReducer', () => {
                 photos: {
                     small: 'string small photo',
                     large: 'string large photo',
-                }
+                },
             },
             status: 'status from global state redux',
+        };
+    });
 
-        }
-        test('should add a new post', () => {
+    test('should add a new post', () => {
+        const newPostText = 'Hello, world!';
+        const action = addPostAC(newPostText);
 
+        const newState = profileReducer(initialState, action);
 
-            const newPostText = 'Hello, world!';
-            const action = addPostAC(newPostText);
+        expect(newState.posts.length).toBe(initialState.posts.length + 1);
+        expect(newState.posts[newState.posts.length - 1].message).toBe(newPostText);
+    });
 
-            const newState = profileReducer(initialState, action);
+    test('should set the user profile', () => {
+        const profile = {
+            userId: 123,
+            fullName: 'John Doe',
+            aboutMe: 'Hello, I am John!',
+            contacts: {},
+            photos: {},
+        };
+        const action = setUserProfileAC(profile);
+        const newState = profileReducer(initialState, action);
+        expect(newState.profile).toEqual(profile);
+    });
 
-            expect(newState.posts.length).toBe(1);
-            expect(newState.posts[0].message).toBe(newPostText);
-        });
+    test('should set the user status', () => {
+        const status = 'Online';
+        const action = setUserStatusAC(status);
+        const newState = profileReducer(initialState, action);
+        expect(newState.status).toBe(status);
+    });
 
-        test('should set the user profile', () => {
-
-            const profile = {
-                userId: 123,
-                fullName: 'John Doe',
-                aboutMe: 'Hello, I am John!',
-                contacts: {},
-                photos: {}
-            };
-            const action = setUserProfileAC(profile);
-            const newState = profileReducer(initialState, action);
-            expect(newState.profile).toEqual(profile);
-        });
-
-        test('should set the user status', () => {
-
-            const status = 'Online';
-            const action = setUserStatusAC(status);
-            const newState = profileReducer(initialState, action);
-            expect(newState.status).toBe(status);
-        });
-
-        test('should set the user photo', () => {
-
-            const photos = {
-                small: 'url/to/small/photo.jpg',
-                large: 'url/to/large/photo.jpg'
-            };
-            const action = savePhotoAC(photos);
-            const newState = profileReducer(initialState, action);
-            expect(newState.profile.photos).toEqual(photos);
-        });
-    })
-})
+    test('should set the user photo', () => {
+        const photos = {
+            small: 'url/to/small/photo.jpg',
+            large: 'url/to/large/photo.jpg',
+        };
+        const action = savePhotoAC(photos);
+        const newState = profileReducer(initialState, action);
+        expect(newState.profile.photos).toEqual(photos);
+    });
+});
