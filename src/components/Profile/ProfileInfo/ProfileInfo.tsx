@@ -3,6 +3,7 @@ import styled from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ResponseProfileType} from "../ProfileContainer";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import userIcon3 from '../../../assets/userIcon3.jpeg'
 
 type PropsType = {
     profile: ResponseProfileType
@@ -18,18 +19,10 @@ export const ProfileInfo = ({profile, status, updateStatus}: PropsType) => {
     return (
         <div>
             <div className={styled.descriptionBlock}>
-                <div>
-                    <div>
-                        <img width={'200px'} height={'200px'}
-                             src="https://img.freepik.com/premium-photo/cartoon-image-man-with-blue-shirt-orange-circle-with-words-s-it_745528-2802.jpg"
-                             alt="my-avatar"/>
-                    </div>
-                    <div>Full name: {profile.fullName}</div>
-                    {profile.photos.small ?
-                        <img src={profile.photos.small} alt='profile-logo'/> : 'User Photo:'}
-                    <div>Instagram: {profile.contacts.instagram}</div>
-                    <div>Github: {profile.contacts.github}</div>
-                </div>
+                <div>Full name: {profile.fullName}</div>
+                <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
+                <div>Instagram: {profile.contacts.instagram}</div>
+                <div>Github: {profile.contacts.github}</div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
