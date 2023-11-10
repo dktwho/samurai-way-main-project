@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {RootReducerType} from "../../../redux/reduxStore";
 import {addPostAC} from "../../../redux/profileReducer";
 
+
 let mapStateToProps = (state: RootReducerType) => {
     return {
         postsData: state.profilePage.posts,

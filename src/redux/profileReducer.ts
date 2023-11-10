@@ -10,7 +10,7 @@ export const ADD_POST = 'profile/ADD-POST'
 export const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
 export const SET_STATUS = 'profile/SET-STATUS'
 export const SET_PHOTO = 'profile/SET-PHOTO'
-export const SAVE_PROFILE = 'profile/SAVE-PROFILE'
+
 
 let initialState = {
     posts: [
@@ -42,7 +42,7 @@ let initialState = {
             large: 'string large photo',
         }
     },
-    status: 'status from global state redux',
+    status: '',
 
 }
 
@@ -83,14 +83,6 @@ export const savePhotoAC = (photos: any) => {
 }
 
 
-export type SaveProfileACActionType = ReturnType<typeof saveProfileAC>
-export const saveProfileAC = (profile: any) => {
-    return {
-        type: SAVE_PROFILE,
-        profile
-    } as const
-}
-
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
@@ -106,9 +98,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         }
         case SET_PHOTO: {
             return {...state, profile: {...state.profile, photos: action.photos}}
-        }
-        case SAVE_PROFILE: {
-            return {}
         }
         default : {
             return state
@@ -142,7 +131,8 @@ export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch)
 
 export const saveProfileThunkCreator = (profile: any) => async (dispatch: Dispatch) => {
     const res = await profileAPI.saveProfile(profile)
+    debugger;
     if (res.data.resultCode === 0) {
-        dispatch(savePhotoAC(res.data.data.profile))
+       //  dispatch(savePhotoAC(res.data.data.photos))
     }
 }

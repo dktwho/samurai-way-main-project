@@ -12,23 +12,23 @@ import {RootReducerType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
 export type ResponseProfileType = {
-    aboutMe: string | null;
+    aboutMe: string;
     contacts: ContactsType;
     lookingForAJob: boolean;
-    lookingForAJobDescription: string | null;
+    lookingForAJobDescription: string ;
     fullName: string;
     userId: number;
     photos: PhotoType;
 }
 export type ContactsType = {
-    // facebook: string;
-    // website: string;
-    // vk: string;
-    // twitter: string;
-    // instagram: string;
-    // youtube: string;
-    // github: string;
-    // mainLink: string;
+    facebook?: string;
+    website?: string;
+    vk?: string;
+    twitter?: string;
+    instagram?: string;
+    youtube?: string;
+    github?: string;
+    mainLink?: string;
     [key: string]: any;
 }
 
@@ -59,7 +59,6 @@ type MapDispatchToPropsType = {
 
 class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<PathParamType>> {
     refreshProfile() {
-
         const pathUserId = this.props.match.params.userId
         let userId = this.props.authorizedUserId
         if (!pathUserId) {
@@ -93,6 +92,7 @@ class ProfileContainer extends React.Component<MapStateToPropsType & MapDispatch
                      status={this.props.status}
                      updateStatus={this.props.updateUsersStatusThunkCreator}
                      savePhoto={this.props.savePhotoThunkCreator}
+                     saveProfile={this.props.saveProfileThunkCreator}
             />
         );
     }

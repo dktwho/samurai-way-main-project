@@ -1,10 +1,10 @@
 import axios from "axios";
+//
+// const settings = {
+//     withCredentials: true,
+//     "API-KEY": "f31ffa20-0ff3-4086-b0e8-28ca7dcbaac2"
+// };
 
-const settings = {
-    withCredentials: true,
-    "API-KEY": "f31ffa20-0ff3-4086-b0e8-28ca7dcbaac2"
-};
-const headers = {};
 
 
 const baseApi = axios.create({
@@ -17,17 +17,13 @@ const baseApi = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return baseApi.get(`users?page=${currentPage}&count=${pageSize}`, settings).then(res => res.data)
+        return baseApi.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
     unfollow(userId: number) {
-        return baseApi.delete(`follow/${userId}`, {
-            ...settings, headers
-        })
+        return baseApi.delete(`follow/${userId}`)
     },
     follow(userId: number) {
-        return baseApi.post(`follow/${userId}`, {}, {
-            ...settings, headers
-        })
+        return baseApi.post(`follow/${userId}`, {})
     },
     getProfile(userId: number) {
         console.warn('Obselete method. Please use profileAPI object ')
@@ -37,13 +33,13 @@ export const usersAPI = {
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return baseApi.get(`profile/${userId}`, settings)
+        return baseApi.get(`profile/${userId}`)
     },
     getStatus(userId: number) {
-        return baseApi.get(`profile/status/${userId}`, settings)
+        return baseApi.get(`profile/status/${userId}`)
     },
     updateStatus(status: string) {
-        return baseApi.put(`profile/status`, {status}, settings)
+        return baseApi.put(`profile/status`, {status})
     },
     savePhoto(file: any) {
         let formData = new FormData()
@@ -57,18 +53,17 @@ export const profileAPI = {
     saveProfile(profile: any) {
         return baseApi.put(`profile`, profile)
     }
-
 }
 
 export const authAPI = {
     authMe() {
-        return baseApi.get(`auth/me`, settings)
+        return baseApi.get(`auth/me`)
     },
     login(email: string, password: string, rememberMe: boolean = false) {
-        return baseApi.post(`auth/login`, {email, password, rememberMe}, settings)
+        return baseApi.post(`auth/login`, {email, password, rememberMe})
     },
     logOut() {
-        return baseApi.delete(`auth/login`, settings)
+        return baseApi.delete(`auth/login`)
     }
 }
 

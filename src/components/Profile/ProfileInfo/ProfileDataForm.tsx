@@ -6,13 +6,14 @@ import {reduxForm} from "redux-form";
 
 type ProfileDataFormType = {
     profile: ResponseProfileType
-    handleSubmit: (formData: any) => typeof formData
+    onSubmit: (formData: any) => typeof formData
+    // onSubmit: (formData: any) => void
 
 }
 
-const ProfileDataForm = ({profile, handleSubmit}: ProfileDataFormType) => {
+const ProfileDataForm = ({profile, onSubmit}: ProfileDataFormType) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
             <div>
                 <button>SAVE</button>
             </div>

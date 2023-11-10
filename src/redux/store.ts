@@ -1,7 +1,7 @@
 import {
     AddPostActionType,
     profileReducer,
-    SavePhotoActionType, SaveProfileACActionType,
+    SavePhotoActionType,
     SetUserProfileActionType,
     SetUserStatusActionType
 } from "./profileReducer";
@@ -36,7 +36,7 @@ export type MyPostsType = {
 export type ProfilePageType = {
     posts: MyPostsType[]
     newPostText: string
-    profile: ResponseProfileType
+    profile: ResponseProfileType | null
     status: string
 }
 
@@ -44,22 +44,6 @@ export type MessagePageType = {
     messages: MessageType[]
     dialogs: DialogItemType[]
 }
-
-export type ActionsTypes =
-    AddPostActionType
-    | SendMessageACType
-    | UnFollowACType
-    | FollowACType
-    | SetUsersACType
-    | SetCurrentPageACType
-    | SetTotalCountACType
-    | ToggleIsFetchingACType
-    | SetUserProfileActionType
-    | ToggleIsFetchingProgressACType
-    | SetUserStatusActionType
-    | SavePhotoActionType
-    | SaveProfileACActionType
-
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -160,5 +144,17 @@ export let store: StoreType = {
 }
 
 
-
-
+// actions type
+export type ActionsTypes =
+    AddPostActionType
+    | SendMessageACType
+    | UnFollowACType
+    | FollowACType
+    | SetUsersACType
+    | SetCurrentPageACType
+    | SetTotalCountACType
+    | ToggleIsFetchingACType
+    | SetUserProfileActionType
+    | ToggleIsFetchingProgressACType
+    | SetUserStatusActionType
+    | SavePhotoActionType
