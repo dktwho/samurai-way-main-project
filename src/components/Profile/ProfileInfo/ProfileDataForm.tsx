@@ -9,7 +9,6 @@ type ProfileDataFormType = {
     initialValues: ResponseProfileType
     profile: ResponseProfileType
     error: any
-
 }
 
 const ProfileDataForm = ({ handleSubmit,  profile, error}: ProfileDataFormType) => {
@@ -31,7 +30,6 @@ const ProfileDataForm = ({ handleSubmit,  profile, error}: ProfileDataFormType) 
                         return (
                             <div key={key} className={styled.contact}>
                                 <b>{key}: {createField('text',`your ${key}`, 'contacts.' + key, [], Input, '')}</b>
-
                             </div>
                         )
                     })}

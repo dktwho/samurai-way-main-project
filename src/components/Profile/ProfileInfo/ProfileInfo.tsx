@@ -13,7 +13,6 @@ type PropsType = {
     isOwner: boolean
     savePhoto: (file: any) => void
     saveProfile: (formData: any) => Promise<PropsType>
-    // saveProfile: (formData: any) => void
 }
 
 type ProfileDataType = {

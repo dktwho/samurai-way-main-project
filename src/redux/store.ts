@@ -143,7 +143,6 @@ export let store: StoreType = {
     }
 }
 
-
 // actions type
 export type ActionsTypes =
     AddPostActionType

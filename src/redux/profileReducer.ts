@@ -45,7 +45,6 @@ let initialState = {
         }
     },
     status: '',
-
 }
 
 
