@@ -137,5 +137,6 @@ export const saveProfileThunkCreator = (profile: any): ThunkAction<Promise<void>
         dispatch(getUserProfileThunkCreator(userId))
     } else {
         dispatch(stopSubmit('edit-profile', {_error: res.data.messages[0]}))
+        return Promise.reject(res.data.messages[0])
     }
 }

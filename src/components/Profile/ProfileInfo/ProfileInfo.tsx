@@ -13,7 +13,8 @@ type PropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: any) => void
-    saveProfile: (formData: any) => void
+    saveProfile: (formData: any) => Promise<PropsType>
+    // saveProfile: (formData: any) => void
 }
 
 type ProfileDataType = {
@@ -35,18 +36,19 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
     }
 
     const onSubmit = (formData: any) => {
-        saveProfile(formData)
-        setEditMode(false)
-
+        saveProfile(formData).then(() => {
+            setEditMode(false)
+        })
     }
 
     return (
         <div>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-            {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {
-                setEditMode(true)
-            }} profile={profile} isOwner={isOwner}/>}
+            {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
+                <ProfileData goToEditMode={() => {
+                    setEditMode(true)
+                }} profile={profile} isOwner={isOwner}/>}
 
             <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
         </div>
