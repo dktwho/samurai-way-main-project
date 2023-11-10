@@ -6,6 +6,7 @@ import {
 import {AnyAction, Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
+import {stopSubmit} from "redux-form";
 
 export const ADD_POST = 'profile/ADD-POST'
 export const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
@@ -84,7 +85,6 @@ export const savePhotoAC = (photos: any) => {
 }
 
 
-
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ADD_POST: {
@@ -134,6 +134,8 @@ export const saveProfileThunkCreator = (profile: any): ThunkAction<Promise<void>
     const userId = getState().auth.id
     const res = await profileAPI.saveProfile(profile)
     if (res.data.resultCode === 0) {
-         dispatch(getUserProfileThunkCreator(userId))
+        dispatch(getUserProfileThunkCreator(userId))
+    } else {
+        dispatch(stopSubmit('edit-profile', {_error: res.data.messages[0]}))
     }
 }

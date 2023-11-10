@@ -8,14 +8,17 @@ type ProfileDataFormType = {
     handleSubmit: (formData: any) => void
     initialValues: ResponseProfileType
     profile: ResponseProfileType
+    error: any
 
 }
 
-const ProfileDataForm = ({ handleSubmit,  profile}: ProfileDataFormType) => {
+const ProfileDataForm = ({ handleSubmit,  profile, error}: ProfileDataFormType) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <button>SAVE</button>
+                <div>{error && <div className={styled.formSummaryError}>{error}</div>}</div>
+
             </div>
             <div className={styled.descriptionBlock}>
                 <div><b>Full name:</b> {createField('text', 'fullname', 'fullName', [], Input, '')}</div>
@@ -26,7 +29,7 @@ const ProfileDataForm = ({ handleSubmit,  profile}: ProfileDataFormType) => {
                 <div><b>Contacts: </b>
                     {Object.keys(profile.contacts).map((key) => {
                         return (
-                            <div className={styled.contact}>
+                            <div key={key} className={styled.contact}>
                                 <b>{key}: {createField('text',`your ${key}`, 'contacts.' + key, [], Input, '')}</b>
 
                             </div>
