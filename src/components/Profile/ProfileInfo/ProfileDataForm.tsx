@@ -43,4 +43,3 @@ const ProfileDataForm = ({ handleSubmit,  profile, error}: ProfileDataFormType) 
 
 const ProfileDataFormReduxForm = reduxForm<any, any, any>({form: 'edit-profile'})(ProfileDataForm)
 export default ProfileDataFormReduxForm
-{/*<Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>*/}

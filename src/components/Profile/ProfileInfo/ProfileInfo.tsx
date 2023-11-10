@@ -4,7 +4,6 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {ContactsType, ResponseProfileType} from "../ProfileContainer";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userIcon3 from '../../../assets/userIcon3.jpeg'
-import ProfileDataFormReduxForm from "./ProfileDataForm";
 import ProfileDataForm from "./ProfileDataForm";
 
 type PropsType = {
