@@ -3,8 +3,9 @@ import {
     MyPostsType,
     ProfilePageType,
 } from "./store";
-import {Dispatch} from "redux";
+import {AnyAction, Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk";
 
 export const ADD_POST = 'profile/ADD-POST'
 export const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
@@ -129,10 +130,10 @@ export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch)
     }
 }
 
-export const saveProfileThunkCreator = (profile: any) => async (dispatch: Dispatch) => {
+export const saveProfileThunkCreator = (profile: any): ThunkAction<Promise<void>, any, any, AnyAction> => async (dispatch, getState) => {
+    const userId = getState().auth.id
     const res = await profileAPI.saveProfile(profile)
     if (res.data.resultCode === 0) {
-        // dispatch(savePhotoAC(res.data.data.photos))
+         dispatch(getUserProfileThunkCreator(userId))
     }
 }
-
