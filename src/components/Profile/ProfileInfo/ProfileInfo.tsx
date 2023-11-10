@@ -35,7 +35,6 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
     }
 
     const onSubmit = (formData: any) => {
-        // console.log(formData)
         saveProfile(formData)
     }
 
@@ -43,7 +42,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
         <div>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-            {editMode ? <ProfileDataForm profile={profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {
+            {editMode ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {
                 setEditMode(true)
             }} profile={profile} isOwner={isOwner}/>}
 
