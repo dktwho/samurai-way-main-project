@@ -7,10 +7,11 @@ import {ResponseProfileType} from "../ProfileContainer";
 type ProfileDataFormType = {
     handleSubmit: (formData: any) => void
     initialValues: ResponseProfileType
+    profile: ResponseProfileType
 
 }
 
-const ProfileDataForm = ({ handleSubmit}: ProfileDataFormType) => {
+const ProfileDataForm = ({ handleSubmit,  profile}: ProfileDataFormType) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -22,6 +23,16 @@ const ProfileDataForm = ({ handleSubmit}: ProfileDataFormType) => {
                 <div>lookingForAJobDescription:  {createField('textarea', 'my professional skills', 'lookingForAJobDescription', [], TextArea, '')}</div>
                 <div><b>aboutMe</b>:  {createField('textarea', 'aboutMe', 'aboutMe', [], TextArea, '')}
                 </div>
+                <div><b>Contacts: </b>
+                    {Object.keys(profile.contacts).map((key) => {
+                        return (
+                            <div className={styled.contact}>
+                                <b>{key}: {createField('text',`your ${key}`, 'contacts.' + key, [], Input, '')}</b>
+
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </form>
     )
@@ -29,3 +40,4 @@ const ProfileDataForm = ({ handleSubmit}: ProfileDataFormType) => {
 
 const ProfileDataFormReduxForm = reduxForm<any, any, any>({form: 'edit-profile'})(ProfileDataForm)
 export default ProfileDataFormReduxForm
+{/*<Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>*/}

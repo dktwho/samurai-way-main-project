@@ -44,7 +44,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
         <div>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
-            {editMode ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {
+            {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} /> : <ProfileData goToEditMode={() => {
                 setEditMode(true)
             }} profile={profile} isOwner={isOwner}/>}
 
