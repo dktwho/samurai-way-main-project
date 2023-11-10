@@ -35,6 +35,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
     }
 
     const onSubmit = (formData: any) => {
+        // console.log(formData)
         saveProfile(formData)
     }
 
@@ -61,7 +62,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}: ProfileDataType) => {
                 <div><b>aboutMe</b>: {profile.aboutMe}</div>
                 <div><b>lookingForAJob</b>: {profile.lookingForAJob ? 'Yes' : 'No'}</div>
                 {profile.lookingForAJobDescription &&
-                    <div>lookingForAJobDescription: {profile.lookingForAJobDescription}</div>}
+                    <div><b>lookingForAJobDescription</b>: {profile.lookingForAJobDescription}</div>}
                 <div><b>Contacts: </b>
                     {Object.keys(profile.contacts).map((key) => {
                         return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>

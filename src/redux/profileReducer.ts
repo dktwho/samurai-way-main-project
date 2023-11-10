@@ -131,8 +131,8 @@ export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch)
 
 export const saveProfileThunkCreator = (profile: any) => async (dispatch: Dispatch) => {
     const res = await profileAPI.saveProfile(profile)
-    debugger;
     if (res.data.resultCode === 0) {
-       //  dispatch(savePhotoAC(res.data.data.photos))
+        // dispatch(savePhotoAC(res.data.data.photos))
     }
 }
+
