@@ -10,7 +10,7 @@ type DataType = {
     email: string,
     login: string,
     isAuth: boolean,
-    captchaUrl?: null
+    captchaUrl?: null // if null , then captcha is not required
 }
 
 let initialState: DataType = {
@@ -52,8 +52,12 @@ export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch) => {
 export const loginThunkCreator = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
     const res = await authAPI.login(email, password, rememberMe)
     if (res.data.resultCode === 0) {
+        // success get auth data
         dispatch(getAuthUserDataThunkCreator())
     } else {
+        if(res.data.resultCode === 10) {
+            dispatch(getCaptchaUrlThunkCreator())
+        }
         let messages = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
         dispatch(stopSubmit('login', {_error: messages}))
     }
