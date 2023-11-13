@@ -1,21 +1,24 @@
 import {Dispatch} from "redux";
-import {authAPI} from "../api/api";
+import {authAPI, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'auth/SET-USER-DATA'
+const GET_CAPTCHA_URL_SUCCESS = 'auth/GET-CAPTCHA-URL-SUCCESS'
 
 type DataType = {
     id: number,
     email: string,
     login: string,
     isAuth: boolean,
+    captchaUrl?: null
 }
 
 let initialState: DataType = {
     id: 0,
     email: '',
     login: '',
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 }
 export const authReducer = (state: DataType = initialState, action: AuthReducerTypeActions) => {
     switch (action.type) {
@@ -32,6 +35,10 @@ type AuthReducerTypeActions = SetUserDataACType
 export type SetUserDataACType = ReturnType<typeof setUserDataAC>
 export const setUserDataAC = ({id, email, login, isAuth}: DataType) => {
     return {type: SET_USER_DATA, payload: {id, email, login, isAuth} as const}
+}
+
+export const getCaptchaUrlAC = (captchaUrl: DataType) => {
+    return {type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl} as const}
 }
 
 export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch) => {
@@ -52,9 +59,19 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
     }
 }
 
+
 export const logOutThunkCreator = () => async (dispatch: any) => {
     const res = await authAPI.logOut()
     if (res.data.resultCode === 0) {
         dispatch(setUserDataAC({id: 0, email: '', login: '', isAuth: false}))
     }
+}
+
+
+export const getCaptchaUrlThunkCreator = () => async (dispatch: any) => {
+    const res = await securityAPI.getCaptchaUrl()
+    const captchaUrl = res.data.url
+    dispatch(getCaptchaUrlAC(captchaUrl))
+
+
 }

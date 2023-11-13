@@ -61,7 +61,7 @@ export const authAPI = {
 }
 
 export const securityAPI = {
-    getCaptcha() {
+    getCaptchaUrl() {
         return baseApi.get(`security/get-captcha-url`)
     },
 
