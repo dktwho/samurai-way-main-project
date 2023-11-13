@@ -52,8 +52,8 @@ export const authAPI = {
     authMe() {
         return baseApi.get(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        return baseApi.post(`auth/login`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean = false, captcha: string | null) {
+        return baseApi.post(`auth/login`, {email, password, rememberMe, captcha})
     },
     logOut() {
         return baseApi.delete(`auth/login`)

@@ -12,19 +12,23 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    captcha: string
 }
 
 type MapStateToPropsType = {
     captchaUrl: string | null
     isAuth: boolean
 }
-export const LoginForm: React.FC<InjectedFormProps<FormDataType, { captchaUrl: string | null }> & { captchaUrl: string | null }> = ({handleSubmit, error, captchaUrl}) => {
+export const LoginForm: React.FC<InjectedFormProps<FormDataType, { captchaUrl: string | null }> & {
+    captchaUrl: string | null
+}> = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
             {createField('text', 'Email', 'email', [required], 'input', '')}
             {createField('password', 'Password', 'password', [required], 'input', '')}
             {createField('checkbox', '', 'rememberMe', [], 'input', 'Remember me')}
             {captchaUrl && <img src={captchaUrl} alt={'captcha'}/>}
+            {captchaUrl && createField('text', 'Symbols from image', 'captcha', [required], 'input', '')}
 
             <div>
                 {error && <div className={styles.formSummaryError}>{error}</div>}
@@ -41,12 +45,12 @@ const LoginReduxForm = reduxForm<FormDataType, { captchaUrl: string | null }>({
 
 type LoginPropsType = {
     isAuth: boolean,
-    loginThunkCreator: (email: string, password: string, isAuth: boolean) => void
+    loginThunkCreator: (email: string, password: string, isAuth: boolean, captcha: string | null) => void
     captchaUrl: string | null
 }
 const Login: React.FC<LoginPropsType> = (props) => {
     const onSubmit = (formData: FormDataType) => {
-        props.loginThunkCreator(formData.email, formData.password, formData.rememberMe)
+        props.loginThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) {
         return <Redirect to={'/profile'}/>
@@ -55,7 +59,7 @@ const Login: React.FC<LoginPropsType> = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     );
 };
