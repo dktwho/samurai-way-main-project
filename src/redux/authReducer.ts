@@ -25,6 +25,10 @@ export const authReducer = (state: DataType = initialState, action: AuthReducerT
         case  SET_USER_DATA: {
             return {...state, ...action.payload}
         }
+
+        case  GET_CAPTCHA_URL_SUCCESS: {
+            return {...state, ...action.payload}
+        }
         default : {
             return state
         }
@@ -55,7 +59,7 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
         // success get auth data
         dispatch(getAuthUserDataThunkCreator())
     } else {
-        if(res.data.resultCode === 10) {
+        if (res.data.resultCode === 10) {
             dispatch(getCaptchaUrlThunkCreator())
         }
         let messages = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
