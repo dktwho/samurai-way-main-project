@@ -60,5 +60,12 @@ export const authAPI = {
     }
 }
 
+export const securityAPI = {
+    getCaptcha() {
+        return baseApi.get(`security/get-captcha-url`)
+    },
+
+}
+
 
 
