@@ -1,16 +1,17 @@
 import React from "react";
 import {Navbar} from "./components/Navbar/Navbar";
 import "./App.css";
-import {Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/LoginForm";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
-import {RootReducerType} from "./redux/reduxStore";
+import {RootReducerType, store} from "./redux/reduxStore";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {withSuspense} from "./hoc/withSuspense";
+import {Provider} from "react-redux";
 
 
 const DialogsContainer = React.lazy(() => import ("./components/Dialogs/DialogsContainer"))
@@ -37,7 +38,6 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
                     <Route
                         path='/profile/:userId?'
                         render={withSuspense(ProfileContainer)}
-
                     />
 
                     <Route
@@ -65,6 +65,16 @@ let mapStateToProps = (state: RootReducerType) => ({
     initialized: state.app.initialized
 })
 
-export default compose<React.ComponentType>(
+let AppContainer = compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeAppThunkCreator}))(App)
+
+export const SamuraiTSApp = (props: any) => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
