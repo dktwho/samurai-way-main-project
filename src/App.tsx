@@ -1,7 +1,7 @@
 import React from "react";
 import {Navbar} from "./components/Navbar/Navbar";
 import "./App.css";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/LoginForm";
@@ -32,29 +32,30 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
+                    <Switch>
+                        <Route exact path='/'
+                               render={() => <Redirect to={'/profile'}/>}/>
 
-                    <Route path='/'
-                           render={withSuspense(ProfileContainer)}/>
+                        <Route path='/dialogs'
+                               render={withSuspense(DialogsContainer)}/>
 
-                    <Route path='/dialogs'
-                           render={withSuspense(DialogsContainer)}/>
+                        <Route
+                            path='/profile/:userId?'
+                            render={withSuspense(ProfileContainer)}/>
 
-                    <Route
-                        path='/profile/:userId?'
-                        render={withSuspense(ProfileContainer)}
-                    />
+                        <Route
+                            path='/users'
+                            render={() => <UsersContainer/>}/>
 
-                    <Route
-                        path='/users'
-                        render={() => <UsersContainer/>}/>
+                        <Route
+                            path='/login'
+                            render={() => <Login/>}/>
 
-                    <Route
-                        path='/login'
-                        render={() => <Login/>}/>
+                        <Route
+                            path='*'
+                            render={() => <div>404 NOT FOUND</div>}/>
+                    </Switch>
 
-                    <Route
-                        path='*'
-                        render={() => <div>404 NOT FOUND</div>}/>
                 </div>
             </div>
         );
