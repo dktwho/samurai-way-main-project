@@ -32,6 +32,10 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
+
+                    <Route path='/'
+                           render={withSuspense(ProfileContainer)}/>
+
                     <Route path='/dialogs'
                            render={withSuspense(DialogsContainer)}/>
 
@@ -73,7 +77,7 @@ let AppContainer = compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeAppThunkCreator}))(App)
 
-export const SamuraiTSApp = (props: any) => {
+export const SamuraiTSApp = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>
