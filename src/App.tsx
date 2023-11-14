@@ -47,6 +47,10 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
                     <Route
                         path='/login'
                         render={() => <Login/>}/>
+
+                    <Route
+                        path='*'
+                        render={() => <div>404 NOT FOUND</div>}/>
                 </div>
             </div>
         );
