@@ -7,7 +7,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/LoginForm";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeAppThunkCreator} from "./redux/appReducer";
+import {initializeAppThunkCreator, setErrorThunkCreator} from "./redux/appReducer";
 import {RootReducerType, store} from "./redux/reduxStore";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {withSuspense} from "./hoc/withSuspense";
@@ -17,9 +17,12 @@ import {Provider} from "react-redux";
 const DialogsContainer = React.lazy(() => import ("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy(() => import ("./components/Profile/ProfileContainer"))
 
+
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
+
     catchAllUnhandledError = (promiseRejectionEvent: any) => {
         console.error(promiseRejectionEvent)
+        this.props.setErrorThunkCreator('error promise')
     }
 
     componentDidMount() {
@@ -74,18 +77,21 @@ class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, 
 
 type MapStateToPropsType = {
     initialized: boolean
+    globalError: string | null
 }
 type MapDispatchToPropsType = {
     initializeAppThunkCreator: () => void
+    setErrorThunkCreator: (error: string | null) => void
 }
 
 let mapStateToProps = (state: RootReducerType) => ({
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    globalError: state.app.globalError
 })
 
 let AppContainer = compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeAppThunkCreator}))(App)
+    connect(mapStateToProps, {initializeAppThunkCreator, setErrorThunkCreator}))(App)
 
 export const SamuraiTSApp = () => {
     return (
