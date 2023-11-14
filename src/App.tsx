@@ -18,8 +18,17 @@ const DialogsContainer = React.lazy(() => import ("./components/Dialogs/DialogsC
 const ProfileContainer = React.lazy(() => import ("./components/Profile/ProfileContainer"))
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
+    catchAllUnhandledError = (promiseRejectionEvent: any) => {
+        console.error(promiseRejectionEvent)
+    }
+
     componentDidMount() {
         this.props.initializeAppThunkCreator()
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledError)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledError)
     }
 
     render() {

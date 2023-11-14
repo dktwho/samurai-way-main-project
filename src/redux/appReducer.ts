@@ -2,10 +2,12 @@ import {getAuthUserDataThunkCreator} from "./authReducer";
 
 type AppDataType = {
     initialized: boolean,
+    globalError: null | string
 }
 
 let initialState = {
-    initialized: false
+    initialized: false,
+    globalError: null
 }
 
 
