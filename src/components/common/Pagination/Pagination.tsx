@@ -25,7 +25,7 @@ export const Pagination = ({totalUsersCount, pageSize, onPageChanged, currentPag
     let rightPortionNumber = portionNumber * portionSize
 
     return (
-        <div className={styles.paginator}>
+        <div className={classNames(styles.paginator)}>
             {portionNumber > 1 && <button onClick={() => setPortionNumber(portionNumber - 1)}>PREV</button>}
             {pagesArrCount.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)?.map(el => {
                 return (
