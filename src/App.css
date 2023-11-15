@@ -1,5 +1,6 @@
 .App {
   font-family: "Goudy Bookletter 1911", sans-serif;
+
 }
 
 .app-wrapper {
@@ -10,6 +11,8 @@
   /* grid-gap: 10px; */
   width: 1200px;
   margin: 0 auto;
+  background-color: #262525;
+
 }
 
 .app-wrapper-content {
