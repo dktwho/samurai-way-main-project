@@ -1,6 +1,9 @@
 .descriptionBlock {
     padding: 10px;
+    border: 1px solid gray;
+    border-radius: 15px;
 }
+
 
 .contact {
     padding-left: 10px;
@@ -10,4 +13,10 @@
     border: 1px solid red;
     padding: 5px;
     color: red;
+}
+
+.profileInfo img {
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 15px;
 }

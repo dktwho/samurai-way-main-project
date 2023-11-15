@@ -5,6 +5,7 @@ import {ContactsType, ResponseProfileType} from "../ProfileContainer";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userIcon3 from '../../../assets/userIcon3.jpeg'
 import ProfileDataForm from "./ProfileDataForm";
+import styles from './ProfileInfo.module.css'
 
 type PropsType = {
     profile: ResponseProfileType
@@ -40,7 +41,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
     }
 
     return (
-        <div>
+        <div className={styles.profileInfo}>
             <img src={profile.photos.small || userIcon3} alt='profile-logo'/>
             {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
             {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
