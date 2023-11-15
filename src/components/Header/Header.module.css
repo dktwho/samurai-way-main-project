@@ -1,28 +1,31 @@
 .header {
-  grid-area: h;
-  background-color: rgb(82, 89, 82);
-  margin: 3px;
-
+    grid-area: h;
+    background-color: rgb(137, 145, 137);
+    margin: 3px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .loginLogo {
-  padding: 1px;
-  margin: 3px;
+    padding: 1px;
+    margin: 3px;
 }
 
 .loginLogo img {
-  width: 20px;
-  height: 20px;
-  padding-left: 10px;
+    width: 20px;
+    height: 20px;
+    padding-left: 10px;
 }
 
 .loginBlock {
-  float: left;
-  padding-left: 70px;
+    float: left;
+    padding-left: 70px;
 }
 
 .loginBlock a {
-  color: gray;
-
+    color: #131212;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.7s ease;
 
 }
