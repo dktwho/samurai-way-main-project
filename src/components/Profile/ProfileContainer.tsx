@@ -32,7 +32,7 @@ export type ContactsType = {
     [key: string]: any;
 }
 
-type PhotoType = {
+export type PhotoType = {
     small: string;
     large: string;
 }
