@@ -19,7 +19,6 @@ const ProfileContainer = React.lazy(() => import ("./components/Profile/ProfileC
 
 
 class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType, unknown> {
-
     catchAllUnhandledError = (promiseRejectionEvent: any) => {
         console.error(promiseRejectionEvent)
         this.props.setErrorThunkCreator('error promise')
