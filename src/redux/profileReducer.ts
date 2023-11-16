@@ -8,13 +8,13 @@ import {profileAPI, usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {stopSubmit} from "redux-form";
 
-export const ADD_POST = 'profile/ADD-POST'
-export const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
-export const SET_STATUS = 'profile/SET-STATUS'
-export const SET_PHOTO = 'profile/SET-PHOTO'
+const ADD_POST = 'profile/ADD-POST'
+const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
+const SET_STATUS = 'profile/SET-STATUS'
+const SET_PHOTO = 'profile/SET-PHOTO'
 
 
-let initialState = {
+let initialState: ProfilePageType = {
     posts: [
         {id: 1, message: 'Post 1', likesCount: '13'},
         {id: 2, message: 'Post 2', likesCount: '22'},
@@ -47,9 +47,8 @@ let initialState = {
     status: '',
 }
 
-
+// action creator with type
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
-
 export const setUserProfileAC = (profile: any) => {
     return {
         type: SET_USER_PROFILE,
@@ -58,14 +57,12 @@ export const setUserProfileAC = (profile: any) => {
 }
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
-
 export const addPostAC = (newPostText: string) => {
     return {
         type: ADD_POST,
         newPostText
     } as const
 }
-
 
 export type SetUserStatusActionType = ReturnType<typeof setUserStatusAC>
 export const setUserStatusAC = (status: string) => {
@@ -82,8 +79,7 @@ export const savePhotoAC = (photos: any) => {
         photos
     } as const
 }
-
-
+// reducer
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ADD_POST: {
@@ -105,6 +101,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
     }
 }
 
+
+// thunks
 export const getUserProfileThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
     const res = await usersAPI.getProfile(userId)
     dispatch(setUserProfileAC(res.data))
@@ -121,10 +119,9 @@ export const updateUsersStatusThunkCreator = (status: string) => async (dispatch
         if (res.data.resultCode === 0) {
             dispatch(setUserStatusAC(status))
         }
-    } catch(error) {
+    } catch (error) {
         console.log(error)
     }
-
 }
 
 export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch) => {
