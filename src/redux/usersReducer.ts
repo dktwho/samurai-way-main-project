@@ -1,6 +1,4 @@
-import {
-    ActionsTypes
-} from "./store";
+import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
 import {updateObjectInArray} from "../utils/objectsHelper";
@@ -15,7 +13,6 @@ export type UserType = {
     },
     status: string,
     followed: boolean,
-
 }
 export type InitialStateType = {
     users: UserType[]
@@ -35,6 +32,7 @@ const initialState: InitialStateType = {
     followingInProgress: []
 }
 
+// redux/ducks type
 const FOLLOW = 'users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
 const SET_USERS = 'users/SET-USERS'
@@ -42,7 +40,6 @@ const SET_CURRENT_PAGE = 'users/SET-CURRENT-PAGE'
 const SET_TOTAL_COUNT = 'users/SET-TOTAL-COUNT'
 const TOGGLE_IS_FETCHING = 'users/TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE-IS-FOLLOWING-PROGRESS'
-
 
 // Reducer
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -125,7 +122,6 @@ export const toggleIsFetchingAC = (isFetching: boolean) => {
         isFetching
     } as const
 }
-
 
 export type SetTotalCountACType = ReturnType<typeof setTotalCountAC>
 export const setTotalCountAC = (totalUsersCount: number) => {
