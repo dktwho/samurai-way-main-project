@@ -32,7 +32,6 @@ class ProfileStatus extends React.Component<StatusType> {
 
     componentDidUpdate(prevProps: Readonly<StatusType>, prevState: Readonly<{}>, snapshot?: any) {
         if (prevProps.status !== this.state.status) {
-
         }
     }
 
@@ -49,9 +48,7 @@ class ProfileStatus extends React.Component<StatusType> {
                            value={this.state.status}
                            onBlur={this.deActivateEditMode}/>
                 </div>}
-
             </div>
-
         );
     }
 }
