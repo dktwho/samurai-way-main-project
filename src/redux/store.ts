@@ -36,7 +36,7 @@ export type MyPostsType = {
 export type ProfilePageType = {
     posts: MyPostsType[]
     newPostText: string
-    profile: ResponseProfileType | null
+    profile: ResponseProfileType
     status: string
 }
 

@@ -55,7 +55,12 @@ describe('profileReducer', () => {
             fullName: 'John Doe',
             aboutMe: 'Hello, I am John!',
             contacts: {},
-            photos: {},
+            photos: {
+                small: 'string small photo',
+                large: 'string large photo',
+            },
+            lookingForAJob: false,
+            lookingForAJobDescription: 'string'
         };
         const action = setUserProfileAC(profile);
         const newState = profileReducer(initialState, action);

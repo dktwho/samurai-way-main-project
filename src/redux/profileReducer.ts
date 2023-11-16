@@ -7,6 +7,7 @@ import {AnyAction, Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {stopSubmit} from "redux-form";
+import {ResponseProfileType} from "../components/Profile/ProfileContainer";
 
 const ADD_POST = 'profile/ADD-POST'
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
@@ -49,7 +50,7 @@ let initialState: ProfilePageType = {
 
 // action creator with type
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
-export const setUserProfileAC = (profile: any) => {
+export const setUserProfileAC = (profile: ResponseProfileType) => {
     return {
         type: SET_USER_PROFILE,
         profile
