@@ -1,8 +1,9 @@
 import {ActionsTypes, MessagePageType} from "./store";
 
+// redux/ducks type
 const SEND_MESSAGE = 'dialogs/SEND-MESSAGE'
 
-let initialState = {
+let initialState: MessagePageType = {
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hello'},
