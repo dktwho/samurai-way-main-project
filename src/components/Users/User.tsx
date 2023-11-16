@@ -20,7 +20,7 @@ export const User = ({user, followingInProgress, unFollowThunkCreator, followThu
                     <NavLink to={`./profile/${u.id}`}>
                             <img style={{width: '40px'}}
                                  src={u.photos.small ? u.photos.small : userIcon3}
-                                 className={styles.userPhoto} alt="photo"/>
+                                 className={styles.userPhoto} alt="userPhoto"/>
                     </NavLink>
 
                 </div>

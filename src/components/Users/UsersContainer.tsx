@@ -68,7 +68,6 @@ export type MapDispatchToPropsType = {
     unFollowThunkCreator: (userId: number) => void
 }
 
-export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 let mapStateToProps = (state: RootReducerType) => {
     return {
         usersPage: getUsersPageSelectors(state),
@@ -82,7 +81,7 @@ let mapStateToProps = (state: RootReducerType) => {
 
 export default compose<React.ComponentType>(
     withAuthRedirect,
-    connect(mapStateToProps, {
+    connect<MapStatePropsType, MapDispatchToPropsType, any, RootReducerType >(mapStateToProps, {
         setCurrentPage: setCurrentPageAC,
         toggleIsFetchingProgress: toggleIsFetchingProgressAC,
         getUsersThunkCreator,
