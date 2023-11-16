@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Pagination.module.css'
 import classNames from "classnames";
-import {v4 as uuidv4} from 'uuid';
-
+import {v4 as uuid4} from 'uuid';
 
 type PropsType = {
     totalUsersCount: number
@@ -12,7 +11,7 @@ type PropsType = {
     portionSize: number
 }
 
-export const Pagination = ({totalUsersCount, pageSize, onPageChanged, currentPage, portionSize = 10}: PropsType) => {
+export const Pagination= ({totalUsersCount, pageSize, onPageChanged, currentPage, portionSize = 10}: PropsType) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pagesArrCount = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -29,7 +28,7 @@ export const Pagination = ({totalUsersCount, pageSize, onPageChanged, currentPag
             {portionNumber > 1 && <button onClick={() => setPortionNumber(portionNumber - 1)}>PREV</button>}
             {pagesArrCount.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)?.map(el => {
                 return (
-                    <span key={uuidv4()}
+                    <span key={uuid4()}
                           className={classNames({[styles.selectedPage]: currentPage === el}, styles.pageNumber)}
                           onClick={() => onPageChanged(el)}
                     >{el}</span>

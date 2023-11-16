@@ -2,7 +2,7 @@ import React from 'react';
 import {InitialStateType} from "../../redux/usersReducer";
 import {Pagination} from "../common/Pagination/Pagination";
 import {User} from "./User";
-import {v4 as uuidv4} from 'uuid';
+import {v4 as uuid4} from 'uuid';
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
@@ -26,7 +26,7 @@ export const Users2 = (props: PropsType) => {
             />
             <div>
                 {props.usersPage.users.map(u => {
-                    return <User key={uuidv4()}
+                    return <User key={uuid4()}
                                  user={u}
                                  unFollowThunkCreator={props.unFollowThunkCreator}
                                  followThunkCreator={props.followThunkCreator}

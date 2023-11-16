@@ -42,10 +42,6 @@ export const User = ({user, followingInProgress, unFollowThunkCreator, followThu
                     <div>{u.status}</div>
                     <div>ID: {u.id}</div>
                 </span>
-                <span>
-                    <div>{'u.location.state'}</div>
-                    <div>{'u.location.city'}</div>
-                </span>
             </span>
         </div>
     );
