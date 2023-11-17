@@ -55,7 +55,17 @@ type MeResponseType = {
         email: string,
         login: string
     }
-    resultCode: number
+    resultCode: ResultCodeEnum
+    messages: string[]
+}
+
+type LoginResponseType = {
+    data: {
+        userId: number,
+        email: string,
+        login: string
+    }
+    resultCode: ResultCodeEnum | ResultCodeForCaptcha
     messages: string[]
 }
 
@@ -64,7 +74,7 @@ export const authAPI = {
         return baseApi.get<MeResponseType>(`auth/me`).then(res => res.data)
     },
     login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
-        return baseApi.post(`auth/login`, {email, password, rememberMe, captcha})
+        return baseApi.post<LoginResponseType>(`auth/login`, {email, password, rememberMe, captcha})
     },
     logOut() {
         return baseApi.delete(`auth/login`)
@@ -75,7 +85,6 @@ export const securityAPI = {
     getCaptchaUrl() {
         return baseApi.get(`security/get-captcha-url`)
     },
-
 }
 
 
@@ -83,5 +92,8 @@ export const securityAPI = {
 export enum ResultCodeEnum {
     Success = 0,
     Error = 1,
+}
+
+export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }

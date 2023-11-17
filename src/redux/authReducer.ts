@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {authAPI, ResultCodeEnum, securityAPI} from "../api/api";
+import {authAPI, ResultCodeEnum, ResultCodeForCaptcha, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 //  redux/ducks type
@@ -63,7 +63,7 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
         // success get auth data
         dispatch(getAuthUserDataThunkCreator())
     } else {
-        if (res.data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
+        if (res.data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
             dispatch(getCaptchaUrlThunkCreator())
         }
         let messages = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
