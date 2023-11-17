@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ResponseProfileType} from "../components/Profile/ProfileContainer";
 
 const baseApi = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -43,16 +44,26 @@ export const profileAPI = {
             }
         })
     },
-    saveProfile(profile: any) {
+    saveProfile(profile: ResponseProfileType) {
         return baseApi.put(`profile`, profile)
     }
 }
 
+type MeResponseType = {
+    data: {
+        id: number,
+        email: string,
+        login: string
+    }
+    resultCode: number
+    messages: string[]
+}
+
 export const authAPI = {
     authMe() {
-        return baseApi.get(`auth/me`)
+        return baseApi.get<MeResponseType>(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean = false, captcha: string | null) {
+    login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
         return baseApi.post(`auth/login`, {email, password, rememberMe, captcha})
     },
     logOut() {
