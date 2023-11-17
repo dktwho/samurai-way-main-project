@@ -1,4 +1,5 @@
 import {getAuthUserDataThunkCreator} from "./authReducer";
+import {Dispatch} from "redux";
 
 // redux/ducks type
 const SET_INITIALIZED_SUCCESS_APP = 'app/SET-INITIALIZED-SUCCESS-APP'
@@ -18,7 +19,7 @@ let initialState = {
 
 // types action
 type AppAllActions = SetInitializedACType | SetGlobalErrorACType
-
+// | SetUserDataACType
 export type SetInitializedACType = ReturnType<typeof setInitializedSuccessAC>
 export const setInitializedSuccessAC = () => {
     return {type: SET_INITIALIZED_SUCCESS_APP}  as const
@@ -52,7 +53,7 @@ export const initializeAppThunkCreator = () => (dispatch: any) => {
     })
 }
 
-export const setErrorThunkCreator = (globalError: string | null) => (dispatch: any) => {
+export const setErrorThunkCreator = (globalError: string | null) => (dispatch: Dispatch) => {
     dispatch(setGlobalErrorAC(globalError))
 }
 

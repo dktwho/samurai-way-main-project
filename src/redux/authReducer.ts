@@ -49,7 +49,7 @@ export const getCaptchaUrlAC = (captchaUrl: DataType) => {
 }
 
 // thunk
-export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch) => {
+export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch<SetUserDataACType>) => {
     const res = await authAPI.authMe()
     if (res.data.resultCode === 0) {
         let {id, email, login} = res.data.data
@@ -57,7 +57,7 @@ export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch) => {
     }
 }
 
-export const loginThunkCreator = (email: string, password: string, rememberMe: boolean, captcha:string| null ) => async (dispatch: any) => {
+export const loginThunkCreator = (email: string, password: string, rememberMe: boolean, captcha: string | null) => async (dispatch: any) => {
     const res = await authAPI.login(email, password, rememberMe, captcha)
     if (res.data.resultCode === 0) {
         // success get auth data
@@ -71,14 +71,14 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
     }
 }
 
-export const logOutThunkCreator = () => async (dispatch: any) => {
+export const logOutThunkCreator = () => async (dispatch: Dispatch<SetUserDataACType>) => {
     const res = await authAPI.logOut()
     if (res.data.resultCode === 0) {
         dispatch(setUserDataAC({id: 0, email: '', login: '', isAuth: false}))
     }
 }
 
-export const getCaptchaUrlThunkCreator = () => async (dispatch: any) => {
+export const getCaptchaUrlThunkCreator = () => async (dispatch: Dispatch) => {
     const res = await securityAPI.getCaptchaUrl()
     const captchaUrl = res.data.url
     dispatch(getCaptchaUrlAC(captchaUrl))
