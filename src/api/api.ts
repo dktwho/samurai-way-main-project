@@ -61,7 +61,7 @@ type MeResponseType = {
 
 export const authAPI = {
     authMe() {
-        return baseApi.get<MeResponseType>(`auth/me`)
+        return baseApi.get<MeResponseType>(`auth/me`).then(res => res.data)
     },
     login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
         return baseApi.post(`auth/login`, {email, password, rememberMe, captcha})

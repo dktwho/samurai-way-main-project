@@ -51,8 +51,8 @@ export const getCaptchaUrlAC = (captchaUrl: DataType) => {
 // thunk
 export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch<SetUserDataACType>) => {
     const res = await authAPI.authMe()
-    if (res.data.resultCode === 0) {
-        let {id, email, login} = res.data.data
+    if (res.resultCode === 0) {
+        let {id, email, login} = res.data
         dispatch(setUserDataAC({id, email, login, isAuth: true}))
     }
 }
