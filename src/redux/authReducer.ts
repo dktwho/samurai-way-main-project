@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {authAPI, securityAPI} from "../api/api";
+import {authAPI, ResultCodeEnum, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 //  redux/ducks type
@@ -51,7 +51,7 @@ export const getCaptchaUrlAC = (captchaUrl: DataType) => {
 // thunk
 export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch<SetUserDataACType>) => {
     const res = await authAPI.authMe()
-    if (res.resultCode === 0) {
+    if (res.resultCode === ResultCodeEnum.Success) {
         let {id, email, login} = res.data
         dispatch(setUserDataAC({id, email, login, isAuth: true}))
     }
@@ -59,11 +59,11 @@ export const getAuthUserDataThunkCreator = () => async (dispatch: Dispatch<SetUs
 
 export const loginThunkCreator = (email: string, password: string, rememberMe: boolean, captcha: string | null) => async (dispatch: any) => {
     const res = await authAPI.login(email, password, rememberMe, captcha)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         // success get auth data
         dispatch(getAuthUserDataThunkCreator())
     } else {
-        if (res.data.resultCode === 10) {
+        if (res.data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
             dispatch(getCaptchaUrlThunkCreator())
         }
         let messages = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
@@ -73,7 +73,7 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
 
 export const logOutThunkCreator = () => async (dispatch: Dispatch<SetUserDataACType>) => {
     const res = await authAPI.logOut()
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         dispatch(setUserDataAC({id: 0, email: '', login: '', isAuth: false}))
     }
 }

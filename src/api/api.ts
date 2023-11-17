@@ -79,4 +79,9 @@ export const securityAPI = {
 }
 
 
-
+// enum
+export enum ResultCodeEnum {
+    Success = 0,
+    Error = 1,
+    CaptchaIsRequired = 10
+}

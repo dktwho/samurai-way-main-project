@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {ResultCodeEnum, usersAPI} from "../api/api";
 import {updateObjectInArray} from "../utils/objectsHelper";
 
 // type
@@ -155,7 +155,7 @@ export const toggleIsFetchingProgressAC = (isFetching: boolean, userId: number) 
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, actionCreator: (userId: number) => FollowACType | UnFollowACType) => {
     dispatch(toggleIsFetchingProgressAC(true, userId))
     const res = await apiMethod(userId)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         dispatch(followSuccessAC(userId))
     }
     dispatch(toggleIsFetchingProgressAC(false, userId))

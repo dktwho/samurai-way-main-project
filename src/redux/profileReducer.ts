@@ -3,7 +3,7 @@ import {
     ProfilePageType,
 } from "./store";
 import {AnyAction, Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../api/api";
+import {profileAPI, ResultCodeEnum, usersAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {stopSubmit} from "redux-form";
 import {PhotoType, ResponseProfileType} from "../components/Profile/ProfileContainer";
@@ -124,7 +124,7 @@ export const getUsersStatusThunkCreator = (userId: number) => async (dispatch: D
 export const updateUsersStatusThunkCreator = (status: string) => async (dispatch: Dispatch<ActionsTypes>) => {
     try {
         const res = await profileAPI.updateStatus(status)
-        if (res.data.resultCode === 0) {
+        if (res.data.resultCode === ResultCodeEnum.Success) {
             dispatch(setUserStatusAC(status))
         }
     } catch (error) {
@@ -134,7 +134,7 @@ export const updateUsersStatusThunkCreator = (status: string) => async (dispatch
 
 export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch<ActionsTypes>) => {
     const res = await profileAPI.savePhoto(photos)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         dispatch(savePhotoAC(res.data.data.photos))
     }
 }
@@ -142,7 +142,7 @@ export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch<
 export const saveProfileThunkCreator = (profile: any): ThunkAction<Promise<void>, any, any, AnyAction> => async (dispatch, getState) => {
     const userId = getState().auth.id
     const res = await profileAPI.saveProfile(profile)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         dispatch(getUserProfileThunkCreator(userId))
     } else {
         dispatch(stopSubmit('edit-profile', {_error: res.data.messages[0]}))
