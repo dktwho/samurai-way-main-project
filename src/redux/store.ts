@@ -6,15 +6,6 @@ import {
     SetUserStatusActionType
 } from "./profileReducer";
 import {dialogsReducer, SendMessageACType} from "./dialogsReducer";
-import {
-    FollowACType,
-    SetCurrentPageACType,
-    SetTotalCountACType,
-    SetUsersACType,
-    ToggleIsFetchingACType,
-    ToggleIsFetchingProgressACType,
-    UnFollowACType,
-} from "./usersReducer";
 import {ResponseProfileType} from "../components/Profile/ProfileContainer";
 
 export type MessageType = {
@@ -147,13 +138,15 @@ export let store: StoreType = {
 export type ActionsTypes =
     AddPostActionType
     | SendMessageACType
-    | UnFollowACType
-    | FollowACType
-    | SetUsersACType
-    | SetCurrentPageACType
-    | SetTotalCountACType
-    | ToggleIsFetchingACType
     | SetUserProfileActionType
-    | ToggleIsFetchingProgressACType
     | SetUserStatusActionType
     | SavePhotoActionType
+
+    // | UnFollowACType
+    // | FollowACType
+    // | SetUsersACType
+    // | SetCurrentPageACType
+    // | SetTotalCountACType
+    // | ToggleIsFetchingACType
+    // | ToggleIsFetchingProgressACType
+

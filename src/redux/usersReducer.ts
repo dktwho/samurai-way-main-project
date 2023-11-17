@@ -1,4 +1,3 @@
-import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
 import {updateObjectInArray} from "../utils/objectsHelper";
@@ -31,6 +30,19 @@ const initialState: InitialStateType = {
     isFetching: false,
     followingInProgress: []
 }
+
+
+// actions type
+type ActionsTypes =
+    | UnFollowACType
+    | FollowACType
+    | SetUsersACType
+    | SetCurrentPageACType
+    | SetTotalCountACType
+    | ToggleIsFetchingACType
+    | ToggleIsFetchingProgressACType
+
+
 
 // redux/ducks type
 const FOLLOW = 'users/FOLLOW'
