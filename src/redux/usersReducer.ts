@@ -43,7 +43,6 @@ type ActionsTypes =
     | ToggleIsFetchingProgressACType
 
 
-
 // redux/ducks type
 const FOLLOW = 'users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
@@ -153,7 +152,7 @@ export const toggleIsFetchingProgressAC = (isFetching: boolean, userId: number) 
 }
 
 // utils func follow/unfollow case
-const followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, actionCreator: any) => {
+const _followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, actionCreator: (userId: number) => FollowACType | UnFollowACType) => {
     dispatch(toggleIsFetchingProgressAC(true, userId))
     const res = await apiMethod(userId)
     if (res.data.resultCode === 0) {
@@ -174,11 +173,11 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
 }
 
 export const followThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
-    followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccessAC)
+    _followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccessAC)
 }
 
 export const unFollowThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
-    followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unFollowSuccessAC)
+    _followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unFollowSuccessAC)
 }
 
 
