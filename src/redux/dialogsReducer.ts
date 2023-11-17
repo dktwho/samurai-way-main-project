@@ -1,4 +1,4 @@
-import {ActionsTypes, MessagePageType} from "./store";
+import { MessagePageType} from "./store";
 
 // redux/ducks type
 const SEND_MESSAGE = 'dialogs/SEND-MESSAGE'
@@ -27,7 +27,7 @@ export const sendMessageAC = (newMessageBody: string) => {
         newMessageBody
     } as const
 }
-export const dialogsReducer = (state: MessagePageType = initialState, action: ActionsTypes) => {
+export const dialogsReducer = (state: MessagePageType = initialState, action: SendMessageACType) => {
     switch (action.type) {
         case SEND_MESSAGE: {
             let body = action.newMessageBody

@@ -1,11 +1,3 @@
-import {
-    AddPostActionType,
-    profileReducer,
-    SavePhotoActionType,
-    SetUserProfileActionType,
-    SetUserStatusActionType
-} from "./profileReducer";
-import {dialogsReducer, SendMessageACType} from "./dialogsReducer";
 import {ResponseProfileType} from "../components/Profile/ProfileContainer";
 
 export type MessageType = {
@@ -54,7 +46,7 @@ export type StoreType = {
     _rerenderEntireTree: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
 }
 
 export let store: StoreType = {
@@ -127,26 +119,25 @@ export let store: StoreType = {
     getState() {
         return this._state
     },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._rerenderEntireTree()
-    }
+    // dispatch(action) {
+    //     this._state.profilePage = profileReducer(this._state.profilePage, action)
+    //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    //     this._rerenderEntireTree()
+    // }
 }
 
 // actions type
-export type ActionsTypes =
-    AddPostActionType
-    | SendMessageACType
-    | SetUserProfileActionType
-    | SetUserStatusActionType
-    | SavePhotoActionType
-
-    // | UnFollowACType
-    // | FollowACType
-    // | SetUsersACType
-    // | SetCurrentPageACType
-    // | SetTotalCountACType
-    // | ToggleIsFetchingACType
-    // | ToggleIsFetchingProgressACType
+// export type ActionsTypes =
+//     AddPostActionType
+//     | SendMessageACType
+//     | SetUserProfileActionType
+//     | SetUserStatusActionType
+//     | SavePhotoActionType
+//     | UnFollowACType
+//     | FollowACType
+//     | SetUsersACType
+//     | SetCurrentPageACType
+//     | SetTotalCountACType
+//     | ToggleIsFetchingACType
+//     | ToggleIsFetchingProgressACType
 

@@ -1,5 +1,4 @@
 import {
-    ActionsTypes,
     MyPostsType,
     ProfilePageType,
 } from "./store";
@@ -47,6 +46,14 @@ let initialState: ProfilePageType = {
     },
     status: '',
 }
+
+// actions type
+type ActionsTypes =
+    AddPostActionType
+    | SetUserProfileActionType
+    | SetUserStatusActionType
+    | SavePhotoActionType
+
 
 // action creator with type
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
@@ -104,17 +111,17 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
 
 // thunks
-export const getUserProfileThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+export const getUserProfileThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
     const res = await usersAPI.getProfile(userId)
     dispatch(setUserProfileAC(res.data))
 }
 
-export const getUsersStatusThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+export const getUsersStatusThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
     const res = await profileAPI.getStatus(userId)
     dispatch(setUserStatusAC(res.data.status))
 }
 
-export const updateUsersStatusThunkCreator = (status: string) => async (dispatch: Dispatch) => {
+export const updateUsersStatusThunkCreator = (status: string) => async (dispatch: Dispatch<ActionsTypes>) => {
     try {
         const res = await profileAPI.updateStatus(status)
         if (res.data.resultCode === 0) {
@@ -125,7 +132,7 @@ export const updateUsersStatusThunkCreator = (status: string) => async (dispatch
     }
 }
 
-export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch) => {
+export const savePhotoThunkCreator = (photos: any) => async (dispatch: Dispatch<ActionsTypes>) => {
     const res = await profileAPI.savePhoto(photos)
     if (res.data.resultCode === 0) {
         dispatch(savePhotoAC(res.data.data.photos))
