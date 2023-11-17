@@ -153,7 +153,7 @@ export const toggleIsFetchingProgressAC = (isFetching: boolean, userId: number) 
 }
 
 // utils func follow/unfollow case
-const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: any, actionCreator: any) => {
+const followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, actionCreator: any) => {
     dispatch(toggleIsFetchingProgressAC(true, userId))
     const res = await apiMethod(userId)
     if (res.data.resultCode === 0) {
@@ -164,7 +164,7 @@ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod:
 }
 
 // thunksCreator
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch<ActionsTypes>) => {
     dispatch(toggleIsFetchingAC(true))
     dispatch(setCurrentPageAC(currentPage))
     const data = await usersAPI.getUsers(currentPage, pageSize)
@@ -173,11 +173,11 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
     dispatch(setTotalCountAC(data.totalCount))
 }
 
-export const followThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+export const followThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
     followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccessAC)
 }
 
-export const unFollowThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+export const unFollowThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
     followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unFollowSuccessAC)
 }
 
