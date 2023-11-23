@@ -1,9 +1,9 @@
 import styles from './FormsControls.module.css'
 import {Field} from "redux-form";
-import  {ComponentType} from "react";
+import {ComponentType} from "react";
 import {FieldValidatorType} from "../../../utils/validators/validators";
 
-const FormControl = ({ touched, error,  children}: any) => {
+const FormControl = ({touched, error, children}: any) => {
     const hasError = touched && error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
@@ -14,7 +14,6 @@ const FormControl = ({ touched, error,  children}: any) => {
                 {hasError ? <span className={styles.error}>{error}</span> : ''}
             </div>
         </div>
-
     )
 }
 
@@ -34,15 +33,14 @@ export const Input = (props: any) => {
 }
 
 type FieldComponentType = ComponentType<Field & unknown> | "input" | "select" | "textarea" | undefined
-export const createField = (type: string, placeholder: string, name: string, validators: FieldValidatorType[], component: FieldComponentType, text: string = '') => {
-    return (
-        <div>
-            <Field validate={validators}
-                   name={name}
-                   type={type}
-                   placeholder={placeholder}
-                   component={component}
-                   text={text}/>{text}
-        </div>
-    )
+
+export function createField<T extends string>(type: string, placeholder: string, name: T, validators: FieldValidatorType[], component: FieldComponentType, text: string = '') {
+    return <div>
+        <Field validate={validators}
+               name={name}
+               type={type}
+               placeholder={placeholder}
+               component={component}
+               text={text}/>{text}
+    </div>
 }

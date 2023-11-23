@@ -8,12 +8,14 @@ import {Redirect} from "react-router-dom";
 import {RootReducerType} from "../../redux/reduxStore";
 import styles from '../../components/common/FormsControls/FormsControls.module.css'
 
-type FormDataType = {
+export type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
     captcha: string
 }
+
+type LoginFormValuesTypeKeys = keyof FormDataType
 
 type MapStateToPropsType = {
     captchaUrl: string | null
@@ -24,11 +26,11 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, { captchaUrl: s
 }> = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
-            {createField('text', 'Email', 'email', [required], 'input', '')}
-            {createField('password', 'Password', 'password', [required], 'input', '')}
-            {createField('checkbox', '', 'rememberMe', [], 'input', 'Remember me')}
+            {createField<LoginFormValuesTypeKeys>('text', 'Email', 'email', [required], 'input', '')}
+            {createField<LoginFormValuesTypeKeys>('password', 'Password', 'password', [required], 'input', '')}
+            {createField<LoginFormValuesTypeKeys>('checkbox', '', 'rememberMe', [], 'input', 'Remember me')}
             {captchaUrl && <img src={captchaUrl} alt={'captcha'}/>}
-            {captchaUrl && createField('text', 'Symbols from image', 'captcha', [required], 'input', '')}
+            {captchaUrl && createField<LoginFormValuesTypeKeys>('text', 'Symbols from image', 'captcha', [required], 'input', '')}
 
             <div>
                 {error && <div className={styles.formSummaryError}>{error}</div>}
