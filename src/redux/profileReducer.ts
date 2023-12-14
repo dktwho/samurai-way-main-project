@@ -3,10 +3,12 @@ import {
     ProfilePageType,
 } from "./store";
 import {AnyAction, Dispatch} from "redux";
-import {profileAPI, ResultCodeEnum, usersAPI} from "../api/api";
+import {profileAPI, ResultCodeEnum} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {stopSubmit} from "redux-form";
 import {PhotoType, ResponseProfileType} from "../components/Profile/ProfileContainer";
+import {usersAPI} from "../api/usersAPI";
+
 
 const ADD_POST = 'profile/ADD-POST'
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'

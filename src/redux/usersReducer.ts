@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
-import {ResultCodeEnum, usersAPI} from "../api/api";
+import {ResultCodeEnum} from "../api/api";
 import {updateObjectInArray} from "../utils/objectsHelper";
+import {usersAPI} from "../api/usersAPI";
 
 // type
 export type UserType = {
