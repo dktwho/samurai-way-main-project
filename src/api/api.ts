@@ -17,3 +17,4 @@ export enum ResultCodeEnum {
 export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }
+

@@ -1,6 +1,6 @@
 import {baseApi, ResultCodeEnum, ResultCodeForCaptcha} from "./api";
 
-type MeResponseType = {
+ type MeResponseType = {
     data: {
         id: number,
         email: string,
@@ -9,7 +9,7 @@ type MeResponseType = {
     resultCode: ResultCodeEnum
     messages: string[]
 }
-type LoginResponseType = {
+ type LoginResponseType = {
     data: {
         userId: number,
         email: string,

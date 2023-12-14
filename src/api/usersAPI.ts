@@ -1,9 +1,15 @@
 import {baseApi} from "./api";
 import {profileAPI} from "./profileAPI";
+import {UserType} from "../redux/usersReducer";
 
+export type GetItemsType = {
+    items: UserType[]
+    totalCount: number
+    error: string | null
+}
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return baseApi.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
+        return baseApi.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
     unfollow(userId: number) {
         return baseApi.delete(`follow/${userId}`)
