@@ -1,5 +1,4 @@
 import axios from "axios";
-import {ResponseProfileType} from "../components/Profile/ProfileContainer";
 
 export const baseApi = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -8,30 +7,6 @@ export const baseApi = axios.create({
         "API-KEY": 'f31ffa20-0ff3-4086-b0e8-28ca7dcbaac2'
     }
 })
-
-export const profileAPI = {
-    getProfile(userId: number) {
-        return baseApi.get(`profile/${userId}`)
-    },
-    getStatus(userId: number) {
-        return baseApi.get(`profile/status/${userId}`)
-    },
-    updateStatus(status: string) {
-        return baseApi.put(`profile/status`, {status})
-    },
-    savePhoto(file: any) {
-        let formData = new FormData()
-        formData.append('image', file)
-        return baseApi.put(`profile/photo`, formData, {
-            headers: {
-                'Content-type': 'multipart/form-data',
-            }
-        })
-    },
-    saveProfile(profile: ResponseProfileType) {
-        return baseApi.put(`profile`, profile)
-    }
-}
 
 type MeResponseType = {
     data: {

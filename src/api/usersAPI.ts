@@ -1,4 +1,5 @@
-import {baseApi, profileAPI} from "./api";
+import {baseApi} from "./api";
+import {profileAPI} from "./profileAPI";
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
