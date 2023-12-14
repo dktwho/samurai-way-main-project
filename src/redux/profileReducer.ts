@@ -1,13 +1,9 @@
-import {
-    MyPostsType,
-    ProfilePageType,
-} from "./store";
+import {MyPostsType, ProfilePageType,} from "./store";
 import {AnyAction, Dispatch} from "redux";
 import {ResultCodeEnum} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {stopSubmit} from "redux-form";
 import {PhotoType, ResponseProfileType} from "../components/Profile/ProfileContainer";
-import {usersAPI} from "../api/usersAPI";
 import {profileAPI} from "../api/profileAPI";
 
 
@@ -115,7 +111,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
 // thunks
 export const getUserProfileThunkCreator = (userId: number) => async (dispatch: Dispatch<ActionsTypes>) => {
-    const res = await usersAPI.getProfile(userId)
+    const res = await profileAPI.getProfile(userId)
     dispatch(setUserProfileAC(res.data))
 }
 

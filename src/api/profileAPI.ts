@@ -3,7 +3,7 @@ import {baseApi} from "./api";
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return baseApi.get(`profile/${userId}`)
+        return baseApi.get<ResponseProfileType>(`profile/${userId}`)
     },
     getStatus(userId: number) {
         return baseApi.get(`profile/status/${userId}`)
