@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
-import {authAPI, ResultCodeEnum, ResultCodeForCaptcha, securityAPI} from "../api/api";
+import {authAPI, ResultCodeEnum, ResultCodeForCaptcha} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {securityAPI} from "../api/securityAPI";
 
 //  redux/ducks type
 const SET_USER_DATA = 'auth/SET-USER-DATA'

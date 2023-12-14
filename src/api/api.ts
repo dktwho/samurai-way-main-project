@@ -40,12 +40,6 @@ export const authAPI = {
     }
 }
 
-export const securityAPI = {
-    getCaptchaUrl() {
-        return baseApi.get(`security/get-captcha-url`)
-    },
-}
-
 
 // enum
 export enum ResultCodeEnum {
