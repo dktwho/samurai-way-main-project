@@ -6,7 +6,7 @@ import {DialogItemType, MessageType} from "../../redux/store";
 import {AddMessageFormRedux} from "./AddMessageForm/AddMessageForm";
 
 
-type MessagePageType2 = {
+export type MessagePageType2 = {
     messages: MessageType[]
     dialogs: DialogItemType[]
     newMessageBody: string

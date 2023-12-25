@@ -5,7 +5,6 @@ import React from "react";
 
 const maxLength50 = maxLengthCreator(50)
 const AddMessageForm = (props: any) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
